@@ -1,3 +1,14 @@
 David van Erkelens	<studentnr>
 Sharon Gieske		6167667
 Elise Koster		5982448
+
+# Goal
+The goal of this project is the implementation of an image classification system with four classes (Ck in [airplane, motorbike, face, car]) using bag-of-words. 
+
+# Steps
+The system contains the following steps:
+## Feature extraction and description
+## Building a visual vocabulary
+## Quantization of features using visual dictionary (encoding)
+## Representing images by frequencies of visual words
+## Classification
