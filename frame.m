@@ -12,7 +12,7 @@ function frame(train_number)
         desc4 = extract_features(strcat('motorbikes_train/', motorbikes_files(i).name), 'key');
         data_matrix = cat(2, data_matrix, desc1, desc2, desc3, desc4);
     end
-    build_vocab(data_matrix, 400)
+    build_vocab(im2single(data_matrix), 400);
     size(data_matrix)
     
         
