@@ -1,2 +1,6 @@
-function histogram = get_histogram(image, vocabulary)
-    histogram = 0;
+function his = get_histogram(words_matrix)
+    for i = 1:size(words_matrix,1)
+        figure,
+        hist(words_matrix(i,:))
+    end
+    his=0
