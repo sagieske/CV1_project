@@ -1,5 +1,11 @@
 function descriptors = extract_features(im, type_sift)
-    im_key = im2single(rgb2gray(imread(im)));
+    im2 = imread(im);
+    channels = size(im2, 3);
+    if(channels == 1)
+        im_key = im2single(im2);
+    else
+        im_key = im2single(rgb2gray(im2));
+    end
     im_color = imread(im);
     
     switch(type_sift)
