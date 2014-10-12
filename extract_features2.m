@@ -15,6 +15,7 @@ function descriptors = extract_features2(im, type_sift, color_space)
     % needed. For now returns empty set
     if (channels == 1 && ~strcmp(color_space, 'gray'))
         descriptors = {}
+        % OR MAYBE TURN COLOR SPACE TEMPORARILY TO GRAY??
         return
     end
     
@@ -34,6 +35,7 @@ function descriptors = extract_features2(im, type_sift, color_space)
                 case('key')
                     [~, descriptors] = vl_sift(im_key);
             end
+            descriptors = {descriptors};
         case('RGB')
             % RGBSift (sift per color channel)
             R = im_color(:,:,1); % Red channel
