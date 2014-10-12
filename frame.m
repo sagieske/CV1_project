@@ -27,10 +27,9 @@ function frame(train_number,  type_sift, color_space)
     end
     % Build vocabulary with N visual words
     N = 400;
-    size(data_matrix)
     [centers, assignment] = build_vocab(im2single(data_matrix), N);
     % Quantize features 
-    words_matrix = quantize_features(selected_images, centers, assignment);
+    words_matrix = quantize_features(selected_images, centers, assignment, type_sift, color_space);
     size(words_matrix)
     
         
