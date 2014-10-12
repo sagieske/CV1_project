@@ -97,4 +97,6 @@ function descriptors = extract_features2(im, type_sift, color_space)
                     [~, third_descriptors] = vl_sift(im2single(third));
             end
             descriptors = {first_descriptors, second_descriptors, third_descriptors};
+        otherwise
+            disp('ERROR: INVALID COLOR SPACE')
     end
