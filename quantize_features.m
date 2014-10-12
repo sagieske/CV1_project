@@ -2,13 +2,13 @@
 % a visual word vector that describes image i 
 
 function image_descriptions = quantize_features(images, centers, assignment,  type_sift, color_space, channel)
-    amount_images = size(images,1);
+    amount_images = size(images,2);
     words_matrix = [];
     image_descriptions = {};
     % Describe each image in words
     for i = 1:amount_images
         % Get descriptor set of image
-        descriptor_set_multiplechannels = extract_features2(images(i,:), type_sift, color_space);
+        descriptor_set_multiplechannels = extract_features2(images{i}, type_sift, color_space);
         % Get only descriptor set of current channel:
         descriptor_set = descriptor_set_multiplechannels{channel};
         words_vector = [];
