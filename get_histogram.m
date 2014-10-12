@@ -1,6 +1,8 @@
 function his = get_histogram(words_matrix)
-    for i = 1:size(words_matrix,1)
+    % For every image, create histogram
+    for i = 1:size(words_matrix,2)
         figure,
-        hist(words_matrix(i,:))
+        hist(words_matrix{1})
+        %hist(words_matrix(i,:))
     end
     his=0
