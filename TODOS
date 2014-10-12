@@ -1,0 +1,6 @@
+function extract_features2:
+	- What to do if image is gray scale eventhough another color space was needed. For now returns empty set
+
+function frame:
+	- Create prettier way to add correct foldername to filenames
+	- Use seperate data matrices and quantization in loop for different channels? Or somehow merge everything?
