@@ -15,7 +15,6 @@ function descriptors = extract_features2(im, type_sift, color_space)
     % needed. For now returns empty set
     if (channels == 1 && ~strcmp(color_space, 'gray'))
         descriptors = {}
-        disp('aaaa')
         return
     end
     
