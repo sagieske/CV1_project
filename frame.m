@@ -51,9 +51,13 @@ function frame(train_number,  type_sift, color_space)
     N = 400;
     data_matrix_channels = size(data_matrix,2);
     words_matrix = {};
+    center_list = {};
+    assignment_list = {};
     % Create seperate word matrices for channels
     for i = 1:data_matrix_channels
         [centers, assignment] = build_vocab(im2single(data_matrix{i}), N);
+        center_list{i} = centers;
+        assignment_list{i} = assignment;
         % Quantize features 
         words_matrix{i} = quantize_features(selected_images, centers, assignment, type_sift, color_space, i);
     end
@@ -67,6 +71,54 @@ function frame(train_number,  type_sift, color_space)
 
     % Use channel 1 to test get_histogram for trainingnumber of images
     get_histogram(words_matrix{1}, selected_images);
+    data_matrix_ch1b = [];
+    data_matrix_ch2b = [];
+    data_matrix_ch3b = [];
+    selected_images = cell(1,train_number);
+    for j = amount_per_class:amount_per_class+50
+        airplanes_name = strcat('data/airplanes_train/', airplanes_files(j).name);
+        cars_name = strcat('data/cars_train/', cars_files(j).name);
+        faces_name = strcat('data/faces_train/', faces_files(j).name);
+        motorbikes_name = strcat('data/motorbikes_train/', motorbikes_files(j).name);
+        
+        % Concatenate names of images used for descriptors
+        selected_images{j*4-3}  = airplanes_name;
+        selected_images{j*4-2}  =  cars_name;
+        selected_images{j*4-1}  = faces_name;
+        selected_images{j*4}  = motorbikes_name;
+
+        % Get descriptors
+        desc1 = extract_features2(airplanes_name,  type_sift, color_space)
+        desc2 = extract_features2(cars_name,  type_sift, color_space)
+        desc3 = extract_features2(faces_name,  type_sift, color_space)
+        desc4 = extract_features2(motorbikes_name,  type_sift, color_space)
+    
+        data_matrix_ch1b = cat(2, data_matrix_ch1b, desc1{1}, desc2{1}, desc3{1}, desc4{1});
+        %???? Seperate data_matrices for seperate channels?????
+        if (~strcmp(color_space,'gray'))
+            data_matrix_ch2b = cat(2, data_matrix_ch2b, desc1{2}, desc2{2}, desc3{2}, desc4{2});
+            data_matrix_ch3b = cat(2, data_matrix_ch3b, desc1{3}, desc2{3}, desc3{3}, desc4{3});
+        end
+        
+    end
+    if (strcmp(color_space,'gray'))
+            data_matrix = {data_matrix_ch1b};
+    else
+        data_matrix = { data_matrix_ch1b, data_matrix_ch2b, data_matrix_ch3b};
+    end
+    N = 400;
+    data_matrix_channels = size(data_matrix,2);
+    words_matrix = {};
+
+    % Create seperate word matrices for channels
+    for i = 1:data_matrix_channels
+        %[centers, assignment] = build_vocab(im2single(data_matrix{i}), N);
+        % Quantize features 
+        words_matrix{i} = quantize_features(selected_images, center_list{i}, assignment_list{i}, type_sift, color_space, i);
+    end
+    %If you run this you will get a billion zillion plots
+    get_histogram(words_matrix{1}, selected_images);
+    
 
     
 
