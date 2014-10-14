@@ -4,3 +4,6 @@ function extract_features2:
 function frame:
 	- Create prettier way to add correct foldername to filenames
 	- Use seperate data matrices and quantization in loop for different channels? Or somehow merge everything?
+
+function get_histograms:
+	- heeft input parameter van aantal clusters nodig, moet in andere functies dan ook veranderd worden.
