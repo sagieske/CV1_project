@@ -3,7 +3,7 @@
 %           type_sift:      
 %           color space:
 
-function datamatrix_class = get_descriptors_class(N, classfolder, imagefile_names,type_sift, color_space)
+function datamatrix_class, selected_images = get_descriptors_class(N, classfolder,type_sift, color_space)
     % Get all jpg image information in class folder
     class_files = dir(strcat(classfolder, '*.jpg')); 
     selected_images = cell(1,N);
@@ -17,7 +17,7 @@ function datamatrix_class = get_descriptors_class(N, classfolder, imagefile_name
     for i = 1:N
         % Append correct folder
         imagename = strcat(classfolder, class_files(i).name);
-        selected_image{i} = imagename;
+        selected_images{i} = imagename;
         % Get descriptors
         descriptors = extract_features2(imagename,  type_sift, color_space);
          % There is always at least channel 1
