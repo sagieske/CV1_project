@@ -1,10 +1,10 @@
-function his = get_histogram(words_matrix, selected_images)
+function Nnorm = get_histogram(words_matrix, selected_images, centers, assignment)
     % For every image, create histogram
-    for i = 1:size(words_matrix,2)
-        size(words_matrix{i})
-        figure('name',selected_images{i}),
+    a = 0:400
+    for i = 1:size(words_matrix,1)
+        %figure('name',selected_images{i}),
         %hist(words_matrix{i})
-        bar(hist(words_matrix{i}) ./ sum(hist(words_matrix{i})))
-        %hist(words_matrix(i,:))
+        N = hist(words_matrix{i}, a);
+        Nsum = sum(N);
+        Nnorm = N/Nsum;
     end
-    his=0

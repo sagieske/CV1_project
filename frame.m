@@ -12,6 +12,7 @@ function frame(train_number,  type_sift, color_space)
 
     selected_images = cell(1,train_number);
     % Get desriptors for image from each training class
+    disp('Extracting features')
     for i = 1:amount_per_class
         % Append correct folder
         airplanes_name = strcat('data/airplanes_train/', airplanes_files(i).name);
@@ -54,6 +55,7 @@ function frame(train_number,  type_sift, color_space)
     center_list = {};
     assignment_list = {};
     % Create seperate word matrices for channels
+    disp('Building vocab')
     for i = 1:data_matrix_channels
         [centers, assignment] = build_vocab(im2single(data_matrix{i}), N);
         center_list{i} = centers;
@@ -70,12 +72,13 @@ function frame(train_number,  type_sift, color_space)
     % image_description = words_matrix{1}{2}
 
     % Use channel 1 to test get_histogram for trainingnumber of images
-    get_histogram(words_matrix{1}, selected_images);
+    %get_histogram(words_matrix{1}, selected_images);
     data_matrix_ch1b = [];
     data_matrix_ch2b = [];
     data_matrix_ch3b = [];
     selected_images = cell(1,train_number);
-    for j = amount_per_class:amount_per_class+50
+    disp('Getting SVM training data')
+    for j = amount_per_class:amount_per_class+5
         airplanes_name = strcat('data/airplanes_train/', airplanes_files(j).name);
         cars_name = strcat('data/cars_train/', cars_files(j).name);
         faces_name = strcat('data/faces_train/', faces_files(j).name);
@@ -88,10 +91,10 @@ function frame(train_number,  type_sift, color_space)
         selected_images{j*4}  = motorbikes_name;
 
         % Get descriptors
-        desc1 = extract_features2(airplanes_name,  type_sift, color_space)
-        desc2 = extract_features2(cars_name,  type_sift, color_space)
-        desc3 = extract_features2(faces_name,  type_sift, color_space)
-        desc4 = extract_features2(motorbikes_name,  type_sift, color_space)
+        desc1 = extract_features2(airplanes_name,  type_sift, color_space);
+        desc2 = extract_features2(cars_name,  type_sift, color_space);
+        desc3 = extract_features2(faces_name,  type_sift, color_space);
+        desc4 = extract_features2(motorbikes_name,  type_sift, color_space);
     
         data_matrix_ch1b = cat(2, data_matrix_ch1b, desc1{1}, desc2{1}, desc3{1}, desc4{1});
         %???? Seperate data_matrices for seperate channels?????
@@ -111,13 +114,14 @@ function frame(train_number,  type_sift, color_space)
     words_matrix = {};
 
     % Create seperate word matrices for channels
+    disp('Retrieving histograms')
     for i = 1:data_matrix_channels
         %[centers, assignment] = build_vocab(im2single(data_matrix{i}), N);
         % Quantize features 
         words_matrix{i} = quantize_features(selected_images, center_list{i}, assignment_list{i}, type_sift, color_space, i);
     end
     %If you run this you will get a billion zillion plots
-    get_histogram(words_matrix{1}, selected_images);
+    N = get_histogram(words_matrix{1}, selected_images, centers, assignment);
     
 
     
