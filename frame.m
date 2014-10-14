@@ -121,7 +121,7 @@ function frame(train_number,  type_sift, color_space)
         words_matrix{i} = quantize_features(selected_images, center_list{i}, assignment_list{i}, type_sift, color_space, i);
     end
     %If you run this you will get a billion zillion plots
-    N = get_histogram(words_matrix{1}, selected_images, centers, assignment);
+    N = get_histogram(words_matrix{1});
     
 
     
