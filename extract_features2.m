@@ -12,9 +12,9 @@ function descriptors = extract_features2(im, type_sift, color_space)
     channels = size(im_color, 3);
     
     % Check if image is gray scale eventhough another color space was
-    % needed. For now returns empty set
+    % needed. For now returns set of empty arrays
     if (channels == 1 && ~strcmp(color_space, 'gray'))
-        descriptors = {}
+        descriptors = {[],[],[]}
         % OR MAYBE TURN COLOR SPACE TEMPORARILY TO GRAY??
         return
     end
