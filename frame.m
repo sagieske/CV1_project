@@ -13,7 +13,7 @@ function frame(train_number,  type_sift, color_space)
     % Get desriptors for image from each training class
     disp('Extracting features')
     classes = {'data/airplanes_train/', 'data/cars_train/', 'data/faces_train/', 'data/motorbikes_train/'} ;
-    [total_data_matrix, selected_images, datamatrix_per_class, selected_images_per_class] =  descriptors_all_classes(amount_per_class, classes, type_sift, color_space)
+    [total_data_matrix, selected_images, datamatrix_per_class, selected_images_per_class] =  descriptors_all_classes(amount_per_class, classes, type_sift, color_space);
     
     % Data matrix for class 1, channel 1: size(datamatrix_class{1}{1})
     
