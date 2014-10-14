@@ -104,12 +104,25 @@ function frame(train_number,  type_sift, color_space)
     words_faces_svm = quantize_features(fac_svm, centers, assignment, type_sift, color_space, 1);
     words_motorbikes_svm = quantize_features(mot_svm, centers, assignment, type_sift, color_space, 1);
     
-    %If you run this you will get a billion zillion plot
+    %histograms per class
     N_airplanes = get_histogram(words_airplanes_svm);
     N_cars = get_histogram(words_cars_svm);
     N_faces = get_histogram(words_faces_svm);
     N_motorbikes = get_histogram(words_motorbikes_svm);
     
+    N_all = cat(1, N_airplanes, N_cars, N_faces, N_motorbikes);
+    correct = ones(5,1);
+    false = zeros(5,1);
+    
+    airplanes_label = cat(1, correct, false, false, false);
+    cars_label = cat(1, false, correct, false, false);
+    faces_label = cat(1, false, false, correct, false);
+    motorbikes_label = cat(1, false, false, false, correct);
+    
+    model_airplanes = svmtrain(airplanes_label, N_all);
+    model_cars = svmtrain(cars_label, N_all);
+    model_faces = svmtrain(faces_label, N_all);
+    model_motorbikes = svmtrain(motorbikes_label, N_all);
     
 
     
