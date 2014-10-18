@@ -124,6 +124,27 @@ function frame(train_number,  type_sift, color_space)
     model_faces = svmtrain(faces_label, N_all);
     model_motorbikes = svmtrain(motorbikes_label, N_all);
     
+    testim = imload('data/airplanes_test/img001.jpg');
+    testdesc = extract_features2('data/airplanes_test/img001.jpg', 'key', 'gray');
+    
+    
+    % TODO: one or two steps missing, not really sure what should happen
+    % but I'll figure it out
+    test_svm = quantize_features(**MAGIC**);
+    
+    test_hist = get_histogram(test_svm);
+    
+    % [predicted_label] = svmpredict(testing_label_vector, testing_instance_matrix, model, 'libsvm_options')
+    pred_test_air = svmpredict([1], test_hist, model_airplanes);
+    pred_test_car = svmpredict([1], test_hist, model_cars);
+    pred_test_face = svmpredict([1], test_hist, model_faces);
+    pred_test_mot = svmpredict([1], test_hist, model_motorbikes);
+    
+    % If pred_test_something == [1], then the image **should** be part of
+    % that class. 
+    
+end
+    
 
     
 
