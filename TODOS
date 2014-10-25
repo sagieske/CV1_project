@@ -10,3 +10,6 @@ function get_histograms:
 
 function get_descriptors_class, frame and descriptors_all_classes:
 	- Randomize image selection
+
+- Add channels to predictions and average over?
+- Add evaluation

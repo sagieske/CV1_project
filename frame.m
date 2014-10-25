@@ -30,7 +30,6 @@ function frame(train_number,  type_sift, color_space)
     
     %data_matrix = cat(2, data_matrix_airplane{1}, data_matrix_car{1}, data_matrix_face{1}, data_matrix_motorbike{1});
     data_matrix = total_data_matrix{1};
-    %images_matrix = cat(1, air_im, car_im, fac_im, mot_im);
     images_matrix = selected_images;
     
     disp('Building vocab')
@@ -85,7 +84,7 @@ function frame(train_number,  type_sift, color_space)
     N_all = cat(1, N_airplanes, N_cars, N_faces, N_motorbikes);
     correct = ones(svm_train_number,1);
     false = zeros(svm_train_number,1);
-    false = repmat(-1, svm_train_number, 1);
+    %false = repmat(-1, svm_train_number, 1);
     
     airplanes_label = cat(1, correct, false, false, false);
     cars_label = cat(1, false, correct, false, false);
@@ -109,29 +108,12 @@ function frame(train_number,  type_sift, color_space)
     model_faces = svmtrain(faces_label, N_all, '-t 3 -b 1');
     model_motorbikes = svmtrain(motorbikes_label, N_all, '-t 3 -b 1');
     
-    %modelsize = size(motorbikes_label)
-    %test_descriptors = extract_features2(testimage, 'key', 'gray');
-    class_dictionary_test = create_class_table('test');
-    [test_desc, test_images] = get_descriptors_class(1,1, class_dictionary_test('faces_test'), 'key', 'gray');
-    
-    % TODO: one or two steps missing, not really sure what should happen
-    % but I'll figure it out
-    test_svm = quantize_features(test_images, centers, assignment, type_sift, color_space, 1);
-    
-    test_hist = get_histogram(test_svm);
-    
-    % [predicted_label] = svmpredict(testing_label_vector, testing_instance_matrix, model, 'libsvm_options')
-    disp('testing face image:')
-    [pred_test_air, accuracy_air, decision_values_air] = svmpredict([-1], test_hist, model_airplanes, ' -b 1');
-    [pred_test_car, accuracy_car, decision_values_car] = svmpredict([-1], test_hist, model_cars,  '-b 1');
-    [pred_test_face, accuracy_face, decision_values_face] = svmpredict([1], test_hist, model_faces,  '-b 1');
-    [pred_test_mot, accuracy_mot, decision_values_mot]  = svmpredict([-1], test_hist, model_motorbikes, ' -b 1');
-    pred_test_air = pred_test_air
-    pred_test_car = pred_test_car
-    pred_test_face = pred_test_face
-    pred_test_mot = pred_test_mot
-    % If pred_test_something == [1], then the image **should** be part of
-    % that class. 
+    models = {model_airplanes, model_cars, model_faces, model_motorbikes};
+
+    % TODO channels!
+    channel_nr = 1;
+    % TESTING
+    prediction = testing(models, centers, assignment, type_sift, color_space, channel_nr);
     
 end
     
