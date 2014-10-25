@@ -92,10 +92,22 @@ function frame(train_number,  type_sift, color_space)
     faces_label = cat(1, false, false, correct, false);
     motorbikes_label = cat(1, false, false, false, correct);
     
-    model_airplanes = svmtrain(airplanes_label, N_all);
-    model_cars = svmtrain(cars_label, N_all);
-    model_faces = svmtrain(faces_label, N_all);
-    model_motorbikes = svmtrain(motorbikes_label, N_all);
+    %PARAMS SVM:
+%     -t kernel_type
+%         set type of kernel function (default 2)
+%         0 - linear - u'*v
+%         1 - polynomial - gamma*u'*v + coef0)^degree
+%         2 - radial basis function - exp(-gamma*|u-v|^2)
+%         3 - sigmoid - tanh(gamma*u'*v + coef0)
+%         4 - precomputed kernel (kernel values in training_set_file)
+%     
+%     -b probability_estimates
+%         whether to train an SVC or SVR model for probability estimates, 0 or 1 (default 0)
+        
+    model_airplanes = svmtrain(airplanes_label, N_all, '-t 3 -b 1');
+    model_cars = svmtrain(cars_label, N_all, '-t 3 -b 1');
+    model_faces = svmtrain(faces_label, N_all, '-t 3 -b 1');
+    model_motorbikes = svmtrain(motorbikes_label, N_all, '-t 3 -b 1');
     
     %modelsize = size(motorbikes_label)
     %test_descriptors = extract_features2(testimage, 'key', 'gray');
@@ -109,11 +121,15 @@ function frame(train_number,  type_sift, color_space)
     test_hist = get_histogram(test_svm);
     
     % [predicted_label] = svmpredict(testing_label_vector, testing_instance_matrix, model, 'libsvm_options')
-    pred_test_air = svmpredict([1], test_hist, model_airplanes);
-    pred_test_car = svmpredict([1], test_hist, model_cars);
-    [pred_test_face, accuracy, decision_values] = svmpredict([1], test_hist, model_faces);
-    pred_test_mot = svmpredict([1], test_hist, model_motorbikes);
-    pred_test_face
+    disp('testing face image:')
+    [pred_test_air, accuracy_air, decision_values_air] = svmpredict([-1], test_hist, model_airplanes, ' -b 1');
+    [pred_test_car, accuracy_car, decision_values_car] = svmpredict([-1], test_hist, model_cars,  '-b 1');
+    [pred_test_face, accuracy_face, decision_values_face] = svmpredict([1], test_hist, model_faces,  '-b 1');
+    [pred_test_mot, accuracy_mot, decision_values_mot]  = svmpredict([-1], test_hist, model_motorbikes, ' -b 1');
+    pred_test_air = pred_test_air
+    pred_test_car = pred_test_car
+    pred_test_face = pred_test_face
+    pred_test_mot = pred_test_mot
     % If pred_test_something == [1], then the image **should** be part of
     % that class. 
     
