@@ -11,7 +11,7 @@
 %           selected_images_p_class cell array of images used for
 %                                   data_matrix_per_class
 
-function [total_data_matrix, selected_images, datamatrix_per_class, selected_images_per_class] =  descriptors_all_classes(amount_per_class, classes, type_sift, color_space)
+function [total_data_matrix, selected_images, datamatrix_per_class, selected_images_per_class] =  descriptors_all_classes(amount_per_class, class_dictionary, type_sift, color_space)
 
     if (~strcmp(color_space,'gray'))
         channels = 3;
@@ -20,7 +20,8 @@ function [total_data_matrix, selected_images, datamatrix_per_class, selected_ima
     end
     
     % Initialize everything
-    number_of_classes = size(classes,2);
+    class_dictionary.Count
+    number_of_classes = class_dictionary.Count;
     datamatrix_per_class = cell(1,number_of_classes);
     selected_images_per_class = cell(1,number_of_classes);
     total_data_matrix = cell(1,channels);
@@ -30,9 +31,12 @@ function [total_data_matrix, selected_images, datamatrix_per_class, selected_ima
     
     % Loop over all classes to get data_matrix (of possible multiple
     % channels per class)
+    classes = values(class_dictionary)
     for c=1:number_of_classes
-        fprintf('- Retrieving %i images from class %s for training.\n', amount_per_class, classes{c});
-        [matrix, images_names] = get_descriptors_class(1, amount_per_class, classes{c},type_sift, color_space);
+        % Convert from cell to string
+        class = char(classes(c));
+        fprintf('- Retrieving %i images from class %s for training.\n', amount_per_class, class);
+        [matrix, images_names] = get_descriptors_class(1, amount_per_class, class, type_sift, color_space);
         datamatrix_per_class{c} = matrix;
         selected_images_per_class{c} = images_names;
         % append image file names to cell array
@@ -42,3 +46,4 @@ function [total_data_matrix, selected_images, datamatrix_per_class, selected_ima
             total_data_matrix{i} = cat(2, total_data_matrix{i}, matrix{i});
         end        
     end
+    disp('done')

@@ -2,18 +2,17 @@ function frame(train_number,  type_sift, color_space)
     % Calculate # images for each class dependend on # training images
     amount_per_class = round(train_number/4)
     % Get file information of jpg images from directories
-    airplanes_files = dir('data/airplanes_train/*.jpg'); 
-    cars_files = dir('data/cars_train/*.jpg'); 
-    faces_files = dir('data/faces_train/*.jpg'); 
-    motorbikes_files = dir('data/motorbikes_train/*.jpg'); 
+    %airplanes_files = dir('CV1_Project_data/data/airplanes_train/*.jpg'); 
+    %cars_files = dir('CV1_Project_data/data/cars_train/*.jpg'); 
+    %faces_files = dir('CV1_Project_data/data/faces_train/*.jpg'); 
+    %motorbikes_files = dir('CV1_Project_data/data/motorbikes_train/*.jpg'); 
     data_matrix_ch1 = [];
     data_matrix_ch2 = [];
     data_matrix_ch3 = [];
 
-    % Get desriptors for image from each training class
-    disp('Extracting features')
-    classes = {'data/airplanes_train/', 'data/cars_train/', 'data/faces_train/', 'data/motorbikes_train/'} ;
-    [total_data_matrix, selected_images, datamatrix_per_class, selected_images_per_class] =  descriptors_all_classes(amount_per_class, classes, type_sift, color_space);
+    % Retrieve class mapping for training
+    class_dictionary = create_class_table('train')
+    [total_data_matrix, selected_images, datamatrix_per_class, selected_images_per_class] =  descriptors_all_classes(amount_per_class, class_dictionary, type_sift, color_space);
     
     % Data matrix for class 1, channel 1: size(datamatrix_class{1}{1})
     
@@ -56,10 +55,10 @@ function frame(train_number,  type_sift, color_space)
     faces_svm = [];
     motorbikes_svm = [];
     selected_images = cell(1,train_number);
-    [airplanes_svm, air_svm] = get_descriptors_class(1,5, 'data/airplanes_train/', 'key', 'gray');
-    [cars_svm, car_svm] = get_descriptors_class(1,5, 'data/cars_train/', 'key', 'gray');
-    [faces_svm, fac_svm] = get_descriptors_class(1,5, 'data/faces_train/', 'key', 'gray');
-    [motorbikes_svm, mot_svm] = get_descriptors_class(1, 5, 'data/motorbikes_train/', 'key', 'gray');
+    [airplanes_svm, air_svm] = get_descriptors_class(1,5, class_dictionary('airplanes_train'), 'key', 'gray');
+    [cars_svm, car_svm] = get_descriptors_class(1,5,class_dictionary('cars_train'), 'key', 'gray');
+    [faces_svm, fac_svm] = get_descriptors_class(1,5, class_dictionary('faces_train'), 'key', 'gray');
+    [motorbikes_svm, mot_svm] = get_descriptors_class(1, 5, class_dictionary('motorbikes_train'), 'key', 'gray');
     
     disp('Getting SVM training data')
 %     for j = amount_per_class:amount_per_class+5
@@ -132,7 +131,7 @@ function frame(train_number,  type_sift, color_space)
     % but I'll figure it out
     %test_svm = quantize_features(**MAGIC**);
     
-    test_hist = get_histogram(test_svm);
+    %test_hist = get_histogram(test_svm);
     
     % [predicted_label] = svmpredict(testing_label_vector, testing_instance_matrix, model, 'libsvm_options')
     pred_test_air = svmpredict([1], test_hist, model_airplanes);

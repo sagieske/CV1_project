@@ -7,9 +7,8 @@
 function [data_matrix_class, selected_images] = get_descriptors_class(startN, N, classfolder,type_sift, color_space)
     % Get all jpg image information in class folder
     class_files = dir(strcat(classfolder, '*.jpg')); 
-    N
     selected_images = cell(1,N);
-    
+
     % init for channels
     data_matrix_ch1 = [];
     data_matrix_ch2 = []; 
