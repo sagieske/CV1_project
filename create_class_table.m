@@ -3,7 +3,7 @@
 function class_dictionary = create_class_table(usage)
     
     class_dictionary = containers.Map;
-    if strcmp(usage, 'train')
+    if strcmp(usage, 'training')
         class_dictionary('airplanes_train') = char('CV1 Project data/data/airplanes_train/');
         class_dictionary('cars_train') = char('CV1 Project data/data/cars_train/');
         class_dictionary('faces_train') = char('CV1 Project data/data/faces_train/');

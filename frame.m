@@ -11,7 +11,7 @@ function frame(train_number,  type_sift, color_space)
     data_matrix_ch3 = [];
 
     % Retrieve class mapping for training
-    class_dictionary = create_class_table('train')
+    class_dictionary = create_class_table('training');
     [total_data_matrix, selected_images, datamatrix_per_class, selected_images_per_class] =  descriptors_all_classes(amount_per_class, class_dictionary, type_sift, color_space);
     
     % Data matrix for class 1, channel 1: size(datamatrix_class{1}{1})
@@ -61,37 +61,7 @@ function frame(train_number,  type_sift, color_space)
     [motorbikes_svm, mot_svm] = get_descriptors_class(1, 5, class_dictionary('motorbikes_train'), 'key', 'gray');
     
     disp('Getting SVM training data')
-%     for j = amount_per_class:amount_per_class+5
-%         airplanes_name = strcat('data/airplanes_train/', airplanes_files(j).name);
-%         cars_name = strcat('data/cars_train/', cars_files(j).name);
-%         faces_name = strcat('data/faces_train/', faces_files(j).name);
-%         motorbikes_name = strcat('data/motorbikes_train/', motorbikes_files(j).name);
-%         
-%         % Concatenate names of images used for descriptors
-%         selected_images{j*4-3}  = airplanes_name;
-%         selected_images{j*4-2}  =  cars_name;
-%         selected_images{j*4-1}  = faces_name;
-%         selected_images{j*4}  = motorbikes_name;
-% 
-%         % Get descriptors
-%         desc1 = extract_features2(airplanes_name,  type_sift, color_space);
-%         desc2 = extract_features2(cars_name,  type_sift, color_space);
-%         desc3 = extract_features2(faces_name,  type_sift, color_space);
-%         desc4 = extract_features2(motorbikes_name,  type_sift, color_space);
-%     
-%         data_matrix_ch1b = cat(2, data_matrix_ch1b, desc1{1}, desc2{1}, desc3{1}, desc4{1});
-%         %???? Seperate data_matrices for seperate channels?????
-%         if (~strcmp(color_space,'gray'))
-%             data_matrix_ch2b = cat(2, data_matrix_ch2b, desc1{2}, desc2{2}, desc3{2}, desc4{2});
-%             data_matrix_ch3b = cat(2, data_matrix_ch3b, desc1{3}, desc2{3}, desc3{3}, desc4{3});
-%         end
-%         
-%     end
-%     if (strcmp(color_space,'gray'))
-%             data_matrix = {data_matrix_ch1b};
-%     else
-%         data_matrix = { data_matrix_ch1b, data_matrix_ch2b, data_matrix_ch3b};
-%     end
+
     N = 400;
     data_matrix_channels = size(data_matrix,2);
     words_matrix = {};
@@ -103,6 +73,7 @@ function frame(train_number,  type_sift, color_space)
     words_faces_svm = quantize_features(fac_svm, centers, assignment, type_sift, color_space, 1);
     words_motorbikes_svm = quantize_features(mot_svm, centers, assignment, type_sift, color_space, 1);
     disp('eeeyo')
+
     %histograms per class
     N_airplanes = get_histogram(words_airplanes_svm);
     N_cars = get_histogram(words_cars_svm);
@@ -116,15 +87,16 @@ function frame(train_number,  type_sift, color_space)
     airplanes_label = cat(1, correct, false, false, false);
     cars_label = cat(1, false, correct, false, false);
     faces_label = cat(1, false, false, correct, false);
-    motorbikes_label = cat(1, false, false, false, correct);
+    motorbikes_label = cat(1, false, false, false, correct)
+    N_all
     
     model_airplanes = svmtrain(airplanes_label, N_all);
     model_cars = svmtrain(cars_label, N_all);
     model_faces = svmtrain(faces_label, N_all);
     model_motorbikes = svmtrain(motorbikes_label, N_all);
     
-    testim = imload('data/airplanes_test/img001.jpg');
-    testdesc = extract_features2('data/airplanes_test/img001.jpg', 'key', 'gray');
+    testim = imload('CV Project data/data/airplanes_test/img001.jpg');
+    testdesc = extract_features2('CV Project data/airplanes_test/img001.jpg', 'key', 'gray');
     
     
     % TODO: one or two steps missing, not really sure what should happen
