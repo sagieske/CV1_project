@@ -56,7 +56,7 @@ function frame(train_number,  type_sift, color_space)
     motorbikes_svm = [];
     selected_images = cell(1,train_number);
     
-    svm_train_number = amount_per_class
+    svm_train_number = amount_per_class;
     
     [airplanes_svm, air_svm] = get_descriptors_class(1,svm_train_number, class_dictionary('airplanes_train'), 'key', 'gray');
     [cars_svm, car_svm] = get_descriptors_class(1,svm_train_number,class_dictionary('cars_train'), 'key', 'gray');
@@ -85,6 +85,7 @@ function frame(train_number,  type_sift, color_space)
     N_all = cat(1, N_airplanes, N_cars, N_faces, N_motorbikes);
     correct = ones(svm_train_number,1);
     false = zeros(svm_train_number,1);
+    false = repmat(-1, svm_train_number, 1);
     
     airplanes_label = cat(1, correct, false, false, false);
     cars_label = cat(1, false, correct, false, false);
@@ -96,10 +97,10 @@ function frame(train_number,  type_sift, color_space)
     model_faces = svmtrain(faces_label, N_all);
     model_motorbikes = svmtrain(motorbikes_label, N_all);
     
-    modelsize = size(motorbikes_label)
+    %modelsize = size(motorbikes_label)
     %test_descriptors = extract_features2(testimage, 'key', 'gray');
     class_dictionary_test = create_class_table('test');
-    [test_desc, test_images] = get_descriptors_class(1,1, class_dictionary('airplanes_train'), 'key', 'gray');
+    [test_desc, test_images] = get_descriptors_class(1,1, class_dictionary_test('faces_test'), 'key', 'gray');
     
     % TODO: one or two steps missing, not really sure what should happen
     % but I'll figure it out
@@ -110,9 +111,9 @@ function frame(train_number,  type_sift, color_space)
     % [predicted_label] = svmpredict(testing_label_vector, testing_instance_matrix, model, 'libsvm_options')
     pred_test_air = svmpredict([1], test_hist, model_airplanes);
     pred_test_car = svmpredict([1], test_hist, model_cars);
-    pred_test_face = svmpredict([1], test_hist, model_faces);
+    [pred_test_face, accuracy, decision_values] = svmpredict([1], test_hist, model_faces);
     pred_test_mot = svmpredict([1], test_hist, model_motorbikes);
-    
+    pred_test_face
     % If pred_test_something == [1], then the image **should** be part of
     % that class. 
     

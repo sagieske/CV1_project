@@ -47,4 +47,3 @@ function [total_data_matrix, selected_images, datamatrix_per_class, selected_ima
             total_data_matrix{i} = cat(2, total_data_matrix{i}, matrix{i});
         end        
     end
-    disp('done')
