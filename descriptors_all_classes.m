@@ -32,7 +32,7 @@ function [total_data_matrix, selected_images, datamatrix_per_class, selected_ima
     % channels per class)
     for c=1:number_of_classes
         fprintf('- Retrieving %i images from class %s for training.\n', amount_per_class, classes{c});
-        [matrix, images_names] = get_descriptors_class(amount_per_class, classes{c},type_sift, color_space);
+        [matrix, images_names] = get_descriptors_class(1, amount_per_class, classes{c},type_sift, color_space);
         datamatrix_per_class{c} = matrix;
         selected_images_per_class{c} = images_names;
         % append image file names to cell array

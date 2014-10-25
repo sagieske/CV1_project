@@ -7,3 +7,6 @@ function frame:
 
 function get_histograms:
 	- heeft input parameter van aantal clusters nodig, moet in andere functies dan ook veranderd worden.
+
+function get_descriptors_class, frame and descriptors_all_classes:
+	- Randomize image selection

@@ -56,10 +56,10 @@ function frame(train_number,  type_sift, color_space)
     faces_svm = [];
     motorbikes_svm = [];
     selected_images = cell(1,train_number);
-    [airplanes_svm, air_svm] = get_descriptors_class(5, 'data/airplanes_train/', 'key', 'gray');
-    [cars_svm, car_svm] = get_descriptors_class(5, 'data/cars_train/', 'key', 'gray');
-    [faces_svm, fac_svm] = get_descriptors_class(5, 'data/faces_train/', 'key', 'gray');
-    [motorbikes_svm, mot_svm] = get_descriptors_class(5, 'data/motorbikes_train/', 'key', 'gray');
+    [airplanes_svm, air_svm] = get_descriptors_class(1,5, 'data/airplanes_train/', 'key', 'gray');
+    [cars_svm, car_svm] = get_descriptors_class(1,5, 'data/cars_train/', 'key', 'gray');
+    [faces_svm, fac_svm] = get_descriptors_class(1,5, 'data/faces_train/', 'key', 'gray');
+    [motorbikes_svm, mot_svm] = get_descriptors_class(1, 5, 'data/motorbikes_train/', 'key', 'gray');
     
     disp('Getting SVM training data')
 %     for j = amount_per_class:amount_per_class+5
@@ -103,7 +103,7 @@ function frame(train_number,  type_sift, color_space)
     words_cars_svm = quantize_features(car_svm, centers, assignment, type_sift, color_space, 1);
     words_faces_svm = quantize_features(fac_svm, centers, assignment, type_sift, color_space, 1);
     words_motorbikes_svm = quantize_features(mot_svm, centers, assignment, type_sift, color_space, 1);
-    
+    disp('eeeyo')
     %histograms per class
     N_airplanes = get_histogram(words_airplanes_svm);
     N_cars = get_histogram(words_cars_svm);
@@ -130,7 +130,7 @@ function frame(train_number,  type_sift, color_space)
     
     % TODO: one or two steps missing, not really sure what should happen
     % but I'll figure it out
-    test_svm = quantize_features(**MAGIC**);
+    %test_svm = quantize_features(**MAGIC**);
     
     test_hist = get_histogram(test_svm);
     

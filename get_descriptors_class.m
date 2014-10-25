@@ -1,11 +1,13 @@
-% input:    N:              number of images from class
+% input:    startN:         image number to start procedure from
+%           N:              number of images from class
 %           classfolder:    path to folder with images of class
 %           type_sift:      
 %           color space:
 
-function [data_matrix_class, selected_images] = get_descriptors_class(N, classfolder,type_sift, color_space)
+function [data_matrix_class, selected_images] = get_descriptors_class(startN, N, classfolder,type_sift, color_space)
     % Get all jpg image information in class folder
     class_files = dir(strcat(classfolder, '*.jpg')); 
+    N
     selected_images = cell(1,N);
     
     % init for channels
@@ -14,7 +16,12 @@ function [data_matrix_class, selected_images] = get_descriptors_class(N, classfo
     data_matrix_ch3 = [];
     
     data_matrix_class = {};
-    for i = 1:N
+    % Matlab starts count at 1
+    if startN < 1
+        startN = 1
+    end
+    
+    for i = startN:N
         % Append correct folder
         imagename = strcat(classfolder, class_files(i).name);
         selected_images{i} = imagename;
