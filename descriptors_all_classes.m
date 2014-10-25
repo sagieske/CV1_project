@@ -20,7 +20,6 @@ function [total_data_matrix, selected_images, datamatrix_per_class, selected_ima
     end
     
     % Initialize everything
-    class_dictionary.Count
     number_of_classes = class_dictionary.Count;
     datamatrix_per_class = cell(1,number_of_classes);
     selected_images_per_class = cell(1,number_of_classes);
@@ -31,11 +30,13 @@ function [total_data_matrix, selected_images, datamatrix_per_class, selected_ima
     
     % Loop over all classes to get data_matrix (of possible multiple
     % channels per class)
-    classes = values(class_dictionary)
+    classes = values(class_dictionary);
+    classes_names = keys(class_dictionary);
+
     for c=1:number_of_classes
         % Convert from cell to string
         class = char(classes(c));
-        fprintf('- Retrieving %i images from class %s for training.\n', amount_per_class, class);
+        fprintf('- Retrieving %i images from class %s for training.\n', amount_per_class, char(classes_names(c)));
         [matrix, images_names] = get_descriptors_class(1, amount_per_class, class, type_sift, color_space);
         datamatrix_per_class{c} = matrix;
         selected_images_per_class{c} = images_names;

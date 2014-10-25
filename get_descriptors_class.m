@@ -17,7 +17,7 @@ function [data_matrix_class, selected_images] = get_descriptors_class(startN, N,
     data_matrix_class = {};
     % Matlab starts count at 1
     if startN < 1
-        startN = 1
+        startN = 1;
     end
     
     for i = startN:N

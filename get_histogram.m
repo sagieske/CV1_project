@@ -10,6 +10,6 @@ function normalized_matrix = get_histogram(words_matrix)
         Nnorm = N/Nsum;
         normalized_matrix = cat(1, normalized_matrix, Nnorm);
     end
-    size(normalized_matrix)
+    size(normalized_matrix);
 end
     

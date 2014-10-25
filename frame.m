@@ -1,6 +1,6 @@
 function frame(train_number,  type_sift, color_space)
     % Calculate # images for each class dependend on # training images
-    amount_per_class = round(train_number/4)
+    amount_per_class = round(train_number/4);
     % Get file information of jpg images from directories
     %airplanes_files = dir('CV1_Project_data/data/airplanes_train/*.jpg'); 
     %cars_files = dir('CV1_Project_data/data/cars_train/*.jpg'); 
@@ -55,10 +55,13 @@ function frame(train_number,  type_sift, color_space)
     faces_svm = [];
     motorbikes_svm = [];
     selected_images = cell(1,train_number);
-    [airplanes_svm, air_svm] = get_descriptors_class(1,5, class_dictionary('airplanes_train'), 'key', 'gray');
-    [cars_svm, car_svm] = get_descriptors_class(1,5,class_dictionary('cars_train'), 'key', 'gray');
-    [faces_svm, fac_svm] = get_descriptors_class(1,5, class_dictionary('faces_train'), 'key', 'gray');
-    [motorbikes_svm, mot_svm] = get_descriptors_class(1, 5, class_dictionary('motorbikes_train'), 'key', 'gray');
+    
+    svm_train_number = amount_per_class
+    
+    [airplanes_svm, air_svm] = get_descriptors_class(1,svm_train_number, class_dictionary('airplanes_train'), 'key', 'gray');
+    [cars_svm, car_svm] = get_descriptors_class(1,svm_train_number,class_dictionary('cars_train'), 'key', 'gray');
+    [faces_svm, fac_svm] = get_descriptors_class(1,svm_train_number, class_dictionary('faces_train'), 'key', 'gray');
+    [motorbikes_svm, mot_svm] = get_descriptors_class(1, svm_train_number, class_dictionary('motorbikes_train'), 'key', 'gray');
     
     disp('Getting SVM training data')
 
@@ -72,7 +75,6 @@ function frame(train_number,  type_sift, color_space)
     words_cars_svm = quantize_features(car_svm, centers, assignment, type_sift, color_space, 1);
     words_faces_svm = quantize_features(fac_svm, centers, assignment, type_sift, color_space, 1);
     words_motorbikes_svm = quantize_features(mot_svm, centers, assignment, type_sift, color_space, 1);
-    disp('eeeyo')
 
     %histograms per class
     N_airplanes = get_histogram(words_airplanes_svm);
@@ -81,29 +83,29 @@ function frame(train_number,  type_sift, color_space)
     N_motorbikes = get_histogram(words_motorbikes_svm);
     
     N_all = cat(1, N_airplanes, N_cars, N_faces, N_motorbikes);
-    correct = ones(5,1);
-    false = zeros(5,1);
+    correct = ones(svm_train_number,1);
+    false = zeros(svm_train_number,1);
     
     airplanes_label = cat(1, correct, false, false, false);
     cars_label = cat(1, false, correct, false, false);
     faces_label = cat(1, false, false, correct, false);
-    motorbikes_label = cat(1, false, false, false, correct)
-    N_all
+    motorbikes_label = cat(1, false, false, false, correct);
     
     model_airplanes = svmtrain(airplanes_label, N_all);
     model_cars = svmtrain(cars_label, N_all);
     model_faces = svmtrain(faces_label, N_all);
     model_motorbikes = svmtrain(motorbikes_label, N_all);
     
-    testim = imload('CV Project data/data/airplanes_test/img001.jpg');
-    testdesc = extract_features2('CV Project data/airplanes_test/img001.jpg', 'key', 'gray');
-    
+    modelsize = size(motorbikes_label)
+    %test_descriptors = extract_features2(testimage, 'key', 'gray');
+    class_dictionary_test = create_class_table('test');
+    [test_desc, test_images] = get_descriptors_class(1,1, class_dictionary('airplanes_train'), 'key', 'gray');
     
     % TODO: one or two steps missing, not really sure what should happen
     % but I'll figure it out
-    %test_svm = quantize_features(**MAGIC**);
+    test_svm = quantize_features(test_images, centers, assignment, type_sift, color_space, 1);
     
-    %test_hist = get_histogram(test_svm);
+    test_hist = get_histogram(test_svm);
     
     % [predicted_label] = svmpredict(testing_label_vector, testing_instance_matrix, model, 'libsvm_options')
     pred_test_air = svmpredict([1], test_hist, model_airplanes);
