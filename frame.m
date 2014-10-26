@@ -55,7 +55,7 @@ function frame(amount_per_class, svm_train_number, amount_clusters, type_sift, c
     motorbikes_svm = [];
     selected_images = cell(1,train_number);
     
-    
+    svm_train_number = svm_train_number + amount_per_class
     [airplanes_svm, air_svm] = get_descriptors_class(amount_per_class,svm_train_number, class_dictionary('airplanes_train'), 'key', 'gray');
     [cars_svm, car_svm] = get_descriptors_class(amount_per_class,svm_train_number,class_dictionary('cars_train'), 'key', 'gray');
     [faces_svm, fac_svm] = get_descriptors_class(amount_per_class,svm_train_number, class_dictionary('faces_train'), 'key', 'gray');
