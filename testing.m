@@ -31,8 +31,8 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
     true_value = cell(1,number_of_classifiers);
 
     for i=1:number_of_classifiers
-        predictions{i} = []
-        true_values{i} = []
+        predictions{i} = [];
+        true_values{i} = [];
     end
     
     
@@ -62,11 +62,11 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
             for c=1:number_of_classifiers
                 [pred_test, accuracy, decision_values] = svmpredict(true_value(c), test_hist(j,:), models{c}, ' -b 1 -q');                
                 % Add predicted value to list
-                old_array = predictions{c}
-                predictions{c} = cat(2,old_array, pred_test)
+                old_array = predictions{c};
+                predictions{c} = cat(2,old_array, pred_test);
                 % Add true values to list
-                old_array_true = true_values{c}
-                true_values{c} = cat(2,old_array_true, true_value(c))
+                old_array_true = true_values{c};
+                true_values{c} = cat(2,old_array_true, true_value(c));
             end
             
             %Increase counter for index of image in predictions_total
@@ -79,7 +79,31 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
     % TODO: SORT
 
     for c=1:number_of_classifiers
-        [sorted_pred, indices] = sort(predictions{c});
+        size(testimages_total)
+        size(predictions{c})
+        sorted_true_vals = []
+        sorted_predictions = []
+        sorted_images = []
+        %total_mat = cat(2, predictions{c}, true_values{c}, transpose(testimages_total))
+        %[sorted_pred, indices] = sort(predictions{c}, 'descend')
+        %[sorted_pred, indices] = sort(predictions{c})
+        pred = predictions{c}
+        truevals = true_values{c}
+        for k = 1:size(pred,2)
+            if pred(k) == 1
+                sorted_predictions = cat(1, pred(k), sorted_predictions);
+                sorted_true_vals = cat(1, truevals(k), sorted_true_vals);
+                sorted_images = cat(1, testimages_total(k), sorted_images);
+            elseif predictions{c}(k) == 0
+                sorted_predictions = cat(1, sorted_predictions, pred(k));
+                sorted_true_vals = cat(1, sorted_true_vals, truevals(k));
+                sorted_images = cat(1, sorted_images, testimages_total(k));
+            end
+        end
+    end
+        %[sorted_true, true_indices] = sort(true_values{c}, indices)
+        %test_images
+        %[sorted_im, im_indices] = sort(test_images, indices)
         % TODO: sort true_values{c} and test_images using indices!
         % sorted_true = TODO
         % sorted_im = TODO
