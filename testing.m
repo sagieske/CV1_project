@@ -36,7 +36,7 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
             prediction = [];
             % Calculate predictions for each clas and add to prediction array
             for c=1:size(class_names,2)
-                [pred_test, accuracy, decision_values] = svmpredict(true_value(c), test_hist(j,:), models{c}, ' -b 1');
+                [pred_test, accuracy, decision_values] = svmpredict(true_value(c), test_hist(j,:), models{c}, ' -b 1 -q');
                 prediction = cat(2,prediction, pred_test);
             end
 

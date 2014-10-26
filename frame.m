@@ -103,10 +103,10 @@ function frame(train_number,  type_sift, color_space)
 %     -b probability_estimates
 %         whether to train an SVC or SVR model for probability estimates, 0 or 1 (default 0)
         
-    model_airplanes = svmtrain(airplanes_label, N_all, '-t 3 -b 1');
-    model_cars = svmtrain(cars_label, N_all, '-t 3 -b 1');
-    model_faces = svmtrain(faces_label, N_all, '-t 3 -b 1');
-    model_motorbikes = svmtrain(motorbikes_label, N_all, '-t 3 -b 1');
+    model_airplanes = svmtrain(airplanes_label, N_all, '-t 3 -b 1 -q');
+    model_cars = svmtrain(cars_label, N_all, '-t 3 -b 1 -q');
+    model_faces = svmtrain(faces_label, N_all, '-t 3 -b 1 -q');
+    model_motorbikes = svmtrain(motorbikes_label, N_all, '-t 3 -b 1 -q');
     
     models = {model_airplanes, model_cars, model_faces, model_motorbikes};
 
