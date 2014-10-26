@@ -12,7 +12,7 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
     class_names = keys(class_dictionary_test);
     
     % TODO total images to be test from each class:
-    total_testimages_per_class = 50;
+    total_testimages_per_class = 5;
     
     number_of_classifiers = size(class_names,2);
     
@@ -25,6 +25,17 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
     
     counter = 1;
     % Test all svms for every image for every class
+    testimages_total = cell(1,total_testimages_per_class* number_of_classifiers);
+    % Initialize: Each predition and true value array of a classifier is stored in predictions
+    predictions = cell(1,number_of_classifiers);
+    true_value = cell(1,number_of_classifiers);
+
+    for i=1:number_of_classifiers
+        predictions{i} = []
+        true_values{i} = []
+    end
+    
+    
     for k=1:number_of_classifiers
         
         class_path = char(class_names(k));
@@ -59,6 +70,8 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
         
         % Test every image of class on all svms
         for j=1:size(test_svm,2)
+            % Add testimage to list
+            testimages_total{counter} = test_images{j};
             %fprintf('\nImage: %s\n', test_images{j});
             % initialize true value array
             true_value = zeros(1, size(class_names,2) );
@@ -66,28 +79,34 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
             prediction = [];
             % Calculate predictions for each clas and add to prediction array
             for c=1:number_of_classifiers
-                [pred_test, accuracy, decision_values] = svmpredict(true_value(c), test_hist(j,:), models{c}, ' -b 1 -q');
-                prediction = cat(2,prediction, pred_test);
-                % Add to every classifier list (classifier = #c) a cell array containing 
-                % the image name, its prediction for this classifier and the true
-                % value
-                %fprintf('classifier:%i location:%i\n', c, counter);
-                predictions_total{c}{counter} = {test_images{j}, pred_test, true_value(c)};
+                [pred_test, accuracy, decision_values] = svmpredict(true_value(c), test_hist(j,:), models{c}, ' -b 1 -q');                
+                % Add predicted value to list
+                old_array = predictions{c}
+                predictions{c} = cat(2,old_array, pred_test)
+                % Add true values to list
+                old_array_true = true_values{c}
+                true_values{c} = cat(2,old_array_true, true_value(c))
             end
             
             %Increase counter for index of image in predictions_total
             counter = counter +1;
 
         end
+
     end
-    
-    % print classifier FACES
-    classifier_test =4;
-    for p=1:size(predictions_total{classifier_test},2)
-        image_info = predictions_total{classifier_test}{p};
-        imagename = image_info{1};
-        fprintf('image: %s, predict: %i, true: %i\n', char(imagename),  image_info{2}, image_info{3})
-    end
+
+    % TODO: SORT
+
+    for c=1:number_of_classifiers
+        [sorted_pred, indices] = sort(predictions{c});
+        % TODO: sort true_values{c} and test_images using indices!
+        % sorted_true = TODO
+        % sorted_im = TODO
+        
+        % EVALUATE
+        
+   
+   
     
 end
 
