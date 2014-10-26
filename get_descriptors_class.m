@@ -7,10 +7,13 @@
 function [data_matrix_class, selected_images] = get_descriptors_class(startN, N, classfolder,type_sift, color_space)
     % Get all jpg image information in class folder
     class_files = dir(strcat(classfolder, '*.jpg')); 
-    class_files_total = size(class_files);
-    if startN + N > class_files_total
+    class_files_total = size(class_files,1);
+    if startN + N-1 > class_files_total
         disp('NOT ENOUGH CLASS FILES');
-        N = class_files_total - startN;
+        class_files_total = class_files_total
+        startN = startN
+        N= N
+        N = class_files_total - startN
     end
     
     selected_images = cell(1,N);
@@ -25,7 +28,7 @@ function [data_matrix_class, selected_images] = get_descriptors_class(startN, N,
     if startN < 1
         startN = 1;
     end
-    startimage_name = class_files(startN).name
+    %startimage_name = class_files(startN).name
     counter = 1;
     for i = startN:startN+N-1
         % Append correct folder

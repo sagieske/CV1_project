@@ -2,7 +2,7 @@
 % a visual word vector that describes image i 
 
 function image_descriptions = quantize_features(images, centers, assignment,  type_sift, color_space, channel)
-    amount_images = size(images,2)
+    amount_images = size(images,2);
     words_matrix = [];
     image_descriptions = {};
     % Describe each image in words

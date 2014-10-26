@@ -12,7 +12,7 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
     class_names = keys(class_dictionary_test);
     
     % TODO total images to be test from each class:
-    total_testimages_per_class = 5;
+    total_testimages_per_class = 50;
     
     number_of_classifiers = size(class_names,2);
     
@@ -59,15 +59,11 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
             %Increase counter for index of image in predictions_total
             counter = counter +1;
 
-            % Print predictions of svm
-            %for i=1:size(prediction,2)
-            %    fprintf('- Class: %s  = %i (true value: %i)\n', char(class_names(i)), prediction(i), true_value(i));
-            %end
         end
     end
     
     % print classifier FACES
-    classifier_test =3;
+    classifier_test =4;
     for p=1:size(predictions_total{classifier_test},2)
         image_info = predictions_total{classifier_test}{p};
         imagename = image_info{1};
