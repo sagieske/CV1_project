@@ -56,10 +56,10 @@ function frame(amount_per_class, svm_train_number, amount_clusters, type_sift, c
     selected_images = cell(1,train_number);
     
     
-    [airplanes_svm, air_svm] = get_descriptors_class(1,svm_train_number, class_dictionary('airplanes_train'), 'key', 'gray');
-    [cars_svm, car_svm] = get_descriptors_class(1,svm_train_number,class_dictionary('cars_train'), 'key', 'gray');
-    [faces_svm, fac_svm] = get_descriptors_class(1,svm_train_number, class_dictionary('faces_train'), 'key', 'gray');
-    [motorbikes_svm, mot_svm] = get_descriptors_class(1, svm_train_number, class_dictionary('motorbikes_train'), 'key', 'gray');
+    [airplanes_svm, air_svm] = get_descriptors_class(amount_per_class,svm_train_number, class_dictionary('airplanes_train'), 'key', 'gray');
+    [cars_svm, car_svm] = get_descriptors_class(amount_per_class,svm_train_number,class_dictionary('cars_train'), 'key', 'gray');
+    [faces_svm, fac_svm] = get_descriptors_class(amount_per_class,svm_train_number, class_dictionary('faces_train'), 'key', 'gray');
+    [motorbikes_svm, mot_svm] = get_descriptors_class(amount_per_class, svm_train_number, class_dictionary('motorbikes_train'), 'key', 'gray');
     
     disp('Getting SVM training data')
 
