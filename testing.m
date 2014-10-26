@@ -100,10 +100,8 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
     total_sorted_true_vals = cell(1, number_of_classifiers);
     total_sorted_predictions = cell(1, number_of_classifiers);
     total_sorted_images = cell(1, number_of_classifiers);
-    
+    av_mean = []
     for c=1:number_of_classifiers
-        size(testimages_total)
-        size(predictions{c})
         sorted_true_vals = [];
         sorted_predictions = [];
         sorted_images = [];
@@ -127,20 +125,31 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
         total_sorted_true_vals{c} = sorted_true_vals;
         total_sorted_predictions{c} = sorted_predictions;
         total_sorted_images{c} = sorted_images;
-        
+        count = 0;
+        count_precision = 0;
+        %Loop through all images
+        for val=1:size(sorted_predictions)
+            %If the image is in this class
+            sorted_true_vals(val)
+            if sorted_true_vals(val) == 1
+                %Add one to counter, and set temp_count to that value
+                count = count + 1;
+                temp_count = count;
+            %Otherwise, set temp_count to 0
+            elseif sorted_true_vals(val) == 0
+                temp_count = 0;
+            end
+            %Divide temp_count by the number of iterations
+            new_p = temp_count/val;
+            new_p
+            %And add that precision to the total precision
+            count_precision = count_precision + new_p;
+        end
+    %Total count_precision needs to be multiplied by 1/number of images in
+    % this class
+    av_mean(c) = count_precision * (1/size(test_images,2))
     end
-        %[sorted_true, true_indices] = sort(true_values{c}, indices)
-        %test_images
-        %[sorted_im, im_indices] = sort(test_images, indices)
-        % TODO: sort true_values{c} and test_images using indices!
-        % sorted_true = TODO
-        % sorted_im = TODO
-        
-        % EVALUATE
-        
-   
-   
-    
+    av_mean
 end
 
 
