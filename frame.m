@@ -1,6 +1,6 @@
-function frame(train_number,  type_sift, color_space)
+function frame(amount_per_class, svm_train_number, amount_clusters, type_sift, color_space)
     % Calculate # images for each class dependend on # training images
-    amount_per_class = round(train_number/4);
+    train_number = amount_per_class*4;
     % Get file information of jpg images from directories
     %airplanes_files = dir('CV1_Project_data/data/airplanes_train/*.jpg'); 
     %cars_files = dir('CV1_Project_data/data/cars_train/*.jpg'); 
@@ -33,7 +33,7 @@ function frame(train_number,  type_sift, color_space)
     images_matrix = selected_images;
     
     disp('Building vocab')
-    [centers, assignment] = build_vocab(im2single(data_matrix), N);
+    [centers, assignment] = build_vocab(im2single(data_matrix), amount_clusters);
     center_list = centers;
     assignment_list = assignment;
         % Quantize features 
@@ -55,12 +55,11 @@ function frame(train_number,  type_sift, color_space)
     motorbikes_svm = [];
     selected_images = cell(1,train_number);
     
-    svm_train_number = amount_per_class;
-    
-    [airplanes_svm, air_svm] = get_descriptors_class(1,svm_train_number, class_dictionary('airplanes_train'), 'key', 'gray');
-    [cars_svm, car_svm] = get_descriptors_class(1,svm_train_number,class_dictionary('cars_train'), 'key', 'gray');
-    [faces_svm, fac_svm] = get_descriptors_class(1,svm_train_number, class_dictionary('faces_train'), 'key', 'gray');
-    [motorbikes_svm, mot_svm] = get_descriptors_class(1, svm_train_number, class_dictionary('motorbikes_train'), 'key', 'gray');
+    svm_train_number = svm_train_number + amount_per_class
+    [airplanes_svm, air_svm] = get_descriptors_class(amount_per_class,svm_train_number, class_dictionary('airplanes_train'), 'key', 'gray');
+    [cars_svm, car_svm] = get_descriptors_class(amount_per_class,svm_train_number,class_dictionary('cars_train'), 'key', 'gray');
+    [faces_svm, fac_svm] = get_descriptors_class(amount_per_class,svm_train_number, class_dictionary('faces_train'), 'key', 'gray');
+    [motorbikes_svm, mot_svm] = get_descriptors_class(amount_per_class, svm_train_number, class_dictionary('motorbikes_train'), 'key', 'gray');
     
     disp('Getting SVM training data')
 

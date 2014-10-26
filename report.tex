@@ -25,8 +25,8 @@ The data section will describe the images used for training and testing, the imp
 The training data consists of 2000 .jpg-images in four classes (500 per class): airplanes, cars, faces and motorbikes. The test data consists of 200 .jpg-images in the same four classes.
 
 \section{Implementation}
-Instead of training classifiers on a large set of pixels, the bag-of-words approach was used. This approach first extracts features from images and subsequently uses them to build a vocabulary of visual 'words'. Each image can then be described as a set of these words, which makes training a classifier easier and faster than a pixel-by-pixel approach. \\
-First, features are extracted from a set of training images using key-point and dense-sampling SIFT, for gray-scale, RGB, normalized RGB (rgb) and opponent color spaces. This results in a set of descriptors for each train image, which are clustered into visual words using K-means. The resulting clusters form a visual vocabulary. \\
+Instead of training classifiers on a large set of pixels, the bag-of-words approach is used. This approach first extracts features from images and subsequently uses them to build a vocabulary of visual 'words'. Each image can then be described as a set of these words, which makes training a classifier easier and faster than a pixel-by-pixel approach. \\
+First, features are extracted from a set of training images using key-point and dense-sampling SIFT, for gray-scale, RGB, normalized RGB (rgb) and opponent color spaces. This results in a set of descriptors for each training image, which are clustered into visual words using K-means. The resulting clusters form a visual vocabulary. \\
 Then, features are extracted from a new set of training images. These features are grouped into words according to the visual vocabulary, and for each image a histogram of visual word frequencies is computed.\\
 These histograms are used as input to train four SVM-classifiers (one per class), using different kernel-functions. After training, all test images are classified according to the SVM-models built using the training images.
 %BAG OF WORDS 
