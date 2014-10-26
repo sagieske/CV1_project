@@ -31,10 +31,29 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
         % Get all descriptors of images
         [test_desc, test_images] = get_descriptors_class(1,total_testimages_per_class, class_dictionary_test(class_path), type_sift, color_space);
         % Quantize images using centers and assignment
-        test_svm = quantize_features(test_images, centers, assignment, type_sift, color_space, channel_nr);
+        
+        if(~strcmp(color_space, 'gray'))
+            test_svm_ch1 = quantize_features(test_images, centers, assignment, type_sift, color_space, 1);
+            test_svm_ch2 = quantize_features(test_images, centers, assignment, type_sift, color_space, 2);
+            test_svm_ch3 = quantize_features(test_images, centers, assignment, type_sift, color_space, 3);
+            
+            test_hist_ch1 = get_histogram(test_svm_ch1);
+            test_hist_ch2 = get_histogram(test_svm_ch2);
+            test_hist_ch3 = get_histogram(test_svm_ch3);
+            
+            test_hist_matrix = [test_hist_ch1 test_hist_ch2 test_hist_ch3];
+            
+            test_hist = mean(test_hist_matrix, 2);
+            
+            test_svm = test_svm_ch1;
+        else
+            test_svm = quantize_features(test_images, centers, assignment, type_sift, color_space, channel_nr);
 
-         % Create histograms
-        test_hist = get_histogram(test_svm);
+             % Create histograms
+            test_hist = get_histogram(test_svm);
+        end
+        
+        
 
         %disp('testing image:')
         
