@@ -97,17 +97,21 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
 
     % TODO: SORT
 
+    total_sorted_true_vals = cell(1, number_of_classifiers);
+    total_sorted_predictions = cell(1, number_of_classifiers);
+    total_sorted_images = cell(1, number_of_classifiers);
+    
     for c=1:number_of_classifiers
         size(testimages_total)
         size(predictions{c})
-        sorted_true_vals = []
-        sorted_predictions = []
-        sorted_images = []
+        sorted_true_vals = [];
+        sorted_predictions = [];
+        sorted_images = [];
         %total_mat = cat(2, predictions{c}, true_values{c}, transpose(testimages_total))
         %[sorted_pred, indices] = sort(predictions{c}, 'descend')
         %[sorted_pred, indices] = sort(predictions{c})
-        pred = predictions{c}
-        truevals = true_values{c}
+        pred = predictions{c};
+        truevals = true_values{c};
         for k = 1:size(pred,2)
             if pred(k) == 1
                 sorted_predictions = cat(1, pred(k), sorted_predictions);
@@ -119,6 +123,11 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
                 sorted_images = cat(1, sorted_images, testimages_total(k));
             end
         end
+        
+        total_sorted_true_vals{c} = sorted_true_vals;
+        total_sorted_predictions{c} = sorted_predictions;
+        total_sorted_images{c} = sorted_images;
+        
     end
         %[sorted_true, true_indices] = sort(true_values{c}, indices)
         %test_images
