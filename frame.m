@@ -55,12 +55,13 @@ function frame(amount_per_class, svm_train_number, amount_clusters, type_sift, c
     motorbikes_svm = [];
     selected_images = cell(1,train_number);
     
-    svm_train_number = svm_train_number + amount_per_class
+    disp('SVM DEBUG')
+    %svm_train_number = svm_train_number + amount_per_class
     [airplanes_svm, air_svm] = get_descriptors_class(amount_per_class,svm_train_number, class_dictionary('airplanes_train'), 'key', 'gray');
     [cars_svm, car_svm] = get_descriptors_class(amount_per_class,svm_train_number,class_dictionary('cars_train'), 'key', 'gray');
     [faces_svm, fac_svm] = get_descriptors_class(amount_per_class,svm_train_number, class_dictionary('faces_train'), 'key', 'gray');
     [motorbikes_svm, mot_svm] = get_descriptors_class(amount_per_class, svm_train_number, class_dictionary('motorbikes_train'), 'key', 'gray');
-    
+
     disp('Getting SVM training data')
 
     N = 400;
@@ -79,7 +80,7 @@ function frame(amount_per_class, svm_train_number, amount_clusters, type_sift, c
     N_cars = get_histogram(words_cars_svm);
     N_faces = get_histogram(words_faces_svm);
     N_motorbikes = get_histogram(words_motorbikes_svm);
-    
+
     N_all = cat(1, N_airplanes, N_cars, N_faces, N_motorbikes);
     correct = ones(svm_train_number,1);
     false = zeros(svm_train_number,1);
