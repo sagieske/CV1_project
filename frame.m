@@ -36,7 +36,7 @@ function frame(amount_per_class, svm_train_number, amount_clusters, type_sift, c
     [centers, assignment] = build_vocab(im2single(data_matrix), amount_clusters);
     center_list = centers;
     assignment_list = assignment;
-        % Quantize features 
+    % Quantize features 
     words_matrix = quantize_features(images_matrix, centers, assignment, type_sift, color_space, 1);
  
     
@@ -57,10 +57,10 @@ function frame(amount_per_class, svm_train_number, amount_clusters, type_sift, c
     
     disp('SVM DEBUG')
     %svm_train_number = svm_train_number + amount_per_class
-    [airplanes_svm, air_svm] = get_descriptors_class(amount_per_class,svm_train_number, class_dictionary('airplanes_train'), 'key', 'gray');
-    [cars_svm, car_svm] = get_descriptors_class(amount_per_class,svm_train_number,class_dictionary('cars_train'), 'key', 'gray');
-    [faces_svm, fac_svm] = get_descriptors_class(amount_per_class,svm_train_number, class_dictionary('faces_train'), 'key', 'gray');
-    [motorbikes_svm, mot_svm] = get_descriptors_class(amount_per_class, svm_train_number, class_dictionary('motorbikes_train'), 'key', 'gray');
+    [airplanes_svm, air_svm] = get_descriptors_class(amount_per_class,svm_train_number, class_dictionary('airplanes_train'), type_sift, color_space);
+    [cars_svm, car_svm] = get_descriptors_class(amount_per_class,svm_train_number,class_dictionary('cars_train'), type_sift, color_space);
+    [faces_svm, fac_svm] = get_descriptors_class(amount_per_class,svm_train_number, class_dictionary('faces_train'), type_sift, color_space);
+    [motorbikes_svm, mot_svm] = get_descriptors_class(amount_per_class, svm_train_number, class_dictionary('motorbikes_train'), type_sift, color_space);
 
     disp('Getting SVM training data')
 
@@ -70,16 +70,59 @@ function frame(amount_per_class, svm_train_number, amount_clusters, type_sift, c
 
     % Create seperate word matrices for channels
     disp('Retrieving histograms')
-    words_airplanes_svm = quantize_features(air_svm, centers, assignment, type_sift, color_space, 1);
-    words_cars_svm = quantize_features(car_svm, centers, assignment, type_sift, color_space, 1);
-    words_faces_svm = quantize_features(fac_svm, centers, assignment, type_sift, color_space, 1);
-    words_motorbikes_svm = quantize_features(mot_svm, centers, assignment, type_sift, color_space, 1);
+    if(~strcmp(color_space, 'gray'))
+        words_airplanes_svm_ch1 = quantize_features(air_svm, centers, assignment, type_sift, color_space, 1);
+        words_cars_svm_ch1 = quantize_features(car_svm, centers, assignment, type_sift, color_space, 1);
+        words_faces_svm_ch1 = quantize_features(fac_svm, centers, assignment, type_sift, color_space, 1);
+        words_motorbikes_svm_ch1 = quantize_features(mot_svm, centers, assignment, type_sift, color_space, 1);
 
-    %histograms per class
-    N_airplanes = get_histogram(words_airplanes_svm);
-    N_cars = get_histogram(words_cars_svm);
-    N_faces = get_histogram(words_faces_svm);
-    N_motorbikes = get_histogram(words_motorbikes_svm);
+        words_airplanes_svm_ch2 = quantize_features(air_svm, centers, assignment, type_sift, color_space, 2);
+        words_cars_svm_ch2 = quantize_features(car_svm, centers, assignment, type_sift, color_space, 2);
+        words_faces_svm_ch2 = quantize_features(fac_svm, centers, assignment, type_sift, color_space, 2);
+        words_motorbikes_svm_ch2 = quantize_features(mot_svm, centers, assignment, type_sift, color_space, 2);
+
+        words_airplanes_svm_ch3 = quantize_features(air_svm, centers, assignment, type_sift, color_space, 3);
+        words_cars_svm_ch3 = quantize_features(car_svm, centers, assignment, type_sift, color_space, 3);
+        words_faces_svm_ch3 = quantize_features(fac_svm, centers, assignment, type_sift, color_space, 3);
+        words_motorbikes_svm_ch3 = quantize_features(mot_svm, centers, assignment, type_sift, color_space, 3);
+
+        %histograms per class
+        N_airplanes_ch1 = get_histogram(words_airplanes_svm_ch1);
+        N_cars_ch1 = get_histogram(words_cars_svm_ch1);
+        N_faces_ch1 = get_histogram(words_faces_svm_ch1);
+        N_motorbikes_ch1 = get_histogram(words_motorbikes_svm_ch1);
+
+        N_airplanes_ch2 = get_histogram(words_airplanes_svm_ch2);
+        N_cars_ch2 = get_histogram(words_cars_svm_ch2);
+        N_faces_ch2 = get_histogram(words_faces_svm_ch2);
+        N_motorbikes_ch2 = get_histogram(words_motorbikes_svm_ch2);
+
+        N_airplanes_ch3 = get_histogram(words_airplanes_svm_ch3);
+        N_cars_ch3 = get_histogram(words_cars_svm_ch3);
+        N_faces_ch3 = get_histogram(words_faces_svm_ch3);
+        N_motorbikes_ch3 = get_histogram(words_motorbikes_svm_ch3);
+
+        N_airplanes_matrix = [N_airplanes_ch1 N_airplanes_ch2 N_airplanes_ch3];
+        N_cars_matrix = [N_cars_ch1 N_cars_ch2 N_cars_ch3];
+        N_faces_matrix = [N_faces_ch1 N_faces_ch2 N_faces_ch3];
+        N_motorbikes_matrix = [N_motorbikes_ch1 N_motorbikes_ch2 N_motorbikes_ch3];
+
+        N_airplanes = mean(N_airplanes_matrix, 2);
+        N_cars = mean(N_cars_matrix, 2);
+        N_faces = mean(N_faces_matrix, 2);
+        N_motorbikes = mean(N_motorbikes_matrix, 2);
+    
+    else
+        words_airplanes_svm = quantize_features(air_svm, centers, assignment, type_sift, color_space, 1);
+        words_cars_svm = quantize_features(car_svm, centers, assignment, type_sift, color_space, 1);
+        words_faces_svm = quantize_features(fac_svm, centers, assignment, type_sift, color_space, 1);
+        words_motorbikes_svm = quantize_features(mot_svm, centers, assignment, type_sift, color_space, 1);
+        
+        N_airplanes = get_histogram(words_airplanes_svm);
+        N_cars = get_histogram(words_cars_svm);
+        N_faces = get_histogram(words_faces_svm);
+        N_motorbikes = get_histogram(words_motorbikes_svm);
+    end
 
     N_all = cat(1, N_airplanes, N_cars, N_faces, N_motorbikes);
     correct = ones(svm_train_number,1);
