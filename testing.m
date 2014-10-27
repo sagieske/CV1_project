@@ -1,6 +1,3 @@
-%% SVM PREDICT IN ONE TIME
-
-
 % Function to predict classes of images using trained svm models
 % Input         models: cell array of models for each class
 %               centers
@@ -93,15 +90,13 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
         d_values{classifier} = transpose(decision_values(:,2));
         predictions{classifier} = pred_test;
     end
-    
+
     
     total_sorted_true_vals = cell(1, number_of_classifiers);
     total_sorted_predictions = cell(1, number_of_classifiers);
     total_sorted_images = cell(1, number_of_classifiers);
     av_mean = [];
         
-    prediction_size = predictions
-    true_values_size = true_values
     for c=1:number_of_classifiers
         
         all_mat = cell(1,4);
@@ -155,5 +150,3 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
     av_mean
     av_mean_p = sum(av_mean)/4
 end
-
-
