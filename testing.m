@@ -28,11 +28,6 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
     d_values = cell(1, number_of_classifiers);
     true_value = cell(1,number_of_classifiers);
 
-%     for i=1:number_of_classifiers
-%         predictions{i} = [];
-%         d_values{i} = [];
-%         true_values{i} = [];
-%     end
     
     % array to get all histograms
     total_hist = [];
@@ -66,9 +61,10 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
              % Create histograms
             test_hist = get_histogram(test_svm);
             % Append histograms and testimages to total list
-            total_hist = cat(1, total_hist, test_hist);
-            total_images = cat(1,total_images , transpose(test_images));
+
         end
+        total_hist = cat(1, total_hist, test_hist);
+        total_images = cat(1,total_images , transpose(test_images));
     end
     
     % Convert array to cell array
@@ -115,13 +111,7 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
         all_mat_sort{3};
         transpose(all_mat_sort{4})
 
-        
-        %sorted_predictions
-        %sorted_true_vals
-        %celldisp(sorted_images)
 
-        
-        
         count = 0;
         count_precision = 0;
         sort_true = all_mat_sort{2};
