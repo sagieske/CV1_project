@@ -150,6 +150,7 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
     av_mean(c) = count_precision * (1/size(test_images,2))
     end
     av_mean
+    prediction = mean(av_mean)
 end
 
 
