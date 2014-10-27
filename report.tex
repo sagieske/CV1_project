@@ -41,8 +41,8 @@ Sharon Gieske, Elise Koster, David van Erkelens
 \begin{document}
 \begin{titlepage}
 \begin{center}
-    %\includegraphics[width=\textwidth]{./logo.jpg}
-    %\\ [2.5cm]
+    \includegraphics[width=\textwidth]{logo.png}
+    \\ [2.5cm]
     \textsc{\Large Computer Vision 1}
     \\ [0.5cm]
     \textsc{\large Final Assignment}
@@ -96,7 +96,7 @@ Results of:\\
 \item SIFT color space (gray-scale, RGB, rgb, opponent)
 \item amount of training samples used (vocab)
 \item amount of training samples used (svm)
-\item kernel choice for sum
+%\item kernel choice for sum
 \end{itemize}
 \begin{table}[h!]
 \centering
@@ -106,12 +106,23 @@ SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
 Key, grayscale & 50 & 50 & 400 & 0.7041   \\
 Key, RGB & 50 & 50 & 400 & 0.1958 \\
 Key, normalizedRGB & 50 & 50 & 400 & TODO\\
-Key, Opponent & 50 & 100 & 400 & TODO\\
+Key, Opponent & 50 & 100 & 400 & 0.1946\\
 \end{tabular}
 \caption{Mean Average Precision for different color spaces}
 \label{tbl:refOfTable}
 \end{table}
-
+\begin{table}[h!]
+\centering
+\begin{tabular}{cccc}
+Airplanes & Cars & Faces & Motorbikes\\
+\toprule
+0.7219&0.7232&0.5326&0.8386\\
+RGB & & & \\
+normalizedRGB & & & \\
+0.1402  &  0.3080  &  0.1909  &  0.13940\\
+\end{tabular}
+\caption{Average precision per class for table 1}
+\end{table}
 
 \begin{table}[h!]
 \centering
@@ -138,7 +149,7 @@ Airplanes & Cars & Faces & Motorbikes\\
 0.8226&0.7722&0.5415&0.8710\\
 0.8311&0.7612&0.5521&0.8748\\
 \end{tabular}
-\caption{Average precision per class for table 1}
+\caption{Average precision per class for table 2}
 \label{tbl:refOfTable}
 \end{table}
 \begin{table}
