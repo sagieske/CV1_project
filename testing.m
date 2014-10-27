@@ -28,10 +28,12 @@ function prediction = testing(nr_test_images, models, centers, assignment, type_
     testimages_total = cell(1,total_testimages_per_class* number_of_classifiers);
     % Initialize: Each predition and true value array of a classifier is stored in predictions
     predictions = cell(1,number_of_classifiers);
+    d_values = cell(1, number_of_classifiers);
     true_value = cell(1,number_of_classifiers);
 
     for i=1:number_of_classifiers
         predictions{i} = [];
+        d_values{i} = [];
         true_values{i} = [];
     end
     
@@ -82,7 +84,9 @@ function prediction = testing(nr_test_images, models, centers, assignment, type_
                 [pred_test, accuracy, decision_values] = svmpredict(true_value(c), test_hist(j,:), models{c}, ' -b 1 -q');                
                 % Add predicted value to list
                 old_array = predictions{c};
+                old_d_value = d_values{c};
                 predictions{c} = cat(2,old_array, pred_test);
+                d_values{c} = cat(2, old_d_value, max(decision_values));
                 % Add true values to list
                 old_array_true = true_values{c};
                 true_values{c} = cat(2,old_array_true, true_value(c));
@@ -95,12 +99,12 @@ function prediction = testing(nr_test_images, models, centers, assignment, type_
 
     end
 
-    % TODO: SORT
-
+    %d_values{1}
+    
     total_sorted_true_vals = cell(1, number_of_classifiers);
     total_sorted_predictions = cell(1, number_of_classifiers);
     total_sorted_images = cell(1, number_of_classifiers);
-    av_mean = []
+    av_mean = [];
     for c=1:number_of_classifiers
         sorted_true_vals = [];
         sorted_predictions = [];
@@ -110,15 +114,22 @@ function prediction = testing(nr_test_images, models, centers, assignment, type_
         %[sorted_pred, indices] = sort(predictions{c})
         pred = predictions{c};
         truevals = true_values{c};
+        cl = cell(1,4);
+        cl{1} = predictions{c};
+        cl{2} = true_values{c};
+        cl{3} = d_values{c};
+        cl{4} = testimages_total;
+        cl
+        
         for k = 1:size(pred,2)
             if pred(k) == 1
                 sorted_predictions = cat(1, pred(k), sorted_predictions);
                 sorted_true_vals = cat(1, truevals(k), sorted_true_vals);
                 sorted_images = cat(1, testimages_total(k), sorted_images);
-           % elseif predictions{c}(k) == 0
-            %    sorted_predictions = cat(1, sorted_predictions, pred(k));
-                %sorted_true_vals = cat(1, sorted_true_vals, truevals(k));
-                %sorted_images = cat(1, sorted_images, testimages_total(k));
+            elseif predictions{c}(k) == 0
+                sorted_predictions = cat(1, sorted_predictions, pred(k));
+                sorted_true_vals = cat(1, sorted_true_vals, truevals(k));
+                sorted_images = cat(1, sorted_images, testimages_total(k));
             end
         end
         
@@ -135,7 +146,7 @@ function prediction = testing(nr_test_images, models, centers, assignment, type_
         %Loop through all images
         for val=1:size(sorted_predictions)
             %If the image is in this class
-            sorted_true_vals(val)
+            %sorted_true_vals(val)
             if sorted_true_vals(val) == 1
                 %Add one to counter, and set temp_count to that value
                 count = count + 1;
