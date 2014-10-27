@@ -42,10 +42,13 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
         % Quantize images using centers and assignment
         
         if(~strcmp(color_space, 'gray'))
+            disp('--quantize features colorspaces')
             test_svm_ch1 = quantize_features(test_images, centers, assignment, type_sift, color_space, 1);
             test_svm_ch2 = quantize_features(test_images, centers, assignment, type_sift, color_space, 2);
             test_svm_ch3 = quantize_features(test_images, centers, assignment, type_sift, color_space, 3);
             
+            disp('--histograms colorspaces')
+
             test_hist_ch1 = get_histogram(test_svm_ch1);
             test_hist_ch2 = get_histogram(test_svm_ch2);
             test_hist_ch3 = get_histogram(test_svm_ch3);
@@ -113,9 +116,9 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
         fprintf('Index & Image & True value & Predicted value & Probability')
          
         % Print list for latex??
-        for latexindex=1:size(all_mat_sort{1},2)
-            fprintf('%i & %s & %i %i %f\\\n'. latexindex, all_mat_sort{4}(latex), all_mat_sort{2}(latex), all_mat_sort{1}(latex), all_mat_sort{3}(latex));
-        end
+        %for latexindex=1:size(all_mat_sort{1},2)
+        %    fprintf('%i & %s & %i %i %f\\\n'. latexindex, all_mat_sort{4}(latex), all_mat_sort{2}(latex), all_mat_sort{1}(latex), all_mat_sort{3}(latex));
+        %end
 
         count = 0;
         count_precision = 0;
