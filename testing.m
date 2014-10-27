@@ -12,7 +12,7 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
     class_names = keys(class_dictionary_test);
     
     % TODO total images to be test from each class:
-    total_testimages_per_class = 5;
+    total_testimages_per_class = 50;
     
     number_of_classifiers = size(class_names,2);
     
@@ -148,6 +148,7 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
     % this class
     av_mean(c) = count_precision * (1/size(test_images,2));
     end
+    av_mean
     av_mean_p = sum(av_mean)/4
 end
 
