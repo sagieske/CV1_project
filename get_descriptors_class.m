@@ -48,7 +48,7 @@ function [data_matrix_class, selected_images] = get_descriptors_class(startN, N,
     
     % Put in data_matrix cell array
     if (strcmp(color_space,'gray'))
-            data_matrix_class{1} = data_matrix_ch1;
+        data_matrix_class{1} = data_matrix_ch1;
     else
         data_matrix_class = { data_matrix_ch1, data_matrix_ch2, data_matrix_ch3};
     end

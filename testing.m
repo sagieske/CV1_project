@@ -12,7 +12,7 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
     class_names = keys(class_dictionary_test);
     
     % TODO total images to be test from each class:
-    total_testimages_per_class = 5;
+    total_testimages_per_class = 50;
     
     number_of_classifiers = size(class_names,2);
     
@@ -115,10 +115,10 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
                 sorted_predictions = cat(1, pred(k), sorted_predictions);
                 sorted_true_vals = cat(1, truevals(k), sorted_true_vals);
                 sorted_images = cat(1, testimages_total(k), sorted_images);
-            elseif predictions{c}(k) == 0
-                sorted_predictions = cat(1, sorted_predictions, pred(k));
-                sorted_true_vals = cat(1, sorted_true_vals, truevals(k));
-                sorted_images = cat(1, sorted_images, testimages_total(k));
+           % elseif predictions{c}(k) == 0
+            %    sorted_predictions = cat(1, sorted_predictions, pred(k));
+                %sorted_true_vals = cat(1, sorted_true_vals, truevals(k));
+                %sorted_images = cat(1, sorted_images, testimages_total(k));
             end
         end
         
@@ -141,16 +141,15 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
             end
             %Divide temp_count by the number of iterations
             new_p = temp_count/val;
-            new_p
             %And add that precision to the total precision
             count_precision = count_precision + new_p;
         end
     %Total count_precision needs to be multiplied by 1/number of images in
     % this class
-    av_mean(c) = count_precision * (1/size(test_images,2))
+    av_mean(c) = count_precision * (1/size(test_images,2));
     end
     av_mean
-    prediction = mean(av_mean)
+    av_mean_p = sum(av_mean)/4
 end
 
 
