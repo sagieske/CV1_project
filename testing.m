@@ -105,14 +105,14 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
         all_mat{4} = transpose(testimages_total);
         [sort_all, indices] = sort(all_mat{3}, 'descend');
         if(c==1)
-            all_mat_sort = {fliplr(all_mat{1}(indices)), fliplr(all_mat{2}(indices)), sort_all, fliplr(all_mat{4}(indices))}
+            all_mat_sort = {fliplr(all_mat{1}(indices)), fliplr(all_mat{2}(indices)), sort_all, fliplr(all_mat{4}(indices))};
         else
-            all_mat_sort = {all_mat{1}(indices), all_mat{2}(indices), sort_all, all_mat{4}(indices)}
+            all_mat_sort = {all_mat{1}(indices), all_mat{2}(indices), sort_all, all_mat{4}(indices)};
         end
         all_mat_sort{1};
         all_mat_sort{2};
         all_mat_sort{3};
-        transpose(all_mat_sort{4})
+        transpose(all_mat_sort{4});
         fprintf('Index & Image & True value & Predicted value & Probability')
          
         % Print list for latex??
