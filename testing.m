@@ -1,3 +1,6 @@
+%% SVM PREDICT IN ONE TIME
+
+
 % Function to predict classes of images using trained svm models
 % Input         models: cell array of models for each class
 %               centers
@@ -87,6 +90,7 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
     % Test all for each classifier
     for classifier=1:number_of_classifiers
         [pred_test, accuracy, decision_values] = svmpredict(true_values{classifier}, total_hist, models{classifier}, ' -b 1 -q'); 
+        d_values{classifier} = transpose(decision_values(:,2));
         predictions{classifier} = pred_test;
     end
     
@@ -95,13 +99,16 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
     total_sorted_predictions = cell(1, number_of_classifiers);
     total_sorted_images = cell(1, number_of_classifiers);
     av_mean = [];
+        
+    prediction_size = predictions
+    true_values_size = true_values
     for c=1:number_of_classifiers
         
         all_mat = cell(1,4);
-        all_mat{1} = predictions{c};
-        all_mat{2} = true_values{c};
+        all_mat{1} = transpose(predictions{c});
+        all_mat{2} = transpose(true_values{c});
         all_mat{3} = d_values{c};
-        all_mat{4} = testimages_total
+        all_mat{4} = transpose(testimages_total);
         [sort_all, indices] = sort(all_mat{3}, 'descend');
         if(c==1)
             all_mat_sort = {fliplr(all_mat{1}(indices)), fliplr(all_mat{2}(indices)), sort_all, fliplr(all_mat{4}(indices))}
