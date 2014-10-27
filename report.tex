@@ -100,13 +100,15 @@ Results of:\\
 \begin{table}[h!]
 \centering
 \begin{tabular}{ccccc}
-SIFT type & vocab training & sum training & vocal clusters & precision\\
+SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
 \toprule
 Key, grayscale & 50 & 50 & 400 & 0.7041   \\
 Key, grayscale & 50 & 100 & 400 & 0.7362\\
 Key, grayscale & 50 & 150 & 400 &  0.7322\\
+Key, grayscale & 50 & 250 & 400 &0.7518\\
+Key, grayscale & 50 & 300 & 400 & 0.7548\\
 \end{tabular}
-\caption{Name of table}
+\caption{Mean Average Precision for different training sizes, 400 clusters}
 \label{tbl:refOfTable}
 \end{table}
 \begin{table}[h!]
@@ -117,12 +119,34 @@ Airplanes & Cars & Faces & Motorbikes\\
 0.7219&0.7232&0.5326&0.8386\\
 0.7937&0.7525&0.5547&0.8441 \\
 0.7419&0.7914&0.5450&0.8503\\
+0.8226&0.7722&0.5415&0.8710\\
+0.8311&0.7612&0.5521&0.8748\\
 \end{tabular}
-\caption{Corresponding per class precisions}
+\caption{Average precision per class for table 1}
 \label{tbl:refOfTable}
 \end{table}
-
-Consistently, 
+\begin{table}
+\begin{tabular}{ccccc}
+SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
+\toprule
+Key, grayscale & 50 & 50 & 800 & 0.5911 \\
+Key, grayscale & 50 & 100 & 800 & 0.6161 \\
+Key, grayscale & 50 & 150 & 800 & 0.6235 \\
+\end{tabular}
+\caption{Mean Average Precision for different training sizes, 800 clusters}
+\label{tbl:refOfTable}
+\end{table}
+\begin{table}
+\begin{tabular}{cccc}
+Airplanes & Cars & Faces & Motorbikes\\
+\toprule
+0.5978&0.6869&0.4507&0.6292\\
+0.5432&0.7424&0.3978 &0.7811\\
+0.6434&0.5742&0.4207&0.8557\\
+\end{tabular}
+\caption{Average precision per class for table 3}
+\label{tbl:refOfTable}
+\end{table}
 \section{Conclusion}
 \section{Future work}
 In the current implementation, SIFT for color spaces uses an average over color channel histograms. A possible improvement (though less computationally tractable) would train an SVM per color channel and build a committee of these SVMs to classify the image.
