@@ -86,24 +86,7 @@ Performing SIFT on the first set of training images results in a set of descript
 Once the visual vocabulary has been built, features are extracted from a new set of training images. These features are grouped into words according to the visual vocabulary, and for each image a histogram of visual word frequencies is computed.
 These histograms are used as input to train four Support Vector Machines (SVMs) (one per class), using different kernel-functions. SVMs are non-parametric classifiers, which work by maximizing the margin between the decision boundary and two classes of data.
 After training, all test images are classified according to the SVM-models built using the training images. 
-%BAG OF WORDS 
-%HOW DOES IT WORK:
-%GET FEATURES/DESCRIPTORS USING SIFT
-%DESCRIBE SIFT/RGBSIFT/rgbSIFT/opponentSIFT
-%DESCRIBE FEATURES/DESCRIPTORS
-%BUILD VISUAL VOCABULARY USING KMEANS
-%DESCRIBE KMEANS
-%DESCIBE VISUAL WORDS
-%QUANTIZE FEATURES
-%EACH IMAGE IS COLLECTION OF VISUAL WORDS
-%EXTRACT FEATURES USING SIFT
-%ASSIGN DESCRIPTOR TO CLOSEST VOCAB WORD
-%CREATE HISTOGRAM OF VISUAL WORDS PER IMAGE
-%TRAIN SVM ACCORDING TO HISTOGRAMS
-%FOUR SVMS: 1 PER CLASS
-%EVALUATION:
-%USE TRAINED SVMS TO CLASSIFY TEST IMAGES
-%COMPUTE MEAN AVERAGE PRECISION OVER ALL CLASSES
+
 \section{Results}
 Results of:\\
 \begin{itemize}
@@ -116,14 +99,26 @@ Results of:\\
 \end{itemize}
 \begin{table}[h!]
 \centering
-\begin{tabular}{ccc}
-SIFT type & color space & accuracy \\
+\begin{tabular}{ccccc}
+SIFT type & vocab training & sum training & vocal clusters & precision\\
 \toprule
-x & y & z\\
-a & b & c\\
+Key, grayscale & 50 & 50 & 400 & 0.7041   \\
+a & b & c & d \\
 \end{tabular}
 \caption{Name of table}
 \label{tbl:refOfTable}
 \end{table}
+\begin{table}[h!]
+\centering
+\begin{tabular}{cccc}
+Airplanes & Cars & Faces & Motorbikes\\
+\toprule
+0.7219&0.7232&0.5326&0.8386\\
+a & b & c & d \\
+\end{tabular}
+\caption{Corresponding per class precisions}
+\label{tbl:refOfTable}
+\end{table}
+Consistently, 
 \section{Conclusion}
 \end{document}
