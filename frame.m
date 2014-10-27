@@ -20,8 +20,6 @@ function frame(amount_per_class, svm_train_number, nr_test_images, amount_cluste
     data_matrix = [];
     images_matrix = [];
 
-    % TODO :  BUILD VOCAB MULTIPLE CHANNELS
-    % Only use channel 1
     data_matrix = total_data_matrix{1};
     images_matrix = selected_images;
     
@@ -29,16 +27,6 @@ function frame(amount_per_class, svm_train_number, nr_test_images, amount_cluste
     [centers, assignment] = build_vocab(im2single(data_matrix), amount_clusters);
     center_list = centers;
     assignment_list = assignment;
-    % Quantize features 
-    %words_matrix = quantize_features(images_matrix, centers, assignment, type_sift, color_space, 1);
- 
-    
-    % Words_matrix has elements for # of channels. Each element is a cell
-    % array which contains # images elements. These elements contain
-    % words_vectors that describe the image in visual words
-    
-    % EXAMPLE: image description of image 2 in channel 1
-    % image_description = words_matrix{1}{2}
 
     % Use channel 1 to test get_histogram for trainingnumber of images
     %get_histogram(words_matrix{1}, selected_images);
@@ -58,7 +46,6 @@ function frame(amount_per_class, svm_train_number, nr_test_images, amount_cluste
 
     N = 400;
     data_matrix_channels = size(data_matrix,2);
-    %words_matrix = {};
 
     % Create seperate word matrices for channels
     disp('-Retrieving histograms for training data..')
@@ -122,6 +109,7 @@ function frame(amount_per_class, svm_train_number, nr_test_images, amount_cluste
         N_motorbikes = get_histogram(words_motorbikes_svm);
     end
 
+    % Create vector of true labels
     N_all = cat(1, N_airplanes, N_cars, N_faces, N_motorbikes);
     correct = ones(svm_train_number,1);
     false = zeros(svm_train_number,1);
@@ -131,18 +119,6 @@ function frame(amount_per_class, svm_train_number, nr_test_images, amount_cluste
     faces_label = cat(1, false, false, correct, false);
     motorbikes_label = cat(1, false, false, false, correct);
     
-    %PARAMS SVM:
-%     -t kernel_type
-%         set type of kernel function (default 2)
-%         0 - linear - u'*v
-%         1 - polynomial - gamma*u'*v + coef0)^degree
-%         2 - radial basis function - exp(-gamma*|u-v|^2)
-%         3 - sigmoid - tanh(gamma*u'*v + coef0)
-%         4 - precomputed kernel (kernel values in training_set_file)
-%     
-%     -b probability_estimates
-%         whether to train an SVC or SVR model for probability estimates, 0 or 1 (default 0)
-        
     % Create models for different classes and add them to models cellarray
     disp('-Training SVM models..')
     model_airplanes = svmtrain(airplanes_label, N_all, '-t 3 -b 1 -q');
@@ -151,11 +127,9 @@ function frame(amount_per_class, svm_train_number, nr_test_images, amount_cluste
     model_motorbikes = svmtrain(motorbikes_label, N_all, '-t 3 -b 1 -q');
     models = {model_airplanes, model_cars, model_faces, model_motorbikes};
 
-    % TODO channels!
     channel_nr = 1;
     % Use models on test images
     disp('Start classification test images using SVM models')
-
     predictions = testing(nr_test_images, models, centers, assignment, type_sift, color_space, channel_nr);
     
 end
