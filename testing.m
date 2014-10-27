@@ -6,7 +6,7 @@
 %               color_space
 %               channel
 % Returns:      Prediction:     array of zero or ones for class prediction 
-function prediction = testing(nr_test_images, models, centers, assignment, type_sift, color_space, channel_nr)
+function predictions = testing(nr_test_images, models, centers, assignment, type_sift, color_space, channel_nr)
     % Create dictionary for test models
     class_dictionary_test = create_class_table('test');
     class_names = keys(class_dictionary_test);
