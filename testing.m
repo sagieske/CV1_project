@@ -110,7 +110,12 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
         all_mat_sort{2};
         all_mat_sort{3};
         transpose(all_mat_sort{4})
-
+        fprintf('Index & Image & True value & Predicted value & Probability')
+         
+        % Print list for latex??
+        for latexindex=1:size(all_mat_sort{1},2)
+            fprintf('%i & %s & %i %i %f\\\n'. latexindex, all_mat_sort{4}(latex), all_mat_sort{2}(latex), all_mat_sort{1}(latex), all_mat_sort{3}(latex));
+        end
 
         count = 0;
         count_precision = 0;
