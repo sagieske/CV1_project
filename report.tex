@@ -108,7 +108,7 @@ Key, grayscale & 50 & 150 & 400 &  0.7322\\
 Key, grayscale & 50 & 250 & 400 &0.7518\\
 Key, grayscale & 50 & 300 & 400 & 0.7548\\
 \end{tabular}
-\caption{Mean Average Precision for different training sizes, 400 clusters}
+\caption{Mean Average Precision for different SVM training sizes, 400 clusters}
 \label{tbl:refOfTable}
 \end{table}
 \begin{table}[h!]
@@ -132,8 +132,10 @@ SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
 Key, grayscale & 50 & 50 & 800 & 0.5911 \\
 Key, grayscale & 50 & 100 & 800 & 0.6161 \\
 Key, grayscale & 50 & 150 & 800 & 0.6235 \\
+Key, grayscale & 50 & 250 & 800 & 0.6976 \\
+Key, grayscale & 50 & 300 & 800 & 0.6664\\
 \end{tabular}
-\caption{Mean Average Precision for different training sizes, 800 clusters}
+\caption{Mean Average Precision for different SVM training sizes, 800 clusters}
 \label{tbl:refOfTable}
 \end{table}
 \begin{table}
@@ -143,11 +145,33 @@ Airplanes & Cars & Faces & Motorbikes\\
 0.5978&0.6869&0.4507&0.6292\\
 0.5432&0.7424&0.3978 &0.7811\\
 0.6434&0.5742&0.4207&0.8557\\
+0.7659&0.7387&0.4635&0.8222\\
+0.6510&0.7061&0.4611&0.8473\\
 \end{tabular}
 \caption{Average precision per class for table 3}
 \label{tbl:refOfTable}
 \end{table}
+
+\begin{table}
+\begin{tabular}{ccccc}
+SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
+\toprule
+Key, grayscale & 100 & 50 & 400 & 0.7114\\
+\end{tabular}
+\caption{Mean Average Precision for different vocabulary training sizes}
+\label{tbl:refOfTable}
+\end{table}
+\begin{table}
+\begin{tabular}{cccc}
+Airplanes & Cars & Faces & Motorbikes\\
+\toprule
+0.7759&0.7370&0.5078&0.8249\\
+\end{tabular}
+\caption{Average precision per class for table 5}
+\label{tbl:refOfTable}
+\end{table}
 \section{Conclusion}
+
 \section{Future work}
 In the current implementation, SIFT for color spaces uses an average over color channel histograms. A possible improvement (though less computationally tractable) would train an SVM per color channel and build a committee of these SVMs to classify the image.
 \end{document}
