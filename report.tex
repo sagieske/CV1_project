@@ -88,45 +88,23 @@ These histograms are used as input to train four Support Vector Machines (SVMs) 
 After training, all test images are classified according to the SVM-models built using the training images. 
 
 \section{Results}
-All classifications are made using a sigmoid kernel.
-Results of:\\
-\begin{itemize}
-\item key points vs dense
-\item vocabulary size(400,800,1600,2000,4000)
-\item SIFT color space (gray-scale, RGB, rgb, opponent)
-\item amount of training samples used (vocab)
-\item amount of training samples used (svm)
-%\item kernel choice for sum
-\end{itemize}
-\begin{table}[h!]
-\centering
-\begin{tabular}{lcccc}
+This section contains an overview and short analysis of the different results obtained during this project. \\
+All classifications are made using a sigmoid kernel.\\
+First, different color spaces were tested. The results can be found in the table below, and show that the gray-scale color space has much better precision than any of the other color spaces. \\
+\begin{tabular}{|ccccc|}
+\hline
 SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
 \toprule
 Key, grayscale & 50 & 50 & 400 & 0.7041   \\
 Key, RGB & 50 & 50 & 400 & 0.1958 \\
 Key, normalizedRGB & 50 & 50 & 400 & TODO\\
 Key, Opponent & 50 & 100 & 400 & 0.1946\\
+\hline
 \end{tabular}
-\caption{Mean Average Precision for different color spaces}
-\label{tbl:refOfTable}
-\end{table}
-\begin{table}[h!]
-\centering
-\begin{tabular}{cccc}
-Airplanes & Cars & Faces & Motorbikes\\
-\toprule
-0.7219&0.7232&0.5326&0.8386\\
-RGB & & & \\
-normalizedRGB & & & \\
-0.1402  &  0.3080  &  0.1909  &  0.13940\\
-\end{tabular}
-\caption{Average precision per class for table 1}
-\end{table}
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{ccccc}
+\newline
+Secondly, different sizes of training sets for SVM-training were tested. As expected, higher numbers of training data yielded better results (see table below).\\
+\begin{tabular}{|ccccc|}
+\hline
 SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
 \toprule
 Key, grayscale & 50 & 50 & 400 & 0.7041 \\
@@ -134,13 +112,11 @@ Key, grayscale & 50 & 100 & 400 & 0.7362\\
 Key, grayscale & 50 & 150 & 400 &  0.7322\\
 Key, grayscale & 50 & 250 & 400 &0.7518\\
 Key, grayscale & 50 & 300 & 400 & 0.7548\\
+\hline
 \end{tabular}
-\caption{Mean Average Precision for different SVM training sizes, 400 clusters}
-\label{tbl:refOfTable}
-\end{table}
-\begin{table}[h!]
-\centering
-\begin{tabular}{cccc}
+For completeness' sake, below is a table presenting different average precisions per SVM for the parameters in the table above. Consistently, faces yield a worse precision than the other three classes.\\
+\begin{tabular}{|cccc|}
+\hline
 Airplanes & Cars & Faces & Motorbikes\\
 \toprule
 0.7219&0.7232&0.5326&0.8386\\
@@ -148,12 +124,11 @@ Airplanes & Cars & Faces & Motorbikes\\
 0.7419&0.7914&0.5450&0.8503\\
 0.8226&0.7722&0.5415&0.8710\\
 0.8311&0.7612&0.5521&0.8748\\
+\hline
 \end{tabular}
-\caption{Average precision per class for table 3}
-\label{tbl:refOfTable}
-\end{table}
-\begin{table}
-\begin{tabular}{ccccc}
+\\\\Next, the effect of a larger vocabulary size ($k=800$) on classification was tested for different sets of SVM-training data. The results are presented below. When contrasted to the results for a smaller vocabulary ($k=400$), it performs worse.\\\\
+\begin{tabular}{|ccccc|}
+\hline
 SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
 \toprule
 Key, grayscale & 50 & 50 & 800 & 0.5911 \\
@@ -161,12 +136,11 @@ Key, grayscale & 50 & 100 & 800 & 0.6161 \\
 Key, grayscale & 50 & 150 & 800 & 0.6235 \\
 Key, grayscale & 50 & 250 & 800 & 0.6976 \\
 Key, grayscale & 50 & 300 & 800 & 0.6664\\
+\hline
 \end{tabular}
-\caption{Mean Average Precision for different SVM training sizes, 800 clusters}
-\label{tbl:refOfTable}
-\end{table}
-\begin{table}
-\begin{tabular}{cccc}
+
+\begin{tabular}{|cccc|}
+\hline
 Airplanes & Cars & Faces & Motorbikes\\
 \toprule
 0.5978&0.6869&0.4507&0.6292\\
@@ -174,30 +148,25 @@ Airplanes & Cars & Faces & Motorbikes\\
 0.6434&0.5742&0.4207&0.8557\\
 0.7659&0.7387&0.4635&0.8222\\
 0.6510&0.7061&0.4611&0.8473\\
+\hline
 \end{tabular}
-\caption{Average precision per class for table 5}
-\label{tbl:refOfTable}
-\end{table}
 
-\begin{table}
+
 \begin{tabular}{ccccc}
 SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
 \toprule
 Key, grayscale & 100 & 50 & 400 & 0.7114\\
 \end{tabular}
-\caption{Mean Average Precision for different vocabulary training sizes}
-\label{tbl:refOfTable}
-\end{table}
-\begin{table}
+
 \begin{tabular}{cccc}
 Airplanes & Cars & Faces & Motorbikes\\
 \toprule
 0.7759&0.7370&0.5078&0.8249\\
 \end{tabular}
-\caption{Average precision per class for table 5}
-\label{tbl:refOfTable}
-\end{table}
+
 \section{Conclusion}
+As gray-scale outperformed the other color-spaces significantly, in spite of supplying less information, it is presumed that the implementation used for color SIFT was not sufficient. The section future work discusses possible improvements. Furthermore, faces seem much harder to classify than any of the other classes, in spite of those classes being much closer to each other in terms of context and object similarity. \\
+Similarly unexpected is the worse performance in terms of precision of a larger vocabulary size. One explanation is overfitting, as with larger vocabulary sizes, more noise may be treated as true information. 
 
 \section{Future work}
 In the current implementation, SIFT for color spaces uses an average over color channel histograms. A possible improvement (though less computationally tractable) would be to train a SVM classifier per color channel per class and build a committee of these SVMs to classify the image. Another improvement can be made by creating classifiers with different kernel functions. Due to time constraints only the sigmoid kernel is used in this project, however, in research by Chapelle et al\cite{chapelle1999support} the radial basis function kernel shows an improved performance.
