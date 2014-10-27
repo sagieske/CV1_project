@@ -107,6 +107,7 @@ Key, grayscale & 50 & 50 & 400 & 0.7041   \\
 Key, RGB & 50 & 50 & 400 & TODO \\
 Key, normalizedRGB & 50 & 50 & 400 & 0.1958\\
 Key, Opponent & 50 & 100 & 400 & 0.1946\\
+\hline
 \end{tabular}
 \caption{Mean Average Precision for different color spaces}
 \label{tbl:refOfTable}
@@ -120,6 +121,7 @@ Airplanes & Cars & Faces & Motorbikes\\
 RGB & & & \\
 0.1394  &  0.3118  &  0.1924 &   0.1394\\
 0.1402  &  0.3080  &  0.1909  &  0.13940\\
+\hline
 \end{tabular}
 \caption{Average precision per class for table 1}
 \end{table}
@@ -134,6 +136,7 @@ Key, grayscale & 50 & 100 & 400 & 0.7362\\
 Key, grayscale & 50 & 150 & 400 &  0.7322\\
 Key, grayscale & 50 & 250 & 400 &0.7518\\
 Key, grayscale & 50 & 300 & 400 & 0.7548\\
+\hline
 \end{tabular}
 \caption{Mean Average Precision for different training sizes, 400 clusters}
 \label{tbl:refOfTable}
@@ -148,6 +151,7 @@ Airplanes & Cars & Faces & Motorbikes\\
 0.7419&0.7914&0.5450&0.8503\\
 0.8226&0.7722&0.5415&0.8710\\
 0.8311&0.7612&0.5521&0.8748\\
+\hline
 \end{tabular}
 \caption{Average precision per class for table 3}
 \label{tbl:refOfTable}
@@ -159,6 +163,7 @@ SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
 Key, grayscale & 50 & 50 & 800 & 0.5911 \\
 Key, grayscale & 50 & 100 & 800 & 0.6161 \\
 Key, grayscale & 50 & 150 & 800 & 0.6235 \\
+\hline
 \end{tabular}
 \caption{Mean Average Precision for different training sizes, 800 clusters}
 \label{tbl:refOfTable}
@@ -170,11 +175,13 @@ Airplanes & Cars & Faces & Motorbikes\\
 0.5978&0.6869&0.4507&0.6292\\
 0.5432&0.7424&0.3978 &0.7811\\
 0.6434&0.5742&0.4207&0.8557\\
+\hline
 \end{tabular}
 \caption{Average precision per class for table 5}
 \label{tbl:refOfTable}
 \end{table}
 \section{Conclusion}
+\footnote{libsvm http://www.csie.ntu.edu.tw/\~cjlin/libsvm/ Version 3.19}
 \section{Future work}
 In the current implementation, SIFT for color spaces uses an average over color channel histograms. A possible improvement (though less computationally tractable) would be to train a SVM classifier per color channel per class and build a committee of these SVMs to classify the image. Another improvement can be made by creating classifiers with different kernel functions. Due to time constraints only the sigmoid kernel is used in this project, however, in research by Chapelle et al\cite{chapelle1999support} the radial basis function kernel shows an improved performance.
 
