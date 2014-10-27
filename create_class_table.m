@@ -1,5 +1,7 @@
 % Function creates dictionary map for all classes and their folders
-% Input     usage:  create dictionary either for train or test data
+% Input     usage:              create dictionary either for train or test data
+% Output    class_dictionary:   dictionary for mapping between class name
+%                               and path in
 function class_dictionary = create_class_table(usage)
     
     class_dictionary = containers.Map;

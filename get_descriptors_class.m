@@ -9,11 +9,8 @@ function [data_matrix_class, selected_images] = get_descriptors_class(startN, N,
     class_files = dir(strcat(classfolder, '*.jpg')); 
     class_files_total = size(class_files,1);
     if startN + N-1 > class_files_total
-        disp('NOT ENOUGH CLASS FILES');
-        class_files_total = class_files_total
-        startN = startN
-        N= N
         N = class_files_total - startN
+        fprintf('There are not enough class files. Will use %i\n', N);
     end
     
     selected_images = cell(1,N);
@@ -38,7 +35,7 @@ function [data_matrix_class, selected_images] = get_descriptors_class(startN, N,
         descriptors = extract_features2(imagename,  type_sift, color_space);
          % There is always at least channel 1
         data_matrix_ch1 = cat(2, data_matrix_ch1, descriptors{1});
-        %???? Seperate data_matrices for seperate channels?????
+        %Seperate data_matrices for seperate channels
         if (~strcmp(color_space,'gray'))
             data_matrix_ch2 = cat(2, data_matrix_ch2, descriptors{2});
             data_matrix_ch3 = cat(2, data_matrix_ch3, descriptors{3});
