@@ -42,12 +42,12 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
         % Quantize images using centers and assignment
         
         if(~strcmp(color_space, 'gray'))
-            fprintf('--quantize features colorspaces for testimages class %i', k)
+            fprintf('--quantize features colorspaces for testimages class %i\n', k)
             test_svm_ch1 = quantize_features(test_images, centers, assignment, type_sift, color_space, 1);
             test_svm_ch2 = quantize_features(test_images, centers, assignment, type_sift, color_space, 2);
             test_svm_ch3 = quantize_features(test_images, centers, assignment, type_sift, color_space, 3);
             
-            fprintf('--create histogram for testimages class %i', k)
+            fprintf('--create histogram for testimages class %i\n', k)
 
             test_hist_ch1 = get_histogram(test_svm_ch1);
             test_hist_ch2 = get_histogram(test_svm_ch2);
