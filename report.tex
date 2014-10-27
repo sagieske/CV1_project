@@ -41,8 +41,8 @@ Sharon Gieske, Elise Koster, David van Erkelens
 \begin{document}
 \begin{titlepage}
 \begin{center}
-    \includegraphics[width=\textwidth]{./logo.jpg}
-    \\ [2.5cm]
+    %\includegraphics[width=\textwidth]{./logo.jpg}
+    %\\ [2.5cm]
     \textsc{\Large Computer Vision 1}
     \\ [0.5cm]
     \textsc{\large Final Assignment}
@@ -88,6 +88,7 @@ These histograms are used as input to train four Support Vector Machines (SVMs) 
 After training, all test images are classified according to the SVM-models built using the training images. 
 
 \section{Results}
+All classifications are made using a sigmoid kernel.
 Results of:\\
 \begin{itemize}
 \item key points vs dense
@@ -103,6 +104,21 @@ Results of:\\
 SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
 \toprule
 Key, grayscale & 50 & 50 & 400 & 0.7041   \\
+Key, RGB & 50 & 50 & 400 & 0.1958 \\
+Key, normalizedRGB & 50 & 50 & 400 & TODO\\
+Key, Opponent & 50 & 100 & 400 & TODO\\
+\end{tabular}
+\caption{Mean Average Precision for different color spaces}
+\label{tbl:refOfTable}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{ccccc}
+SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
+\toprule
+Key, grayscale & 50 & 50 & 400 & 0.7041 \\
 Key, grayscale & 50 & 100 & 400 & 0.7362\\
 Key, grayscale & 50 & 150 & 400 &  0.7322\\
 Key, grayscale & 50 & 250 & 400 &0.7518\\
@@ -149,5 +165,9 @@ Airplanes & Cars & Faces & Motorbikes\\
 \end{table}
 \section{Conclusion}
 \section{Future work}
-In the current implementation, SIFT for color spaces uses an average over color channel histograms. A possible improvement (though less computationally tractable) would train an SVM per color channel and build a committee of these SVMs to classify the image.
+In the current implementation, SIFT for color spaces uses an average over color channel histograms. A possible improvement (though less computationally tractable) would be to train a SVM classifier per color channel per class and build a committee of these SVMs to classify the image. Another improvement can be made by creating classifiers with different kernel functions. Due to time constraints only the sigmoid kernel is used in this project, however, in research by Chapelle et al\cite{chapelle1999support} the radial basis function kernel shows an improved performance.
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
 \end{document}
