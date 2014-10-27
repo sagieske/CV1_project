@@ -96,13 +96,18 @@ function prediction = testing(nr_test_images, models, centers, assignment, type_
     total_sorted_images = cell(1, number_of_classifiers);
     av_mean = [];
     for c=1:number_of_classifiers
+        
         all_mat = cell(1,4);
         all_mat{1} = predictions{c};
         all_mat{2} = true_values{c};
         all_mat{3} = d_values{c};
         all_mat{4} = testimages_total
         [sort_all, indices] = sort(all_mat{3}, 'descend');
-        all_mat_sort = {all_mat{1}(indices), all_mat{2}(indices), sort_all, all_mat{4}(indices)}
+        if(c==1)
+            all_mat_sort = {fliplr(all_mat{1}(indices)), fliplr(all_mat{2}(indices)), sort_all, fliplr(all_mat{4}(indices))}
+        else
+            all_mat_sort = {all_mat{1}(indices), all_mat{2}(indices), sort_all, all_mat{4}(indices)}
+        end
         all_mat_sort{1};
         all_mat_sort{2};
         all_mat_sort{3};
@@ -117,7 +122,7 @@ function prediction = testing(nr_test_images, models, centers, assignment, type_
         
         count = 0;
         count_precision = 0;
-        sort_true = all_mat_sort{2}
+        sort_true = all_mat_sort{2};
         %Loop through all images
         for val=1:size(sort_true,2)
             %If the image is in this class
