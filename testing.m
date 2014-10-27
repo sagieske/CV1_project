@@ -86,7 +86,7 @@ function prediction = testing(nr_test_images, models, centers, assignment, type_
                 old_array = predictions{c};
                 old_d_value = d_values{c};
                 predictions{c} = cat(2,old_array, pred_test);
-                d_values{c} = cat(2, old_d_value, max(decision_values));
+                d_values{c} = cat(2, old_d_value, decision_values(2));
                 % Add true values to list
                 old_array_true = true_values{c};
                 true_values{c} = cat(2,old_array_true, true_value(c));
@@ -106,61 +106,18 @@ function prediction = testing(nr_test_images, models, centers, assignment, type_
     total_sorted_images = cell(1, number_of_classifiers);
     av_mean = [];
     for c=1:number_of_classifiers
-        sorted_true_one = [];
-        sorted_true_zero = [];
-        sorted_predictions_one = [];
-        sorted_predictions_zero = [];
-        sorted_images_one = [];
-        sorted_images_zero = [];
-        sorted_dvals_one = [];
-        sorted_dvals_zero = [];
-        %total_mat = cat(2, predictions{c}, true_values{c}, transpose(testimages_total))
-        %[sorted_pred, indices] = sort(predictions{c}, 'descend')
-        %[sorted_pred, indices] = sort(predictions{c})
-        pred = predictions{c};
-        truevals = true_values{c};
-        truevals
-        dvals = d_values{c};
-        for k = 1:size(pred,2)
-            if pred(k) == 1
-                sorted_predictions_one = cat(1, pred(k), sorted_predictions_one);
-                sorted_true_one = cat(1, truevals(k), sorted_true_one);
-                sorted_images_one = cat(1, testimages_total(k), sorted_images_one);
-                sorted_dvals_one = cat(1, dvals(k), sorted_dvals_one);
-            elseif pred(k) == 0
-                sorted_predictions_zero = cat(1, sorted_predictions_zero, pred(k));
-                sorted_true_zero = cat(1, sorted_true_zero, truevals(k));
-                sorted_images_zero = cat(1, sorted_images_zero, testimages_total(k));
-                sorted_dvals_zero = cat(1, sorted_dvals_zero, dvals(k));
-            end
-        end
-        sorted_true_one
-        sorted_true_zero
-        %Sortable matrix for zeros
-        c0 = cell(1,4);
-        c0{1} = sorted_predictions_zero
-        c0{2} = sorted_true_zero
-        c0{3} = sorted_dvals_zero
-        c0{4} = sorted_images_zero
-        %Sortable matrix for ones
-        c1 = cell(1,4);
-        c1{1} = sorted_predictions_one
-        c1{2} = sorted_true_one
-        c1{3} = sorted_dvals_one
-        c1{4} = sorted_images_one
-        [sort_dvals_zero, I0] = sort(c0{3},'descend');
-        [sort_dvals_one, I1] = sort(c1{3}, 'descend');
-        c0_sort = {c0{1}(I0), c0{2}(I0), sort_dvals_zero, c0{4}(I0)};
-        c1_sort = {c1{1}(I1), c1{2}(I1), sort_dvals_one, c1{4}(I1)};
-        c_merged = cell(1,4);
-        c_merged{1} = [c0_sort{1}; c1_sort{1}];
-        c_merged{2} = [c0_sort{2}; c1_sort{2}];
-        c_merged{3} = [c0_sort{3}; c1_sort{3}];
-        c_merged{4} = [c0_sort{4}; c1_sort{4}];
-        c_merged{1}
-        c_merged{2}
-        c_merged{3}
-        c_merged{4}
+        all_mat = cell(1,4);
+        all_mat{1} = predictions{c};
+        all_mat{2} = true_values{c};
+        all_mat{3} = d_values{c};
+        all_mat{4} = testimages_total;
+        [sort_all, indices] = sort(all_mat{3}, 'descend');
+        all_mat_sort = {all_mat{1}(indices), all_mat{2}(indices), sort_all, all_mat{4}(indices)}
+        all_mat_sort{1};
+        all_mat_sort{2};
+        all_mat_sort{3};
+        transpose(all_mat_sort{4})
+
         
         %sorted_predictions
         %sorted_true_vals
@@ -170,9 +127,9 @@ function prediction = testing(nr_test_images, models, centers, assignment, type_
         
         count = 0;
         count_precision = 0;
-        sort_true = c_merged{2};
+        sort_true = all_mat_sort{2}
         %Loop through all images
-        for val=1:size(sort_true)
+        for val=1:size(sort_true,2)
             %If the image is in this class
             %sorted_true_vals(val)
             sort_true(val);
