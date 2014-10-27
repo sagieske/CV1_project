@@ -1,4 +1,4 @@
-function frame(amount_per_class, svm_train_number, amount_clusters, type_sift, color_space)
+function frame(amount_per_class, svm_train_number, nr_test_images, amount_clusters, type_sift, color_space)
     % Calculate # images for each class dependend on # training images
     train_number = amount_per_class*4;
     % Get file information of jpg images from directories
@@ -156,7 +156,7 @@ function frame(amount_per_class, svm_train_number, amount_clusters, type_sift, c
     % TODO channels!
     channel_nr = 1;
     % TESTING
-    prediction = testing(models, centers, assignment, type_sift, color_space, channel_nr);
+    prediction = testing(nr_test_images, models, centers, assignment, type_sift, color_space, channel_nr);
     
 end
     

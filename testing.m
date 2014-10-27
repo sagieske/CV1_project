@@ -6,13 +6,13 @@
 %               color_space
 %               channel
 % Returns:      Prediction:     array of zero or ones for class prediction 
-function prediction = testing(models, centers, assignment, type_sift, color_space, channel_nr)
+function prediction = testing(nr_test_images, models, centers, assignment, type_sift, color_space, channel_nr)
     % Create dictionary for test models
     class_dictionary_test = create_class_table('test');
     class_names = keys(class_dictionary_test);
     
     % TODO total images to be test from each class:
-    total_testimages_per_class = 50;
+    total_testimages_per_class = nr_test_images;
     
     number_of_classifiers = size(class_names,2);
     
@@ -121,6 +121,11 @@ function prediction = testing(models, centers, assignment, type_sift, color_spac
                 %sorted_images = cat(1, sorted_images, testimages_total(k));
             end
         end
+        
+        %sorted_predictions
+        %sorted_true_vals
+        %celldisp(sorted_images)
+
         
         total_sorted_true_vals{c} = sorted_true_vals;
         total_sorted_predictions{c} = sorted_predictions;
