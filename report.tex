@@ -79,7 +79,7 @@ O_1&= \frac{R-G}{\sqrt{2}}\\
 O_2&= \frac{R+G-2B}{\sqrt{6}}\\
 O_3&= \frac{R+G+B}{\sqrt{3}}
 \end{align*}
-Each different color space defines different intensities for each pixel in a color channel, and thus causes SIFT to return different descriptors. The implementation makes use of the toolbox vlfeat\footnote{vlfeat: http://www.vlfeat.org/ (version 0.9.19)}.
+Each different color space defines different intensities for each pixel in a color channel, and thus causes SIFT to return different descriptors.
 \subsection{K-means}
 Performing SIFT on the first set of training images results in a set of descriptors for each image, which are clustered into visual words using K-means. The K-means algorithm works by calculating the Euclidian distance between each data point and a cluster-center (the mean), and iteratively re-calculating the means and re-assigning the data-points until convergence. The resulting clusters form the visual vocabulary used for describing and classifying images later on. 
 \subsection{SVM classification}
@@ -95,32 +95,22 @@ First, different color spaces were tested. The results can be found in the table
 \hline
 SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
 \toprule
-Key, grayscale & 50 & 50 & 400 & 0.7041   \\
-Key, RGB & 50 & 50 & 400 &  0.1958 \\
+Key, grayscale & 50 & 50 & 400 & 0.7041 \\
+Key, RGB & 50 & 50 & 400 & 0.1958 \\
 Key, normalizedRGB & 50 & 50 & 400 & 0.1958\\
 Key, Opponent & 50 & 100 & 400 & 0.1946\\
 \hline
-\end{tabular}\
-\caption{Mean Average Precision for different color spaces}
-\label{tbl:refOfTable}
-\end{table}
-\begin{table}[h!]
-\centering
-\begin{tabular}{cccc}
+\end{tabular}
+The following table contains the per class average precisions for the table above:\\
+\begin{tabular}{|cccc|}
 Airplanes & Cars & Faces & Motorbikes\\
 \toprule
 0.7219&0.7232&0.5326&0.8386\\
-0.1394  &  0.3118  &  0.1924 &   0.1394\\
-0.1394  &  0.3118  &  0.1924 &   0.1394\\
-0.1402  &  0.3080  &  0.1909  &  0.13940\\
+0.1394 & 0.3118 & 0.1924 & 0.1394\\
+0.1394 & 0.3118 & 0.1924 & 0.1394\\
+0.1402 & 0.3080 & 0.1909 & 0.13940\\
 \hline
 \end{tabular}
-\caption{Average precision per class for table 1}
-\end{table}
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{ccccc}
 \newline
 Secondly, different sizes of training sets for SVM-training were tested. As expected, higher numbers of training data yielded better results (see table below).\\
 \begin{tabular}{|ccccc|}
@@ -134,7 +124,7 @@ Key, grayscale & 50 & 250 & 400 &0.7518\\
 Key, grayscale & 50 & 300 & 400 & 0.7548\\
 \hline
 \end{tabular}
-For completeness' sake, below is a table presenting different average precisions per SVM for the parameters in the table above. Consistently, faces yield a worse precision than the other three classes.\\
+For completeness' sake, below is a table presenting different average precisions per SVM for the parameters in the table above. Consistently, faces yield a worse precision than the other three classes (as they did in the precisions-per-class table earlier).\\
 \begin{tabular}{|cccc|}
 \hline
 Airplanes & Cars & Faces & Motorbikes\\
@@ -146,16 +136,14 @@ Airplanes & Cars & Faces & Motorbikes\\
 0.8311&0.7612&0.5521&0.8748\\
 \hline
 \end{tabular}
-\\\\Next, the effect of a larger vocabulary size ($k=800$) on classification was tested for different sets of SVM-training data. The results are presented below. When contrasted to the results for a smaller vocabulary ($k=400$), it performs worse.\\\\
+\\\\Next, the effect of the number of images to create the vocabulary for classification was tested for different sets of SVM-training data. The results are presented below. More images used for training the vocabulary ensure a better precision.
 \begin{tabular}{|ccccc|}
 \hline
 SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
 \toprule
-Key, grayscale & 50 & 50 & 800 & 0.5911 \\
-Key, grayscale & 50 & 100 & 800 & 0.6161 \\
-Key, grayscale & 50 & 150 & 800 & 0.6235 \\
-Key, grayscale & 50 & 250 & 800 & 0.6976 \\
-Key, grayscale & 50 & 300 & 800 & 0.6664\\
+Key, grayscale & 50 & 50 & 400 & 0.5911 \\
+Key, grayscale & 100 & 50 & 400 & 0.7156 \\
+Key, grayscale & 100 & 100 & 400 & 0.7119 \\
 \hline
 \end{tabular}
 
@@ -164,32 +152,18 @@ Key, grayscale & 50 & 300 & 800 & 0.6664\\
 Airplanes & Cars & Faces & Motorbikes\\
 \toprule
 0.5978&0.6869&0.4507&0.6292\\
-0.5432&0.7424&0.3978 &0.7811\\
-0.6434&0.5742&0.4207&0.8557\\
-0.7659&0.7387&0.4635&0.8222\\
-0.6510&0.7061&0.4611&0.8473\\
+0.7127& 0.7743& 0.5397 & 0.8354\\
+0.7235 & 0.7723& 0.5175 & 0.8344\\
 \hline
 \end{tabular}
 
-
-\begin{tabular}{ccccc}
-SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
-\toprule
-Key, grayscale & 100 & 50 & 400 & 0.7114\\
-\end{tabular}
-
-\begin{tabular}{cccc}
-Airplanes & Cars & Faces & Motorbikes\\
-\toprule
-0.7759&0.7370&0.5078&0.8249\\
-\end{tabular}
-
 \section{Conclusion}
-As gray-scale outperformed the other color-spaces significantly, in spite of supplying less information, it is presumed that the implementation used for color SIFT was not sufficient. The section future work discusses possible improvements. Furthermore, faces seem much harder to classify than any of the other classes, in spite of those classes being much closer to each other in terms of context and object similarity. \\
-Similarly unexpected is the worse performance in terms of precision of a larger vocabulary size. One explanation is overfitting, as with larger vocabulary sizes, more noise may be treated as true information. 
+As gray-scale outperformed the other color-spaces significantly, in spite of supplying less information, it is presumed that the current implementation used for color SIFT was not sufficient.  Furthermore, faces seem much harder to classify than any of the other classes, in spite of those classes being much closer to each other in terms of context and object similarity. \\
+Similarly unexpected is the worse performance in terms of precision of a larger vocabulary size. One explanation is overfitting, as with larger vocabulary sizes, more noise may be treated as true information. \\
+On the other hand, a higher number of training image for both the SVM and the visual vocabulary ensured a larger mean average precision, which is expected as there are more positive \textit{and} negative examples to base the models on.
 
 \section{Future work}
-In the current implementation, SIFT for color spaces uses an average over color channel histograms. A possible improvement (though less computationally tractable) would be to train a SVM classifier per color channel per class and build a committee of these SVMs to classify the image. Another improvement can be made by creating classifiers with different kernel functions. Due to time constraints only the sigmoid kernel is used in this project, however, in research by Chapelle et al\cite{chapelle1999support} the radial basis function kernel shows an improved performance.
+In the current implementation, SIFT for color spaces uses an average over color channel histograms. A possible improvement (though less computationally tractable) would be to train a SVM classifier per color channel per class and build a committee of these SVMs to classify the image. Another improvement can be made by creating classifiers with different kernel functions. Due to time constraints only the sigmoid kernel is used in this project, however, in research by Chapelle et al\footnote{\textit{Support vector machines for histogram-based image classification}, Chapelle, Olivier and Haffner, 1999}the radial basis function kernel shows an improved performance.
 
 \bibliographystyle{plain}
 \bibliography{bibliography}
