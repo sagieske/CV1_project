@@ -4,7 +4,7 @@
 %           type_sift:      
 %           color space:
 
-function [data_matrix_class, selected_images] = get_descriptors_class(startN, N, classfolder,type_sift, color_space)
+function [data_matrix_class, selected_images] = get_descriptors_class(startN, N, classfolder,type_sift, color_space, dsift_sizes, dsift_step)
     % Get all jpg image information in class folder
     class_files = dir(strcat(classfolder, '*.jpg')); 
     class_files_total = size(class_files,1);
@@ -32,7 +32,7 @@ function [data_matrix_class, selected_images] = get_descriptors_class(startN, N,
         imagename = strcat(classfolder, class_files(i).name);
         selected_images{counter} = imagename;
         % Get descriptors
-        descriptors = extract_features2(imagename,  type_sift, color_space);
+        descriptors = extract_features3(imagename,  type_sift, color_space, dsift_sizes, dsift_step);
          % There is always at least channel 1
         data_matrix_ch1 = cat(2, data_matrix_ch1, descriptors{1});
         %Seperate data_matrices for seperate channels

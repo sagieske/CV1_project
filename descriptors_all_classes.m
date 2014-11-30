@@ -11,7 +11,7 @@
 %           selected_images_p_class cell array of images used for
 %                                   data_matrix_per_class
 
-function [total_data_matrix, selected_images, datamatrix_per_class, selected_images_per_class] =  descriptors_all_classes(amount_per_class, class_dictionary, type_sift, color_space)
+function [total_data_matrix, selected_images, datamatrix_per_class, selected_images_per_class] =  descriptors_all_classes(amount_per_class, class_dictionary, type_sift, color_space, dsift_sizes, dsift_step)
 
     if (~strcmp(color_space,'gray'))
         channels = 3;
@@ -37,7 +37,7 @@ function [total_data_matrix, selected_images, datamatrix_per_class, selected_ima
         % Convert from cell to string
         class = char(classes(c));
         fprintf('- Retrieving %i images from class %s for training.\n', amount_per_class, char(classes_names(c)));
-        [matrix, images_names] = get_descriptors_class(1, amount_per_class, class, type_sift, color_space);
+        [matrix, images_names] = get_descriptors_class(1, amount_per_class, class, type_sift, color_space, dsift_sizes, dsift_step);
         datamatrix_per_class{c} = matrix;
         selected_images_per_class{c} = images_names;
         % append image file names to cell array

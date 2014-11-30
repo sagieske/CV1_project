@@ -6,7 +6,7 @@
 %               color_space
 %               channel
 % Returns:      Prediction:     array of zero or ones for class prediction 
-function predictions = testing(nr_test_images, models, centers, assignment, type_sift, color_space, channel_nr)
+function predictions = testing(nr_test_images, models, centers, assignment, type_sift, color_space, channel_nr, dsift_sizes, dsift_step)
     % Create dictionary for test models
     class_dictionary_test = create_class_table('test');
     class_names = keys(class_dictionary_test);
@@ -38,14 +38,14 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
         % Get class to retrieve descriptors
         class_path = char(class_names(k));
         % Get all descriptors of images
-        [test_desc, test_images] = get_descriptors_class(1,nr_test_images, class_dictionary_test(class_path), type_sift, color_space);
+        [test_desc, test_images] = get_descriptors_class(1,nr_test_images, class_dictionary_test(class_path), type_sift, color_space, dsift_sizes, dsift_step);
         % Quantize images using centers and assignment
         
         if(~strcmp(color_space, 'gray'))
             fprintf('--quantize features colorspaces for testimages class %i\n', k)
-            test_svm_ch1 = quantize_features(test_images, centers, assignment, type_sift, color_space, 1);
-            test_svm_ch2 = quantize_features(test_images, centers, assignment, type_sift, color_space, 2);
-            test_svm_ch3 = quantize_features(test_images, centers, assignment, type_sift, color_space, 3);
+            test_svm_ch1 = quantize_features(test_images, centers, assignment, type_sift, color_space, 1, dsift_sizes, dsift_step);
+            test_svm_ch2 = quantize_features(test_images, centers, assignment, type_sift, color_space, 2, dsift_sizes, dsift_step);
+            test_svm_ch3 = quantize_features(test_images, centers, assignment, type_sift, color_space, 3, dsift_sizes, dsift_step);
             
             fprintf('--create histogram for testimages class %i\n', k)
 
@@ -59,7 +59,7 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
             
             test_svm = test_svm_ch1;
         else
-            test_svm = quantize_features(test_images, centers, assignment, type_sift, color_space, channel_nr);
+            test_svm = quantize_features(test_images, centers, assignment, type_sift, color_space, channel_nr, dsift_sizes, dsift_step);
 
              % Create histograms
             test_hist = get_histogram(test_svm);
