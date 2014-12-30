@@ -90,6 +90,7 @@ After training, all test images are classified according to the SVM-models built
 \section{Results}
 This section contains an overview and short analysis of the different results obtained during this project. \\
 All classifications are made using a sigmoid kernel.\\
+\iffalse
 First, different color spaces were tested. The results can be found in the table below, and show that the gray-scale color space has much better precision than any of the other color spaces. \\
 \begin{tabular}{|ccccc|}
 \hline
@@ -156,6 +157,8 @@ Airplanes & Cars & Faces & Motorbikes\\
 0.7235 & 0.7723& 0.5175 & 0.8344\\
 \hline
 \end{tabular}
+\fi
+\input{results}
 
 \section{Conclusion}
 As gray-scale outperformed the other color-spaces significantly, in spite of supplying less information, it is presumed that the current implementation used for color SIFT was not sufficient.  Furthermore, faces seem much harder to classify than any of the other classes, in spite of those classes being much closer to each other in terms of context and object similarity. \\
