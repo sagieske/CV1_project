@@ -108,6 +108,8 @@ frame(75, 75, 50, 400, 'key', 'gray', [4 8], 20)
 [SHARON]
 #Effect different kernels
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) -> linear
+av_mean =    0.6574    0.9668    0.9860    0.8642
+av_mean_p =    0.8686
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) -> polynomial
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) -> radial
 

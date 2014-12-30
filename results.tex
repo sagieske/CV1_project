@@ -51,8 +51,9 @@ opponent & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
 \caption{Effect of different color spaces for dense SIFT}
 \end{table}
 
-
-
+gray and RGB not invariance
+Opponent: shift-invariant with respect to light intensity \cite{van2010evaluating}
+normalizedRGB: scale-invariant and invariant to light intensity changes, shadows and shading
 \subsection{Effect number of training samples for feature histogram}
 
 \begin{table}[H]
@@ -156,7 +157,7 @@ opponent & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
 \textbf{Kernel} & \textbf{AP Airplanes} & \textbf{AP Cars} & \textbf{AP Faces} & \textbf{AP Motorbikes} & \textbf{MAP}\\
 \hline
 sigmoid & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
-linear & & & & & \\
+linear & 0.6574 & 0.9668 & 0.9860 & 0.8642 & 0.8686 \\
 polynomial & & & & & \\
 radial & & & & & \\
 \hline
