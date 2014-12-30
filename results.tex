@@ -49,11 +49,11 @@ opponent & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
 \hline
 \end{tabular}
 \caption{Effect of different color spaces for dense SIFT}
+\label{tab:color_sift}
 \end{table}
 
-gray and RGB not invariance
-Opponent: shift-invariant with respect to light intensity 
-normalizedRGB: scale-invariant and invariant to light intensity changes, shadows and shading
+Table \ref{tab:color_sift} shows that Opponent SIFT has the highest Mean Average Precision score. The opponent color space is shift-invariant with respect to light intensity and outperforms the classifiers which use gray or RGB color space, which are not invariant. Surprisingly, the classifier which uses the normalized RGB color space performs worst, even though this color space is scale-invariant and invariant to light intensity changes. \\
+TODO: WHY??
 
 \cite{van2010evaluating}
 \subsection{Effect number of training samples for feature histogram}
@@ -160,7 +160,7 @@ normalizedRGB: scale-invariant and invariant to light intensity changes, shadows
 \hline
 sigmoid & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
 linear & 0.6574 & 0.9668 & 0.9860 & 0.8642 & 0.8686 \\
-polynomial & & & & & \\
+polynomial & 0.7066 & 0.9031 & 0.9839& 0.7216& 0.8288\\
 radial & & & & & \\
 \hline
 \end{tabular}
