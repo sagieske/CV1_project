@@ -18,7 +18,7 @@ function descriptors = extract_features3(im, type_sift, color_space, dsift_sizes
     % Check if image is gray scale eventhough another color space was
     % needed. For now returns set of empty arrays
     if (channels == 1 && ~strcmp(color_space, 'gray'))
-        descriptors = {[],[],[]};
+        descriptors = [];
         return
     end
     
@@ -33,56 +33,57 @@ function descriptors = extract_features3(im, type_sift, color_space, dsift_sizes
                         im_key = im2single(rgb2gray(im_color));
                     end
                     [~, descriptors] = vl_phow(im_key, 'sizes', dsift_sizes, 'step', dsift_step);
-                    descriptors = {descriptors};
+                    %descriptors = {descriptors};
                 
                 case('RGB')
                     % RGBSift (sift per color channel)
                     
-                    R = im_color(:,:,1); % Red channel
-                    G = im_color(:,:,2); % Green channel
-                    B = im_color(:,:,3); % Blue channel
+                    %R = im_color(:,:,1); % Red channel
+                    %G = im_color(:,:,2); % Green channel
+                    %B = im_color(:,:,3); % Blue channel
                     
-                    [~, first_descriptors] = vl_phow(im2single(R), 'Sizes', dsift_sizes, 'Step', dsift_step);
-                    [~, second_descriptors] = vl_phow(im2single(G), 'Sizes', dsift_sizes, 'Step', dsift_step);
-                    [~, third_descriptors] = vl_phow(im2single(B), 'Sizes', dsift_sizes, 'Step', dsift_step);
-                    descriptors = {first_descriptors, second_descriptors, third_descriptors};
+                    %[~, first_descriptors] = vl_phow(im2single(R), 'Sizes', dsift_sizes, 'Step', dsift_step);
+                    %[~, second_descriptors] = vl_phow(im2single(G), 'Sizes', dsift_sizes, 'Step', dsift_step);
+                    %[~, third_descriptors] = vl_phow(im2single(B), 'Sizes', dsift_sizes, 'Step', dsift_step);
+                    %descriptors = {first_descriptors, second_descriptors, third_descriptors};
                     
-                    %[~, descriptors] = vl_phow(im2single(im_color), 'Sizes', dsift_sizes, 'Step', dsift_step, 'Color', 'rgb');
+                    [~, descriptors] = vl_phow(im2single(im_color), 'sizes', dsift_sizes, 'step', dsift_step, 'color', 'rgb');
                     %descriptors = {descriptors};
                 
                 case('normalizedRGB')
-                    % rgbSift (sift per normalized color channel)
-                    R = im_color(:,:,1); % Red channel
-                    G = im_color(:,:,2); % Green channel
-                    B = im_color(:,:,3); % Blue channel
-                    total = R+G+B;
-                    r = double(R./total);
-                    g = double(G./total);
-                    b = double(B./total);
+                   % n_img = im_color;
                     
-                    [~, first_descriptors] = vl_phow(im2single(r), 'Sizes', dsift_sizes, 'Step', dsift_step);
-                    [~, second_descriptors] = vl_phow(im2single(g), 'Sizes', dsift_sizes, 'Step', dsift_step);
-                    [~, third_descriptors] = vl_phow(im2single(b), 'Sizes', dsift_sizes, 'Step', dsift_step);
-                    descriptors = {first_descriptors, second_descriptors, third_descriptors};
                     
-                    %[~, descriptors] = vl_phow(im2single(nRGB), 'Sizes', dsift_sizes, 'Step', dsift_step, 'Color', 'rgb');
+                    img = im2single(im_color);
+           
+                    nm = img(:, :, 1) + img(:, :, 2) + img(:, :, 3);
+                    nm(nm == 0) = 1;
+                    img(:, :, 1) = img(:, :, 1) ./ nm;
+                    img(:, :, 2) = img(:, :, 2) ./ nm;
+                    img(:, :, 3) = img(:, :, 3) ./ nm;
+
+                    img(nm == 0) = 1/sqrt(3);
+                    
+                    
+                    
+                    [~, descriptors] = vl_phow(img, 'Sizes', dsift_sizes, 'Step', dsift_step, 'Color', 'rgb');
                     %descriptors = {descriptors};
                 
                 case('opponent')
                     % opponentSift (sift in opponent color space)
-                    R = im_color(:,:,1); % Red channel
-                    G = im_color(:,:,2); % Green channel
-                    B = im_color(:,:,3); % Blue channel
-                    first = (R-G)./(sqrt(2));
-                    second = (R+G-(2*B))./(sqrt(6));
-                    third = (R+G+B)./sqrt(3);
+                    %R = im_color(:,:,1); % Red channel
+                    %G = im_color(:,:,2); % Green channel
+                    %B = im_color(:,:,3); % Blue channel
+                   % first = (R-G)./(sqrt(2));
+                   % second = (R+G-(2*B))./(sqrt(6));
+                    %third = (R+G+B)./sqrt(3);
          
-                    [~, first_descriptors] = vl_phow(im2single(first), 'Sizes', dsift_sizes, 'Step', dsift_step);
-                    [~, second_descriptors] = vl_phow(im2single(second), 'Sizes', dsift_sizes, 'Step', dsift_step);
-                    [~, third_descriptors] = vl_phow(im2single(third), 'Sizes', dsift_sizes, 'Step', dsift_step);
-                    %[~, descriptors] = vl_phow(im2single(im_color), 'Sizes', dsift_sizes, 'Step', dsift_step, 'Color', 'opponent');
+                    %[~, first_descriptors] = vl_phow(im2single(first), 'Sizes', dsift_sizes, 'Step', dsift_step);
+                    %[~, second_descriptors] = vl_phow(im2single(second), 'Sizes', dsift_sizes, 'Step', dsift_step);
+                    %[~, third_descriptors] = vl_phow(im2single(third), 'Sizes', dsift_sizes, 'Step', dsift_step);
+                    [~, descriptors] = vl_phow(im2single(im_color), 'Sizes', dsift_sizes, 'Step', dsift_step, 'Color', 'opponent');
                     %descriptors = {descriptors};
-                    descriptors = {first_descriptors, second_descriptors, third_descriptors};
+                    %descriptors = {first_descriptors, second_descriptors, third_descriptors};
             end
         case('key')
             switch(color_space) 

@@ -41,23 +41,24 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
         [test_desc, test_images] = get_descriptors_class(1,nr_test_images, class_dictionary_test(class_path), type_sift, color_space, dsift_sizes, dsift_step);
         % Quantize images using centers and assignment
         
-        if(~strcmp(color_space, 'gray'))
+        %if(~strcmp(color_space, 'gray'))
+        if(1 == 2)
             fprintf('--quantize features colorspaces for testimages class %i\n', k)
             test_svm_ch1 = quantize_features(test_images, centers, assignment, type_sift, color_space, 1, dsift_sizes, dsift_step);
-            test_svm_ch2 = quantize_features(test_images, centers, assignment, type_sift, color_space, 2, dsift_sizes, dsift_step);
-            test_svm_ch3 = quantize_features(test_images, centers, assignment, type_sift, color_space, 3, dsift_sizes, dsift_step);
+           % test_svm_ch2 = quantize_features(test_images, centers, assignment, type_sift, color_space, 2, dsift_sizes, dsift_step);
+           % test_svm_ch3 = quantize_features(test_images, centers, assignment, type_sift, color_space, 3, dsift_sizes, dsift_step);
             
             fprintf('--create histogram for testimages class %i\n', k)
 
             test_hist_ch1 = get_histogram(test_svm_ch1);
-            test_hist_ch2 = get_histogram(test_svm_ch2);
-            test_hist_ch3 = get_histogram(test_svm_ch3);
+           % test_hist_ch2 = get_histogram(test_svm_ch2);
+           % test_hist_ch3 = get_histogram(test_svm_ch3);
             
-            test_hist_matrix = [test_hist_ch1 test_hist_ch2 test_hist_ch3];
+            test_hist = test_hist_ch1;
             
-            test_hist = mean(test_hist_matrix, 2);
+            %test_hist = mean(test_hist_matrix, 2);
             
-            test_svm = test_svm_ch1;
+            test_svm = test_hist_ch1;
         else
             test_svm = quantize_features(test_images, centers, assignment, type_sift, color_space, channel_nr, dsift_sizes, dsift_step);
 
