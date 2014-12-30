@@ -103,6 +103,7 @@ frame(75, 75, 50, 400, 'key', 'normalizedRGB', [4 8], 20)
 frame(75, 75, 50, 400, 'key', 'RGB', [4 8], 20)
 frame(75, 75, 50, 400, 'key', 'gray', [4 8], 20)
 
+[SHARON]
 #Effect different kernels
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) -> linear
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) -> polynomial
