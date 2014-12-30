@@ -24,8 +24,10 @@ frame(75, 90, 50, 400, 'dense', 'opponent', [4 8], 20)
 [ELISE] #Effect of different cluster sizes
 frame(75, 75, 50, 800, 'dense', 'opponent', [4 8], 20)
 av_mean = 0.6424    0.5067    0.9602    0.5667
-av_mean_p =   0.6690
+av_mean_p = 0.6690
 frame(75, 75, 50, 1600, 'dense', 'opponent', [4 8], 20)
+av_mean = 0.6438    0.3115    0.8410    0.5361
+av_mean_p = 0.5831
 frame(75, 75, 50, 2000, 'dense', 'opponent', [4 8], 20)
 frame(75, 75, 50, 4000, 'dense', 'opponent', [4 8], 20)
 
