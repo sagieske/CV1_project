@@ -1,14 +1,34 @@
-David van Erkelens	10264019
-Sharon Gieske		6167667
-Elise Koster		5982448
+==========BAG-OF-WORDS IMAGE CLASSIFICATION==========
+To test and compare different parameter settings, you may call the file "frame.m" within MATLAB, and set it with a number of different parameters.
+It will output the Average Precision per class as an array of the form:
 
->> Goal
-The goal of this project is the implementation of an image classification system with four classes (Ck in [airplane, motorbike, face, car]) using bag-of-words. 
+av_mean =
 
->> Steps
-The system contains the following steps:
->> Feature extraction and description
->> Building a visual vocabulary
->> Quantization of features using visual dictionary (encoding)
->> Representing images by frequencies of visual words
->> Classification
+    airplanes AP    cars AP    faces AP    motorbikes AP
+
+and the Mean Average Precision over all classes in the form:
+
+av_mean_p =
+
+    MAP
+
+==========PARAMETER SETTINGS==========
+The different parameters may be set by calling "frame.m" as follows:
+
+frame(histogram_sample_number, SVM_sample_number, test_number, cluster_size, SIFT_type, color_space, window_size, step_size)
+
+Parameter               | Function
+-----------------------------------------------
+histogram_sample_number	| How many training samples from each class to use for creating feature histograms (int)
+SVM_sample_number		| How many training samples from each class to use for training the SVM classifier (int)
+test_number				| The number of images from each class the classifier should be tested on (int)
+cluster_size			| The size of the clusters used in histogram creation (int)
+SIFT_type				| The type of SIFT to be used in feature extraction from the list ['key', 'dense'] (string)
+color_space				| The color space to be used in classification from the list ['gray', 'normalizedRGB', 'RGB', 'Opponent'] (string)
+window_size				| The size(s) of the window used in dense sampling [only used if SIFT_type='dense'] (array)
+step_size				| The step size between windows used in dense sampling [only used if SIFT_type='dense'] (int)
+
+=========DEMO RUN==========
+The default settings for the program can be run by issuing the following command in MATLAB:
+
+frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
