@@ -53,7 +53,7 @@ html_begin += "<tr>"
 for apm in apms:
 	html_begin += "<td>AMP=" + apm + "</td>"
 html_begin += "</tr>"
-print face_counter
+
 for image in range(0, face_counter):
 
 	local_html = "<tr>"

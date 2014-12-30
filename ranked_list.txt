@@ -1,11 +1,7 @@
-Ranked lists according to SVM for the following parameters:
-50 images used for training the vocabulary
-300 images used for training the SVMs
-400 visual words
-Key-point sampling
-Grayscale
+vocab_training=50,svm_training=300,visual_words=400,sift_type=key,color_space=gray
 
 SVM trained to classify airplanes:
+amp=0.9
 
 airplanes: img020.jpg
 airplanes: img026.jpg
@@ -209,6 +205,7 @@ motorbikes: img001.jpg
 motorbikes: img008.jpg
 
 SVM trained to classify cars:
+amp=0.9
 
 cars: img024.jpg
 cars: img037.jpg
@@ -412,6 +409,7 @@ faces: img002.jpg
 faces: img016.jpg
 
 SVM trained to classify faces:
+amp=0.9
 
 faces: img002.jpg
 faces: img017.jpg
@@ -615,6 +613,7 @@ motorbikes: img016.jpg
 airplanes: img008.jpg
 
 SVM trained to classify motorbikes:
+amp=0.9
 
 motorbikes: img001.jpg
 motorbikes: img043.jpg
@@ -815,4 +814,4 @@ faces: img017.jpg
 airplanes: img021.jpg
 faces: img016.jpg
 faces: img002.jpg
-airplanes: img020.jp
+airplanes: img020.jpg
