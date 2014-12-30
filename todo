@@ -1,0 +1,48 @@
+#Must have:
+
+#Default settings (vary ONE parameter at a time):
+frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) 
+
+#Effect number of training samples for feature histogram
+frame(30, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
+frame(50, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
+frame(70, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
+frame(90, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
+
+#Effect number of training samples for SVM
+frame(75, 30, 50, 400, 'dense', 'opponent', [4 8], 20)
+frame(75, 50, 50, 400, 'dense', 'opponent', [4 8], 20)
+frame(75, 70, 50, 400, 'dense', 'opponent', [4 8], 20)
+frame(75, 90, 50, 400, 'dense', 'opponent', [4 8], 20)
+
+#Effect of different cluster sizes
+frame(75, 75, 50, 800, 'dense', 'opponent', [4 8], 20)
+av_mean =
+    0.6424    0.5067    0.9602    0.5667
+av_mean_p =
+    0.6690
+frame(75, 75, 50, 1600, 'dense', 'opponent', [4 8], 20)
+frame(75, 75, 50, 2000, 'dense', 'opponent', [4 8], 20)
+frame(75, 75, 50, 2000, 'dense', 'opponent', [4 8], 20)
+frame(75, 75, 50, 4000, 'dense', 'opponent', [4 8], 20)
+
+#Effect of different step sizes
+frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 50)
+frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 30)
+frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 10)
+
+#Effect of different color spaces
+frame(75, 75, 50, 400, 'dense', 'normalizedRGB', [4 8], 20)
+frame(75, 75, 50, 400, 'dense', 'RGB', [4 8], 20)
+frame(75, 75, 50, 400, 'dense', 'gray', [4 8], 20)
+
+#Effect key-point SIFT
+frame(75, 75, 50, 400, 'key', 'opponent', [4 8], 20)
+frame(75, 75, 50, 400, 'key', 'normalizedRGB', [4 8], 20)
+frame(75, 75, 50, 400, 'key', 'RGB', [4 8], 20)
+frame(75, 75, 50, 400, 'key', 'gray', [4 8], 20)
+
+#Effect different kernels
+frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) -> linear
+frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) -> polynomial
+frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) -> radial
