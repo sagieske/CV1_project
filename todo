@@ -70,6 +70,8 @@ av_mean_p = 0.4634
 [ELISE]
 #Effect of different step sizes
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 75)
+av_mean = 0.6539    0.7360    0.6791    0.3673
+av_mean_p = 0.6091
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 50)
 av_mean = 0.6463    0.8288    0.8596    0.7247
 av_mean_p = 0.7648
