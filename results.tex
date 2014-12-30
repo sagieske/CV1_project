@@ -1,1 +1,51 @@
-yhello
+\begin{table}[h]
+\begin{tabular}{|c|ccccc|}
+\hline
+\textbf{Training/test set sizes} & \textbf{Airplanes} & \textbf{Cars} & \textbf{Faces} & \textbf{Motorbikes} & \textbf{Average}\\
+\hline
+200/80  & 0.1432	& 0.3192	& 0.1973	& 0.1432 & 0.2007\\
+300/80  & 0.6368	& 0.8591	& 0.9885 	& 0.9108 & 0.8488\\
+300/200  & 0.6447 	& 0.9053	& 0.9510 	& 0.7516 & 0.8132\\
+360/200  & 0.6436 	& 0.9528	& 0.5077 	& 0.7314 & 0.7089\\
+\hline
+\end{tabular}
+\caption{Sift type: dense, Color space: opponent}
+\end{table}
+
+%amount_per_class, svm_train_number, nr_test_images, amount_clusters, type_sift, color_space, dsift_sizes, dsift_step
+
+
+\begin{table}[h]
+\scalebox{0.5}{
+\begin{tabular}{|l|l| l|l |l|l |l|l |l|l |l|l |l |}
+\hline
+Vocab size & Train size & Test size & clusters & Type sift & color space & dsift sizes & dsift step & \textbf{Airplanes} & \textbf{Cars} & \textbf{Faces} & \textbf{Motorbikes} & \textbf{Average}\\
+\hline
+50 & 50 & 20 & 400 & dense & Opponent & 4,8 &  20 & 0.1432	& 0.3192	& 0.1973	& 0.1432 & 0.2007\\
+75 & 75 & 20 & 400  & dense & Opponent & 4,8 &  20 & 0.6368	& 0.8591	& 0.9885 	& 0.9108 & 0.8488\\
+75 & 75 & 50 & 400 & dense & Opponent  & 4,8 &  20 & 0.6447 	& 0.9053	& 0.9510 	& 0.7516 & 0.8132\\
+90 & 90 & 50 & 400 & dense & Opponent  & 4,8 &  20 &0.6436 	& 0.9528	& 0.5077 	& 0.7314 & 0.7089\\
+\hline
+75 & 75 & 50 & 400 & dense & Opponent  & 4,8 &  10 & 0.6823 	& 0.8654	& 0.9444 	& 0.6934 & 0.7964\\
+\hline
+75 & 75 & 50 & 400 & dense & Opponent  & 4,8,12 &  10 & 0.6715 	& 0.8771	& 0.9890 	& 0.8608 & 0.8496\\
+75 & 75 & 50 & 400 & dense & Opponent  & 4,8,12 &  20 & 0.6739 	& 0.8838	& 0.9887 	& 0.6968 & 0.8108\\
+\hline
+75 & 75 & 50 & 400 & dense & Opponent  & 4,12,16 &  10 & 0.7168 	& 0.8911	& 1.0000	& 0.7676 & 0.8439\\
+75 & 75 & 50 & 400 & dense & Opponent  & 2,4,8 &  10 & 0.6248 	& 0.8322	& 0.9887 	& 0.9824 & 0.7431\\
+\hline
+100 & 100 & 50 & 50 & dense & RGB  & 4,8 &  10 & 0.7252 	& 0.9165	& 0.9732	& 0.7741 & 0.8473\\
+90 & 90 & 50 & 400 & dense & RGB  & 4,8 &  20 & 0.6367 	& 0.8501	& 0.9112	& 0.7134 & 0.7778\\
+90 & 90 & 50 & 400 & dense & RGB  & 4,8,16 & 10 & 0.6880 	& 0.6880	& 0.9789	& 0.7679 & 0.8507\\
+90 & 90 & 50 & 200 & dense & RGB  & 4,12,16 & 10 & 0.7257 	& 0.9763	& 0.9979	& 0.8994 & 0.8998\\
+75 & 75 & 50 & 400 & dense & RGB  & 8,12 & 10 & 0.7069 	& 0.8733	& 0.4617	& 0.7462 & 0.6970\\
+\hline
+50 & 50 & 50 & 400 & dense & normalizedRGB  & 4,8 &  10 & 0.1394 	& 0.3118	& 0.1924	& 0.1394 & 0.1958\\
+90 & 90 & 50 & 200 & dense & normalizedRGB  & 4,8 &  10 & 0.7917 	& 0.7783	& 0.4930	& 0.6216 & 0.6711\\
+75 & 75 & 50 & 400 & dense & normalizedRGB  & 4,8 &  10 & 0.5657 	& 0.3751	& 0.5405	& 0.5645 & 0.5115\\
+75 & 75 & 50 & 400 & dense & normalizedRGB  & 8,12 &  10 & 0.7744 	& 0.4643	& 0.7608	& 0.5968 & 0.6491\\
+75 & 75 & 50 & 200 & dense & normalizedRGB  & 8,12 &  15 & 0.4956 	& 0.1707	& 0.4357	& 0.5961 & 0.4245\\
+\hline
+\end{tabular}}
+\caption{Sift type: dense, Color space: opponent}
+\end{table}
