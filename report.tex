@@ -1,10 +1,13 @@
 \documentclass[12pt,a4paper]{amsart}
 \usepackage[latin1]{inputenc}
 \usepackage{graphicx}
+\usepackage{float}
+
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{url}
+\usepackage[margin=1in]{geometry}
 
 \title{Computer Vision 1 - Final Project}
 
@@ -137,7 +140,7 @@ Airplanes & Cars & Faces & Motorbikes\\
 0.8311&0.7612&0.5521&0.8748\\
 \hline
 \end{tabular}
-\\\\Next, the effect of the number of images to create the vocabulary for classification was tested for different sets of SVM-training data. The results are presented below. More images used for training the vocabulary ensure a better precision.\\
+\\\\Next, the effect of the number of images to create the vocabulary for classification was tested for different sets of SVM-training data. The results are presented below. More images used for training the vocabulary ensure a better precision.
 \begin{tabular}{|ccccc|}
 \hline
 SIFT type & Samples:vocabulary & Samples:SVM & Clusters & MAP\\
