@@ -45,7 +45,6 @@ frame(75, 75, 50, 400, 'dense', 'normalizedRGB', [4 8], 20)
 frame(75, 75, 50, 400, 'dense', 'RGB', [4 8], 20)
 frame(75, 75, 50, 400, 'dense', 'gray', [4 8], 20)
 
-
 #Effect key-point SIFT
 frame(75, 75, 50, 400, 'key', 'opponent', [4 8], 20)
 frame(75, 75, 50, 400, 'key', 'normalizedRGB', [4 8], 20)
@@ -56,3 +55,10 @@ frame(75, 75, 50, 400, 'key', 'gray', [4 8], 20)
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) -> linear
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) -> polynomial
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) -> radial
+
+#Effect different window sizes
+frame(75, 75, 50, 400, 'dense', 'opponent', [4 12], 20)
+frame(75, 75, 50, 400, 'dense', 'opponent', [8 12], 20)
+frame(75, 75, 50, 400, 'dense', 'opponent', [12 16], 20)
+frame(75, 75, 50, 400, 'dense', 'opponent', [4 8 12], 20)
+frame(75, 75, 50, 400, 'dense', 'opponent', [8 12 16], 20)
