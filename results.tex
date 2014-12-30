@@ -106,7 +106,7 @@ opponent & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
 \caption{Effect of different cluster sizes, Sift type: dense, Color space: opponent}
 \end{table}
 
-\subsection{Effect of different step sizes for dense}
+\subsection{Effect of different step sizes for dense SIFT}
 
 \begin{table}[H]
 \begin{tabular}{|c|ccccc|}
@@ -119,8 +119,30 @@ opponent & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
 50 & & & & & \\
 \hline
 \end{tabular}
-\caption{Effect of different step sizes for dense, Sift type: dense, Color space: opponent}
+\caption{Effect of different step sizes for dense SIFT Color space: opponent}
 \end{table}
+
+
+
+\subsection{Effect of different window sizes for dense SIFT}
+
+\begin{table}[H]
+\begin{tabular}{|c|ccccc|}
+\hline
+\textbf{Window size} & \textbf{AP Airplanes} & \textbf{AP Cars} & \textbf{AP Faces} & \textbf{AP Motorbikes} & \textbf{MAP}\\
+\hline
+4, 8 & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
+4, 12 & & & & & \\
+8, 12 & & & & & \\
+12, 16 & & & & & \\
+4, 8, 12 & & & & & \\
+8, 12, 16 & & & & & \\
+\hline
+\end{tabular}
+\caption{Effect of different window sizes for dense SIFT,  Color space: opponent}
+\end{table}
+
+
 
 
 \subsection{Effect different kernels for SVM}
