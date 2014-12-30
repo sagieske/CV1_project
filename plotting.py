@@ -221,4 +221,59 @@ def step_sizes():
 	plt.tight_layout()
 	plt.show()	
 
-step_sizes()
+def dense_colors():
+	'''
+	Plotting for effect different color spaces on dense SIFT
+	'''
+
+	n_groups = 4
+
+	means_airplanes = (0.6476,0.5743,0.6424,0.6447)
+	means_cars = (0.7741,0.3402,0.9726,0.9053)
+	means_faces = (0.4292,0.4678,0.8689,0.9510)
+	means_motorbikes = (0.8165,0.5646,0.6747,0.7516)
+	average_means = (0.6668,0.4867,0.7897,0.8132)
+
+	fig, ax = plt.subplots()
+
+	index = np.arange(n_groups)
+	bar_width = 0.15
+
+	opacity = 0.5
+	error_config = {'ecolor': '0.3'}
+
+	rects1 = plt.bar(index, means_airplanes, bar_width,
+	                 alpha=opacity,
+	                 color='b',
+	                 label='Airplanes')
+
+	rects2 = plt.bar(index + bar_width, means_cars, bar_width,
+	                 alpha=opacity,
+	                 color='r',
+	                 label='Cars')
+
+	rects3 = plt.bar(index + bar_width*2, means_faces, bar_width,
+	                 alpha=opacity,
+	                 color='g',
+	                 label='Faces')
+
+	rects4 = plt.bar(index + bar_width*3, means_motorbikes, bar_width,
+	                 alpha=opacity,
+	                 color='c',
+	                 label='Motorbikes')
+
+	rects5 = plt.bar(index + bar_width*4, average_means, bar_width,
+	                 alpha=opacity,
+	                 color='m',
+	                 label='MAP')
+
+	plt.xlabel('Color space size')
+	plt.ylabel('Average precision')
+	plt.title('Different color spaces for dense sampling')
+	plt.xticks(index + bar_width*2, ('gray', 'normalizedRGB', 'RGB', 'opponent'))
+	plt.legend(loc=2)
+
+	plt.tight_layout()
+	plt.show()		
+
+dense_colors()
