@@ -47,6 +47,8 @@ av_mean = 0.6367    0.7253    0.3357    0.1926
 av_mean_p = 0.4726
 
 frame(75, 75, 50, 4000, 'dense', 'opponent', [4 8], 20)
+av_mean = 0.6430    0.5311    0.1837    0.4956
+av_mean_p = 0.4634
 
 #Effect of different step sizes
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 50)
