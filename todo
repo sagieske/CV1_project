@@ -81,6 +81,8 @@ av_mean_p = 0.7964
 [SHARON ]
 #Effect of different color spaces
 frame(75, 75, 50, 400, 'dense', 'normalizedRGB', [4 8], 20)
+av_mean = 0.5743    0.3402    0.4678    0.5646
+av_mean_p = 0.4867
 frame(75, 75, 50, 400, 'dense', 'RGB', [4 8], 20)
 frame(75, 75, 50, 400, 'dense', 'gray', [4 8], 20)
 
