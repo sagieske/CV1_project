@@ -38,6 +38,8 @@ av_mean = 0.6531    0.8441    0.7156    0.7590
 av_mean_p = 0.7429
 
 frame(75, 90, 50, 400, 'dense', 'opponent', [4 8], 20)
+av_mean = 0.6426    0.8697    0.5227    0.6963
+av_mean_p = 0.6828
 
 [ELISE] 
 #Effect of different cluster sizes
