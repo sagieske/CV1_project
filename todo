@@ -16,6 +16,8 @@ frame(70, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
 av_mean = 0.6563    0.9534    0.9191    0.7830
 av_mean_p =   0.8280
 frame(90, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
+av_mean =    0.6749    0.9157    0.9631    0.7798
+av_mean_p =    0.8334
 
 #Effect number of training samples for SVM
 frame(75, 30, 50, 400, 'dense', 'opponent', [4 8], 20)
