@@ -171,13 +171,13 @@ def step_sizes():
 	Plotting for effect different training sizes SVM
 	'''
 
-	n_groups = 2
+	n_groups = 5
 
-	means_airplanes = (0.6823,0.6447)
-	means_cars = (0.8654,0.9053)
-	means_faces = (0.9444,0.9510)
-	means_motorbikes = (0.6934,0.7516)
-	average_means = (0.7964,0.8132)
+	means_airplanes = (0.6823,0.6447,0.6405,0.6463,0.6539)
+	means_cars = (0.8654,0.9053,0.8952,0.8288,0.7360)
+	means_faces = (0.9444,0.9510,0.9792,0.8596,0.6791)
+	means_motorbikes = (0.6934,0.7516,0.2704,0.7247,0.3673)
+	average_means = (0.7964,0.8132,0.6963,0.7648,0.6091)
 
 	fig, ax = plt.subplots()
 
@@ -215,7 +215,7 @@ def step_sizes():
 	plt.xlabel('Step size')
 	plt.ylabel('Average precision')
 	plt.title('Step sizes for dense sampling')
-	plt.xticks(index + bar_width*2, ('10', '20', '30', '50', '70'))
+	plt.xticks(index + bar_width*2, ('10', '20', '30', '50', '75'))
 	plt.legend()
 
 	plt.tight_layout()
