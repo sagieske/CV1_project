@@ -2,6 +2,10 @@
 
 #Default settings (vary ONE parameter at a time):
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) 
+av_mean =
+    0.6456    0.8817    0.9746    0.7004
+av_mean_p =
+    0.8006
 
 #Effect number of training samples for feature histogram
 frame(30, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
