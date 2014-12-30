@@ -113,6 +113,9 @@ frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) -> radial
 [ELISE]
 #Effect different window sizes
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 12], 20)
+av_mean = 0.6809    0.9505    0.9945    0.8955
+av_mean_p = 0.8803
+
 frame(75, 75, 50, 400, 'dense', 'opponent', [8 12], 20)
 frame(75, 75, 50, 400, 'dense', 'opponent', [12 16], 20)
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8 12], 20)
