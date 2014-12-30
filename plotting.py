@@ -166,4 +166,59 @@ def svm_sizes():
 	plt.tight_layout()
 	plt.show()	
 
-svm_sizes()
+def step_sizes():
+	'''
+	Plotting for effect different training sizes SVM
+	'''
+
+	n_groups = 2
+
+	means_airplanes = (0.6823,0.6447)
+	means_cars = (0.8654,0.9053)
+	means_faces = (0.9444,0.9510)
+	means_motorbikes = (0.6934,0.7516)
+	average_means = (0.7964,0.8132)
+
+	fig, ax = plt.subplots()
+
+	index = np.arange(n_groups)
+	bar_width = 0.15
+
+	opacity = 0.5
+	error_config = {'ecolor': '0.3'}
+
+	rects1 = plt.bar(index, means_airplanes, bar_width,
+	                 alpha=opacity,
+	                 color='b',
+	                 label='Airplanes')
+
+	rects2 = plt.bar(index + bar_width, means_cars, bar_width,
+	                 alpha=opacity,
+	                 color='r',
+	                 label='Cars')
+
+	rects3 = plt.bar(index + bar_width*2, means_faces, bar_width,
+	                 alpha=opacity,
+	                 color='g',
+	                 label='Faces')
+
+	rects4 = plt.bar(index + bar_width*3, means_motorbikes, bar_width,
+	                 alpha=opacity,
+	                 color='c',
+	                 label='Motorbikes')
+
+	rects5 = plt.bar(index + bar_width*4, average_means, bar_width,
+	                 alpha=opacity,
+	                 color='m',
+	                 label='MAP')
+
+	plt.xlabel('Step size')
+	plt.ylabel('Average precision')
+	plt.title('Step sizes for dense sampling')
+	plt.xticks(index + bar_width*2, ('10', '20', '30', '50', '70'))
+	plt.legend()
+
+	plt.tight_layout()
+	plt.show()	
+
+step_sizes()
