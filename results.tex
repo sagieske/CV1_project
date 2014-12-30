@@ -1,3 +1,23 @@
+The default settings for the experiments run in this research are shown in table \ref{tab:default}.
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Parameter} & \textbf{Default value}\\
+\hline
+Color space & Opponent\\
+SIFT type & Dense\\
+Training set size feature histogram & 75 per class\\
+Training set size SVM & 75 per class\\
+Test set size & 50 per class \\
+Cluster size & 400 \\
+Step size (only for dense SIFT) & 20\\
+\hline
+\end{tabular}
+\caption{Default values for experiments}
+\label{tab:default}
+\end{table}
+
 \subsection{Effect of different color spaces in key-point SIFT}
 
 \begin{table}[h]
@@ -42,8 +62,8 @@ gray & & & & & \\
 \hline
 30 & 0.1394 & 0.3118& 0.1924& 0.1394 & 0.1958\\
 50 & 0.1394 & 0.3118& 0.1924& 0.1394 & 0.1958\\
+70 & 0.6563 & 0.9534 & 0.9191 & 0.7830 & 0.8280\\
 75 & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
-70 & & & & & \\
 90 & & & & & \\
 \hline
 \end{tabular}
