@@ -8,6 +8,9 @@
 \usepackage{amssymb}
 \usepackage{url}
 \usepackage[margin=1in]{geometry}
+\usepackage{subfig}
+\captionsetup{belowskip=12pt,aboveskip=2pt}
+
 
 \title{Computer Vision 1 - Final Project}
 
@@ -89,6 +92,12 @@ Performing SIFT on the first set of training images results in a set of descript
 Once the visual vocabulary has been built, features are extracted from a new set of training images. These features are grouped into words according to the visual vocabulary, and for each image a histogram of visual word frequencies is computed.
 These histograms are used as input to train four Support Vector Machines (SVMs) (one per class), using different kernel-functions. SVMs are non-parametric classifiers, which work by maximizing the margin between the decision boundary and two classes of data.
 After training, all test images are classified according to the SVM-models built using the training images. 
+\subsection{Evaluation}
+The classification systems are evaluated using the Average Precision (AP) for each class and Mean Average Precision (MAP) over all classes. The Average Precision for a single class is defined as
+\begin{align}
+\frac{1}{m_c} \sum\limits_{i=1}^N\frac{f_c(x_i)}{i}
+\end{align}
+where $N$ is the total number of images, $m_c$ is the number of images of class $c$, $x_i$ is the ith image in the ranked list and $f_c$ is a function which returns the number of images of class $c$ in the first $i$ images if $x_i$ is of class $c$, and 0 otherwise.
 
 \section{Results}
 This section contains an overview and short analysis of the different results obtained during this project. \\
