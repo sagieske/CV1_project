@@ -26,6 +26,8 @@ av_mean_p =    0.8334
 [SHARON]
 #Effect number of training samples for SVM
 frame(75, 30, 50, 400, 'dense', 'opponent', [4 8], 20)
+av_mean = 0.6647    0.8898    0.3772    0.5184
+av_mean_p = 0.6125
 frame(75, 50, 50, 400, 'dense', 'opponent', [4 8], 20)
 frame(75, 70, 50, 400, 'dense', 'opponent', [4 8], 20)
 frame(75, 90, 50, 400, 'dense', 'opponent', [4 8], 20)
