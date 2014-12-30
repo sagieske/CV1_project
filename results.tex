@@ -13,6 +13,8 @@ opponent & & & & & \\
 \end{tabular}
 \caption{Effect of different color spaces for key SIFT}
 \end{table}
+ DEFAULT frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) 
+ opponent & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
 
 \subsection{Effect of different color spaces in dense SIFT}
 
@@ -41,6 +43,7 @@ gray & & & & & \\
 \hline
 30 & 0.1394 & 0.3118& 0.1924& 0.1394 & 0.1958\\
 50 & 0.1394 & 0.3118& 0.1924& 0.1394 & 0.1958\\
+75 & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
 70 & & & & & \\
 90 & & & & & \\
 \hline
@@ -59,6 +62,7 @@ gray & & & & & \\
 30 & & & & & \\
 50 & & & & & \\
 70 & & & & & \\
+75 & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
 90 & & & & & \\
 \hline
 \end{tabular}
@@ -73,6 +77,7 @@ gray & & & & & \\
 \hline
 \textbf{Cluster size} & \textbf{Airplanes} & \textbf{Cars} & \textbf{Faces} & \textbf{Motorbikes} & \textbf{Average}\\
 \hline
+400 & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
 800 & 0.6424 & 0.5067 & 0.9602 & 0.5667 & 0.6690\\
 1600 & & & & & \\
 2000 & & & & & \\
@@ -90,6 +95,7 @@ gray & & & & & \\
 \textbf{Step size} & \textbf{Airplanes} & \textbf{Cars} & \textbf{Faces} & \textbf{Motorbikes} & \textbf{Average}\\
 \hline
 10 & 0.6823 & 0.8654 & 0.9444 & 0.6934 & 0.7964\\
+20 & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
 30 & & & & & \\
 50 & & & & & \\
 \hline
@@ -105,7 +111,7 @@ gray & & & & & \\
 \hline
 \textbf{Kernel} & \textbf{Airplanes} & \textbf{Cars} & \textbf{Faces} & \textbf{Motorbikes} & \textbf{Average}\\
 \hline
-sigmoid & & & & & \\
+sigmoid & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
 linear & & & & & \\
 polynomial & & & & & \\
 radial & & & & & \\
