@@ -20,14 +20,14 @@ Step size (only for dense SIFT) & 20\\
 
 \subsection{Effect of different color spaces in key-point SIFT}
 
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabular}{|c|ccccc|}
 \hline
 \textbf{Color space} & \textbf{Airplanes} & \textbf{Cars} & \textbf{Faces} & \textbf{Motorbikes} & \textbf{Average}\\
 \hline
+gray & & & & & \\
 normalizedRGB & & & & & \\
 RGB & & & & & \\
-gray & & & & & \\
 opponent & & & & & \\
 \hline
 \end{tabular}
@@ -37,15 +37,15 @@ opponent & & & & & \\
 
 \subsection{Effect of different color spaces in dense SIFT}
 
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabular}{|c|ccccc|}
 \hline
 \textbf{Color space} & \textbf{Airplanes} & \textbf{Cars} & \textbf{Faces} & \textbf{Motorbikes} & \textbf{Average}\\
 \hline
-opponent & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
+gray & & & & & \\
 normalizedRGB & & & & & \\
 RGB & & & & & \\
-gray & & & & & \\
+opponent & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
 \hline
 \end{tabular}
 \caption{Effect of different color spaces for dense SIFT}
@@ -55,10 +55,10 @@ gray & & & & & \\
 
 \subsection{Effect number of training samples for feature histogram}
 
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabular}{|c|ccccc|}
 \hline
-\textbf{Training/test set sizes} & \textbf{Airplanes} & \textbf{Cars} & \textbf{Faces} & \textbf{Motorbikes} & \textbf{Average}\\
+\textbf{Training samples} & \textbf{Airplanes} & \textbf{Cars} & \textbf{Faces} & \textbf{Motorbikes} & \textbf{Average}\\
 \hline
 30 & 0.1394 & 0.3118& 0.1924& 0.1394 & 0.1958\\
 50 & 0.1394 & 0.3118& 0.1924& 0.1394 & 0.1958\\
@@ -67,13 +67,13 @@ gray & & & & & \\
 90 & 0.6749 & 0.9157 & 0.9631 & 0.7798 & 0.8334\\
 \hline
 \end{tabular}
-\caption{Effect number of training samples for feature histogram, Sift type: dense, Color space: opponent}
+\caption{Effect number of training samples (per class) for feature histogram, Sift type: dense, Color space: opponent}
 \end{table}
 
 
 \subsection{Effect number of training samples for SVM}
 
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabular}{|c|ccccc|}
 \hline
 \textbf{Training samples} & \textbf{Airplanes} & \textbf{Cars} & \textbf{Faces} & \textbf{Motorbikes} & \textbf{Average}\\
@@ -85,21 +85,21 @@ gray & & & & & \\
 90 & & & & & \\
 \hline
 \end{tabular}
-\caption{Effect number of training samples for SVM, Sift type: dense, Color space: opponent}
+\caption{Effect number of training samples (per class) for SVM, Sift type: dense, Color space: opponent}
 \end{table}
 
 
 \subsection{Effect of different cluster sizes}
 
-\begin{table}[h]
+\begin{table}[H]
 \begin{tabular}{|c|ccccc|}
 \hline
 \textbf{Cluster size} & \textbf{Airplanes} & \textbf{Cars} & \textbf{Faces} & \textbf{Motorbikes} & \textbf{Average}\\
 \hline
 400 & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
 800 & 0.6424 & 0.5067 & 0.9602 & 0.5667 & 0.6690\\
-1600 & & & & & \\
-2000 & & & & & \\
+1600 & 0.6438 & 0.3115 & 0.8410 & 0.5361 & 0.5831 \\
+2000 & 0.6367 & 0.7253 & 0.3357 & 0.1926 & 0.4726\\
 4000 & & & & & \\
 \hline
 \end{tabular}
