@@ -7,6 +7,8 @@ av_mean_p = 0.8132
 
 [SHARON]#Effect number of training samples for feature histogram 
 frame(30, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
+av_mean = 0.1394    0.3118    0.1924    0.1394
+av_mean_p = 0.1958
 frame(50, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
 frame(70, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
 frame(90, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
@@ -22,7 +24,6 @@ frame(75, 75, 50, 800, 'dense', 'opponent', [4 8], 20)
 av_mean = 0.6424    0.5067    0.9602    0.5667
 av_mean_p =   0.6690
 frame(75, 75, 50, 1600, 'dense', 'opponent', [4 8], 20)
-frame(75, 75, 50, 2000, 'dense', 'opponent', [4 8], 20)
 frame(75, 75, 50, 2000, 'dense', 'opponent', [4 8], 20)
 frame(75, 75, 50, 4000, 'dense', 'opponent', [4 8], 20)
 
