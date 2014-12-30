@@ -5,16 +5,20 @@ frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
 av_mean = 0.6447    0.9053    0.9510    0.7516
 av_mean_p = 0.8132
 
-[SHARON]#Effect number of training samples for feature histogram 
+[SHARON]
+#Effect number of training samples for feature histogram 
 frame(30, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
 av_mean = 0.1394    0.3118    0.1924    0.1394
 av_mean_p = 0.1958
+
 frame(50, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
 av_mean = 0.1394    0.3118    0.1924    0.1394
 av_mean_p = 0.1958
+
 frame(70, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
 av_mean = 0.6563    0.9534    0.9191    0.7830
 av_mean_p =   0.8280
+
 frame(90, 75, 50, 400, 'dense', 'opponent', [4 8], 20)
 av_mean =    0.6749    0.9157    0.9631    0.7798
 av_mean_p =    0.8334
@@ -25,16 +29,20 @@ frame(75, 50, 50, 400, 'dense', 'opponent', [4 8], 20)
 frame(75, 70, 50, 400, 'dense', 'opponent', [4 8], 20)
 frame(75, 90, 50, 400, 'dense', 'opponent', [4 8], 20)
 
-[ELISE] #Effect of different cluster sizes
+[ELISE] 
+#Effect of different cluster sizes
 frame(75, 75, 50, 800, 'dense', 'opponent', [4 8], 20)
 av_mean = 0.6424    0.5067    0.9602    0.5667
 av_mean_p = 0.6690
+
 frame(75, 75, 50, 1600, 'dense', 'opponent', [4 8], 20)
 av_mean = 0.6438    0.3115    0.8410    0.5361
 av_mean_p = 0.5831
+
 frame(75, 75, 50, 2000, 'dense', 'opponent', [4 8], 20)
 av_mean = 0.6367    0.7253    0.3357    0.1926
 av_mean_p = 0.4726
+
 frame(75, 75, 50, 4000, 'dense', 'opponent', [4 8], 20)
 
 #Effect of different step sizes
@@ -49,7 +57,6 @@ frame(75, 75, 50, 400, 'dense', 'normalizedRGB', [4 8], 20)
 frame(75, 75, 50, 400, 'dense', 'RGB', [4 8], 20)
 frame(75, 75, 50, 400, 'dense', 'gray', [4 8], 20)
 
-
 #Effect key-point SIFT
 frame(75, 75, 50, 400, 'key', 'opponent', [4 8], 20)
 frame(75, 75, 50, 400, 'key', 'normalizedRGB', [4 8], 20)
@@ -60,3 +67,10 @@ frame(75, 75, 50, 400, 'key', 'gray', [4 8], 20)
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) -> linear
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) -> polynomial
 frame(75, 75, 50, 400, 'dense', 'opponent', [4 8], 20) -> radial
+
+#Effect different window sizes
+frame(75, 75, 50, 400, 'dense', 'opponent', [4 12], 20)
+frame(75, 75, 50, 400, 'dense', 'opponent', [8 12], 20)
+frame(75, 75, 50, 400, 'dense', 'opponent', [12 16], 20)
+frame(75, 75, 50, 400, 'dense', 'opponent', [4 8 12], 20)
+frame(75, 75, 50, 400, 'dense', 'opponent', [8 12 16], 20)
