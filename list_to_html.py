@@ -2,7 +2,7 @@ html_begin="<!DOCTYPE html><head><title>Classified list</title><style>.resize{wi
 html_end="</body></html>"
 
 f = open('ranked_list.txt', 'r')
-table = "<table style='border:1px solid black'><tr><td><b>Airplanes</b></td><td><b>Cars</b></td><td><b>Faces</b></td><td><b>Motorbikes</b></td></tr>"
+table = "<table style='border:1px solid black'><tr><td><b>Airplanes SVM</b></td><td><b>Cars SVM</b></td><td><b>Faces SVM</b></td><td><b>Motorbikes SVM</b></td></tr>"
 airplanes_list = []
 cars_list = []
 faces_list = []
@@ -13,9 +13,12 @@ face_counter = 0
 root = "CV1 Project/data/"
 apms =[]
 for i in f:
-	if(len(i.split(',')) == 5):
+	if(len(i.split(',')) == 8):
 		for setting in i.split(','):
-			html_begin += "<p>" + setting + "</p>"
+			if(setting.split('=')[0]=="MAP"):
+				html_begin += "<h2>Mean Average Precision: " + setting.split('=')[1] + "</h2>"
+			else:
+				html_begin += "<p>" + setting + "</p>"
 		html_begin += table
 	#IF A LIST IS FOUND	
 	elif(i.split(" ")[0] == "SVM"):
@@ -51,7 +54,7 @@ for i in f:
 
 html_begin += "<tr>"
 for apm in apms:
-	html_begin += "<td>AMP=" + apm + "</td>"
+	html_begin += "<td>AP=" + apm + "</td>"
 html_begin += "</tr>"
 
 for image in range(0, face_counter):
