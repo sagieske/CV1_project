@@ -13,6 +13,7 @@ Test set size & 50 per class \\
 Cluster size & 400 \\
 Kernel & Sigmoid \\
 Step size (only for dense SIFT) & 20\\
+Window sizes (only for dense SIFT) & 4,8\\
 \hline
 \end{tabular}
 \caption{Default values for experiments}
@@ -58,3 +59,39 @@ radial & 0.6491 & 0.9171 & 0.9438 & 0.7541 & 0.8160\\
 \end{tabular}
 \caption{Effect different kernels for SVM, Sift type: dense, Color space: opponent}
 \end{table}
+
+\subsection{Final Model}
+The settings which performed best in the experiments of this research are combined into a final model and are displayed in table \ref{tab:final}. This model achieves a Mean Average Precision of 97 \% and is indeed the highest score encountered in all experiments. The results for Average Precision for each class are shown in \ref{tab:results_final}.
+ 
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Parameter} & \textbf{Default value}\\
+\hline
+Color space & Opponent\\
+SIFT type & Dense\\
+Training set size feature histogram & 90 per class\\
+Training set size SVM & 75 per class\\
+Test set size & 50 per class \\
+Cluster size & 200 \\
+Kernel & Linear \\
+Step size (only for dense SIFT) & 20\\
+Window sizes & 16, 20, 24\\
+\hline
+\end{tabular}
+\caption{Final model settings}
+\label{tab:final}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{|c|ccccc|}
+\hline
+\textbf{AP Airplanes} & \textbf{AP Cars} & \textbf{AP Faces} & \textbf{AP Motorbikes} & \textbf{MAP}\\
+\hline
+0.9147 & 0.9837 & 0.9996 & 0.9888 & 0.9717\\
+\hline
+\end{tabular}
+\caption{Average Precision of final model}
+\label{tab:results_final}
+\end{table}
+
