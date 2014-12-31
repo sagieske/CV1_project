@@ -3,7 +3,6 @@
 
 function image_descriptions = quantize_features(images, centers, assignment,  type_sift, color_space, channel, dsift_sizes, dsift_step)
     amount_images = size(images,2);
-    words_matrix = [];
     image_descriptions = {};
     % Describe each image in words
     for i = 1:amount_images
