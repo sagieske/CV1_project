@@ -21,7 +21,7 @@ Step size (only for dense SIFT) & 20\\
 Linear kernel: $K(x,y) = (x+y)$\\
 Polynomial kernel: $K(x,y) = (x^Ty + c)^d$\\
 Sigmoid kernel: $K(x,y) = \text{tanh}(ax^Ty + r)$\\
-Radial kernel: $K(x,y) = \text{exp}(-\frac{||x-y||^2}{s\sigma^2})$\\
+Radial kernel: $K(x,y) = \text{exp}(-\frac{||x-y||^2}{2\sigma^2})$\\
 
 Linear kernel is less complex, so less overfitting on noise. 
 
@@ -34,50 +34,11 @@ Linear kernel is less complex, so less overfitting on noise.
 \subsection{Effect number of training samples for SVM}
 \input{trainingsamples_svm}
 
-\subsection{Effect of different cluster sizes}
 
-\begin{figure}[H]
-\includegraphics[width=\textwidth]{../plots/cluster_size_feature_histograms}
-\caption{Effect of cluster size on AP}
-\end{figure}
-\begin{table}[H]
-\begin{tabular}{|c|ccccc|}
-\hline
-\textbf{Cluster size} & \textbf{AP Airplanes} & \textbf{AP Cars} & \textbf{AP Faces} & \textbf{AP Motorbikes} & \textbf{MAP}\\
-\hline
-100& 0.6868 & 0.9152 & 0.9843 & 0.8395 & 0.8564\\
-200 & 0.6663 & 0.9408 & 0.9824 & 0.8454 & 0.8587\\
-400 & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
-800 & 0.6424 & 0.5067 & 0.9602 & 0.5667 & 0.6690\\
-1600 & 0.6438 & 0.3115 & 0.8410 & 0.5361 & 0.5831\\
-2000 & 0.6367 & 0.7253 & 0.3357 & 0.1926 & 0.4726\\
-4000 & 0.6430 & 0.5311 & 0.1837 & 0.4956 & 0.4634\\
-\hline
-\end{tabular}
-\caption{Effect of different cluster sizes, Sift type: dense, Color space: opponent}
-\end{table}
 
-smaller cluster size is better: 200 still better dan 100. higher is probably overfitting, while 100 fails to capture enough features to differentiate between the different classes
+\input{clusters}
+\input{stepsize}
 
-\subsection{Effect of different step sizes for dense SIFT}
-\begin{figure}[H]
-\includegraphics[width=\textwidth]{../plots/step_sizes_dense_sampling}
-\caption{Effect of step size on AP}
-\end{figure}
-\begin{table}[H]
-\begin{tabular}{|c|ccccc|}
-\hline
-\textbf{Step size} & \textbf{AP Airplanes} & \textbf{AP Cars} & \textbf{AP Faces} & \textbf{AP Motorbikes} & \textbf{MAP}\\
-\hline
-10 & 0.6823 & 0.8654 & 0.9444 & 0.6934 & 0.7964\\
-20 & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
-30 & 0.6405 &  0.8952& 0.9792& 0.2704 & 0.6963\\
-50 & 0.6463 & 0.8288 & 0.8596 & 0.7247 & 0.7648\\
-75 & 0.6539 & 0.7360 & 0.6791 & 0.3673 & 0.6091\\
-\hline
-\end{tabular}
-\caption{Effect of different step sizes for dense SIFT Color space: opponent}
-\end{table}
 
 \subsection{Effect of different window sizes for dense SIFT}
 \begin{figure}[H]

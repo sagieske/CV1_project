@@ -9,11 +9,11 @@ def feature_histograms():
 
 	n_groups = 5
 
-	means_airplanes = (0.1394, 0.1394, 0.6563, 0.6447, 0.6749)
-	means_cars = (0.3118, 0.3118, 0.9534, 0.9053, 0.9157)
-	means_faces = (0.1924, 0.1924, 0.9191, 0.9510, 0.9631)
-	means_motorbikes = (0.1394, 0.1394, 0.7830, 0.7516, 0.7798)
-	average_means = (0.1958, 0.1958, 0.8280, 0.8132, 0.8334)
+	means_airplanes = (0.1394, 0.6516, 0.6563, 0.6447, 0.6749)
+	means_cars = (0.3118, 0.8392, 0.9534, 0.9053, 0.9157)
+	means_faces = (0.1924, 0.6716, 0.9191, 0.9510, 0.9631)
+	means_motorbikes = (0.1394, 0.7797, 0.7830, 0.7516, 0.7798)
+	average_means = (0.1958, 0.7355, 0.8280, 0.8132, 0.8334)
 
 	fig, ax = plt.subplots()
 
@@ -51,7 +51,7 @@ def feature_histograms():
 	plt.xlabel('Training size')
 	plt.ylabel('Average precision')
 	plt.title('Training sizes for feature histogram')
-	plt.xticks(index + bar_width*2, ('30', '50', '70', '75', '90'))
+	plt.xticks(index + bar_width*2, ('30', '55', '70', '75', '90'))
 	plt.legend(loc=2)
 
 	plt.tight_layout()
@@ -102,9 +102,9 @@ def cluster_sizes():
 	                 color='m',
 	                 label='MAP')
 
-	plt.xlabel('Cluster size')
+	plt.xlabel('Codebook size')
 	plt.ylabel('Average precision')
-	plt.title('Cluster sizes for feature histogram')
+	plt.title('Codebook sizes for feature histogram')
 	plt.xticks(index + bar_width*2, ('100', '200', '400', '800', '1600', '2000', '4000'))
 	plt.legend()
 
@@ -331,4 +331,4 @@ def window_sizes():
 	plt.tight_layout()
 	plt.show()	
 
-window_sizes()
+feature_histograms()
