@@ -104,12 +104,9 @@ This section contains an overview and short analysis of the different results ob
 \input{results}
 
 \section{Conclusion}
-As gray-scale outperformed the other color-spaces significantly, in spite of supplying less information, it is presumed that the current implementation used for color SIFT was not sufficient.  Furthermore, faces seem much harder to classify than any of the other classes, in spite of those classes being much closer to each other in terms of context and object similarity. \\
-Similarly unexpected is the worse performance in terms of precision of a larger vocabulary size. One explanation is overfitting, as with larger vocabulary sizes, more noise may be treated as true information. \\
-On the other hand, a higher number of training image for both the SVM and the visual vocabulary ensured a larger mean average precision, which is expected as there are more positive \textit{and} negative examples to base the models on.
 
 \section{Future work}
-In the current implementation, SIFT for color spaces uses an average over color channel histograms. A possible improvement (though less computationally tractable) would be to train a SVM classifier per color channel per class and build a committee of these SVMs to classify the image. Another improvement can be made by creating classifiers with different kernel functions. Due to time constraints only the sigmoid kernel is used in this project, however, in research by Chapelle et al\footnote{\textit{Support vector machines for histogram-based image classification}, Chapelle, Olivier and Haffner, 1999}the radial basis function kernel shows an improved performance. Another suggestion for future work lies in the evaluation of dense-sampling, which could be implemented using the earlier mentioned vlfeat, as the current version was too slow to allow for testing.
+It is hypothesized that for dense SIFT, different step sizes will work better with different window sizes. For example, in small window sizes, the step sizes need to be smaller to allow for the capturing of all local features, whereas for larger window sizes, these steps can be smaller while still capturing all required features.
 
 \bibliographystyle{plain}
 \bibliography{bibliography}
