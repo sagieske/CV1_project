@@ -18,6 +18,12 @@ Step size (only for dense SIFT) & 20\\
 \caption{Default values for experiments}
 \label{tab:default}
 \end{table}
+Linear kernel: $K(x,y) = (x+y)$\\
+Polynomial kernel: $K(x,y) = (x^Ty + c)^d$\\
+Sigmoid kernel: $K(x,y) = \text{tanh}(ax^Ty + r)$\\
+Radial kernel: $K(x,y) = \text{exp}(-\frac{||x-y||^2}{s\sigma^2})$\\
+
+Linear kernel is less complex, so less overfitting on noise. 
 
 \subsection{Color spaces and SIFT methods}
 \input{colorspaces_sift}
