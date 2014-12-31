@@ -1,4 +1,4 @@
-The default settings for the experiments run in this research are shown in table \ref{tab:default}.
+The default settings for the experiments run in this research are shown in table \ref{tab:default}. Preliminary results showed the Opponent color space in combination with dense SIFT outperforms the other methods and this combination is therefore chosen as default settings.
 
 \begin{table}[H]
 \begin{tabular}{|l|l|}
@@ -18,44 +18,9 @@ Step size (only for dense SIFT) & 20\\
 \label{tab:default}
 \end{table}
 
-\subsection{Effect of different color spaces in key-point SIFT}
+\subsection{Color spaces and SIFT methods}
+\input{colorspaces_sift}
 
-\begin{table}[H]
-\begin{tabular}{|c|ccccc|}
-\hline
-\textbf{Color space} & \textbf{AP Airplanes} & \textbf{AP Cars} & \textbf{AP Faces} & \textbf{AP Motorbikes} & \textbf{MAP}\\
-\hline
-gray & 0.8564 & 0.7468 & 0.6014 & 0.8485 & 0.7633\\
-normalizedRGB & 0.9245 & 0.8081 & 0.8906 & 0.8308 & 0.8635 \\
-RGB & 0.8870 & 0.8407 & 0.6821 & 0.8815 & 0.8228 \\
-opponent & 0.8918 & 0.7946 & 0.8918 & 0.8457 & 0.8560\\
-\hline
-\end{tabular}
-\caption{Effect of different color spaces for key SIFT}
-\end{table}
-
-
-\subsection{Effect of different color spaces in dense SIFT}
-
-\begin{table}[H]
-\begin{tabular}{|c|ccccc|}
-\hline
-\textbf{Color space} & \textbf{AP Airplanes} & \textbf{AP Cars} & \textbf{AP Faces} & \textbf{AP Motorbikes} & \textbf{MAP}\\
-\hline
-gray & 0.6476 & 0.7741 & 0.4292 & 0.8165 & 0.6668\\
-normalizedRGB & 0.5743 & 0.3402 & 0.4678 & 0.5646 & 0.4867\\
-RGB & 0.6424 & 0.9726 &  0.8689 & 0.6747 & 0.7897\\
-opponent & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
-\hline
-\end{tabular}
-\caption{Effect of different color spaces for dense SIFT}
-\label{tab:color_sift}
-\end{table}
-
-Table \ref{tab:color_sift} shows that Opponent SIFT has the highest Mean Average Precision score. The opponent color space is shift-invariant with respect to light intensity and outperforms the classifiers which use gray or RGB color space, which are not invariant. Surprisingly, the classifier which uses the normalized RGB color space performs worst, even though this color space is scale-invariant and invariant to light intensity changes. \\
-TODO: WHY??
-
-\cite{van2010evaluating}
 \subsection{Effect number of training samples for feature histogram}
 \begin{figure}[H]
 \includegraphics[scale=0.40]{plots/training_size_feature_histograms}
