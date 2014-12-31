@@ -21,7 +21,7 @@ Step size (only for dense SIFT) & 20\\
 Linear kernel: $K(x,y) = (x+y)$\\
 Polynomial kernel: $K(x,y) = (x^Ty + c)^d$\\
 Sigmoid kernel: $K(x,y) = \text{tanh}(ax^Ty + r)$\\
-Radial kernel: $K(x,y) = \text{exp}(-\frac{||x-y||^2}{s\sigma^2})$\\
+Radial kernel: $K(x,y) = \text{exp}(-\frac{||x-y||^2}{2\sigma^2})$\\
 
 Linear kernel is less complex, so less overfitting on noise. 
 
