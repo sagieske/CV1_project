@@ -167,3 +167,8 @@ av_mean_p = 0.9204
 frame(75, 75, 50, 400, 'dense', 'opponent', [16 20 24 28], 20)
 av_mean = 0.7882    0.9395    0.9989    0.9501
 av_mean_p = 0.9192
+
+#Final model?
+frame(90, 75, 50, 200, 'dense', 'opponent', [16 20 24], 20)
+av_mean = 0.9147    0.9837    0.9996    0.9888
+av_mean_p = 0.9717
