@@ -1,10 +1,8 @@
 function average_precision = evaluation()
     %n = 200; %Total number of images
-    % TODO!!! IMPORT LIST
+    list = [1 1 1 0 0 1 0 1];
 
-    list = [1 1 1 0 0 1 0 1]
-
-    n = size(list,2)
+    n = size(list,2);
     m = 50; % Number of class
     total_sum = 0;
     correct_counter =0;
@@ -20,7 +18,7 @@ function average_precision = evaluation()
             total = 0;
         end
         % sumation over term
-        total_sum = total_sum + total
+        total_sum = total_sum + total;
     end
     
     % total average precision for this class

@@ -136,17 +136,12 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
             %And add that precision to the total precision
             count_precision = count_precision + new_p;
         end
-    %Total count_precision needs to be multiplied by 1/number of images in
-    % this class
-    av_mean(c) = count_precision * (1/size(test_images,2));
-    %all_mat_sort{1}
-    %all_mat_sort{2}
-    %all_mat_sort{3}
-    %all_mat_sort{4}
-        count = size(all_mat_sort{3}, 2)
+        %Total count_precision needs to be multiplied by 1/number of images in
+        % this class
+        av_mean(c) = count_precision * (1/size(test_images,2));
+        count = size(all_mat_sort{3}, 2);
         for c2=1:count
            fprintf('%s -- %f\n', all_mat_sort{4}{c2}, all_mat_sort{3}(c2));
-           % all_mat_sort{4}{c2}
         end
     
     end
