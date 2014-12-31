@@ -1,3 +1,7 @@
+David van Erkelens	10264019
+Sharon Gieske		6167667
+Elise Koster		5982448
+
 ==========BAG-OF-WORDS IMAGE CLASSIFICATION==========
 To test and compare different parameter settings, you may call the file "frame.m" within MATLAB, and set it with a number of different parameters.
 It will output the Average Precision per class as an array of the form:
