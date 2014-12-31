@@ -98,7 +98,7 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
     av_mean = [];
         
     for c=1:number_of_classifiers
-        
+        fprintf('---- class %d\n', c);
         all_mat = cell(1,4);
         all_mat{1} = transpose(predictions{c});
         all_mat{2} = transpose(true_values{c});
@@ -139,6 +139,16 @@ function predictions = testing(nr_test_images, models, centers, assignment, type
     %Total count_precision needs to be multiplied by 1/number of images in
     % this class
     av_mean(c) = count_precision * (1/size(test_images,2));
+    %all_mat_sort{1}
+    %all_mat_sort{2}
+    %all_mat_sort{3}
+    %all_mat_sort{4}
+        count = size(all_mat_sort{3}, 2)
+        for c2=1:count
+           fprintf('%s -- %f\n', all_mat_sort{4}{c2}, all_mat_sort{3}(c2));
+           % all_mat_sort{4}{c2}
+        end
+    
     end
     av_mean
     av_mean_p = sum(av_mean)/4
