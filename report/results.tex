@@ -63,25 +63,7 @@ Linear kernel is less complex, so less overfitting on noise.
 
 smaller cluster size is better: 200 still better dan 100. higher is probably overfitting, while 100 fails to capture enough features to differentiate between the different classes
 
-\subsection{Effect of different step sizes for dense SIFT}
-\begin{figure}[H]
-\includegraphics[width=\textwidth]{../plots/step_sizes_dense_sampling}
-\caption{Effect of step size on AP}
-\end{figure}
-\begin{table}[H]
-\begin{tabular}{|c|ccccc|}
-\hline
-\textbf{Step size} & \textbf{AP Airplanes} & \textbf{AP Cars} & \textbf{AP Faces} & \textbf{AP Motorbikes} & \textbf{MAP}\\
-\hline
-10 & 0.6823 & 0.8654 & 0.9444 & 0.6934 & 0.7964\\
-20 & 0.6447 & 0.9053 & 0.9510 & 0.7516 & 0.8132\\
-30 & 0.6405 &  0.8952& 0.9792& 0.2704 & 0.6963\\
-50 & 0.6463 & 0.8288 & 0.8596 & 0.7247 & 0.7648\\
-75 & 0.6539 & 0.7360 & 0.6791 & 0.3673 & 0.6091\\
-\hline
-\end{tabular}
-\caption{Effect of different step sizes for dense SIFT Color space: opponent}
-\end{table}
+\input{stepsize}
 
 
 
