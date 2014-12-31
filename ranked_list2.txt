@@ -1,4 +1,4 @@
-vocab_training_per_class=90,svm_training_per_class=75,visual_words=200,sift_type=dense,color_space=opponent,window_sizes=[16;20;24],step_size=20,MAP=0.9748
+vocab_training=360,svm_training=300,visual_words=200,sift_type=dense,color_space=opponent,window_sizes=[16,20,24],step_size=20
 
 SVM trained to classify airplanes:
 amp=0.9195

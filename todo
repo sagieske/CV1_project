@@ -172,3 +172,10 @@ av_mean_p = 0.9192
 frame(90, 75, 50, 200, 'dense', 'opponent', [16 20 24], 20)
 av_mean = 0.9147    0.9837    0.9996    0.9888
 av_mean_p = 0.9717
+
+#TODO WINDOW SIZES:
+frame(75, 75, 50, 400, 'dense', 'opponent', [4,32], 20)
+av_mean = 0.7359    0.9734    1.0000    0.9776
+av_mean_p = 0.9217
+frame(75, 75, 50, 400, 'dense', 'opponent', [4,16,32], 20)
+frame(75, 75, 50, 400, 'dense', 'opponent', [4,12,24,32], 20)
