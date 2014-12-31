@@ -177,7 +177,15 @@ av_mean_p = 0.9717
 frame(75, 75, 50, 400, 'dense', 'opponent', [4,32], 20)
 av_mean = 0.7359    0.9734    1.0000    0.9776
 av_mean_p = 0.9217
+
 frame(75, 75, 50, 400, 'dense', 'opponent', [4,16,32], 20)
+av_mean = 0.7281    0.9582    0.9996    0.9937
+av_mean_p = 0.9199
+
 frame(75, 75, 50, 400, 'dense', 'opponent', [4,12,24,32], 20)
 av_mean = 0.7219    0.9883    0.9992    0.9649
 av_mean_p = 0.9186
+
+frame(75, 75, 50, 400, 'dense', 'normalizedRGB', [4 16 32], 20)
+av_mean = 0.2088    0.2427    0.3289    0.5960
+av_mean_p = 0.3441
