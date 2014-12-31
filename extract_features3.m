@@ -5,16 +5,12 @@
 %               (so only used for dense sift)
 %               step = step in pixels at which dense sift features are
 %               extracted (so only used for dense sift)
-% Returns:      descriptors =  single if color_space is gray, otherwise list
-%               of 3 descriptors
+% Returns:      descriptors = vector of descriptors for the image
 
 function descriptors = extract_features3(im, type_sift, color_space, dsift_sizes, dsift_step)   
     % Color image for different colorspaces
     im_color = imread(im);
-    
-
     channels = size(im_color, 3);
-    
     % Check if image is gray scale eventhough another color space was
     % needed. For now returns set of empty arrays
     if (channels == 1 && ~strcmp(color_space, 'gray'))
@@ -26,64 +22,36 @@ function descriptors = extract_features3(im, type_sift, color_space, dsift_sizes
         case('dense')
             switch(color_space)
                 case('gray')
-                    % Check if image is gray or rgb
+                    % Check if image is gray or rgb, if needed convert to
+                    % grayscale
                     if(channels == 1)
                         im_key = im2single(im_color);
                     else
                         im_key = im2single(rgb2gray(im_color));
                     end
+                    % Run sift with grayscale image
                     [~, descriptors] = vl_phow(im_key, 'sizes', dsift_sizes, 'step', dsift_step);
-                    %descriptors = {descriptors};
                 
                 case('RGB')
                     % RGBSift (sift per color channel)
-                    
-                    %R = im_color(:,:,1); % Red channel
-                    %G = im_color(:,:,2); % Green channel
-                    %B = im_color(:,:,3); % Blue channel
-                    
-                    %[~, first_descriptors] = vl_phow(im2single(R), 'Sizes', dsift_sizes, 'Step', dsift_step);
-                    %[~, second_descriptors] = vl_phow(im2single(G), 'Sizes', dsift_sizes, 'Step', dsift_step);
-                    %[~, third_descriptors] = vl_phow(im2single(B), 'Sizes', dsift_sizes, 'Step', dsift_step);
-                    %descriptors = {first_descriptors, second_descriptors, third_descriptors};
-                    
                     [~, descriptors] = vl_phow(im2single(im_color), 'sizes', dsift_sizes, 'step', dsift_step, 'color', 'rgb');
-                    %descriptors = {descriptors};
-                
+                    
                 case('normalizedRGB')
-                   % n_img = im_color;
-                    
-                    
+                    % rgbSift (sift per normalized color channel)
+                    % First, the image is normalized and then RGB sift is
+                    % run over the normalized image
                     img = im2single(im_color);
-           
                     nm = img(:, :, 1) + img(:, :, 2) + img(:, :, 3);
                     nm(nm == 0) = 1;
                     img(:, :, 1) = img(:, :, 1) ./ nm;
                     img(:, :, 2) = img(:, :, 2) ./ nm;
                     img(:, :, 3) = img(:, :, 3) ./ nm;
-
-                    img(nm == 0) = 1/sqrt(3);
-                    
-                    
-                    
+                    img(nm == 0) = 1/sqrt(3);           
                     [~, descriptors] = vl_phow(img, 'Sizes', dsift_sizes, 'Step', dsift_step, 'Color', 'rgb');
-                    %descriptors = {descriptors};
-                
+                    
                 case('opponent')
                     % opponentSift (sift in opponent color space)
-                    %R = im_color(:,:,1); % Red channel
-                    %G = im_color(:,:,2); % Green channel
-                    %B = im_color(:,:,3); % Blue channel
-                   % first = (R-G)./(sqrt(2));
-                   % second = (R+G-(2*B))./(sqrt(6));
-                    %third = (R+G+B)./sqrt(3);
-         
-                    %[~, first_descriptors] = vl_phow(im2single(first), 'Sizes', dsift_sizes, 'Step', dsift_step);
-                    %[~, second_descriptors] = vl_phow(im2single(second), 'Sizes', dsift_sizes, 'Step', dsift_step);
-                    %[~, third_descriptors] = vl_phow(im2single(third), 'Sizes', dsift_sizes, 'Step', dsift_step);
                     [~, descriptors] = vl_phow(im2single(im_color), 'Sizes', dsift_sizes, 'Step', dsift_step, 'Color', 'opponent');
-                    %descriptors = {descriptors};
-                    %descriptors = {first_descriptors, second_descriptors, third_descriptors};
             end
         case('key')
             switch(color_space) 
@@ -95,7 +63,7 @@ function descriptors = extract_features3(im, type_sift, color_space, dsift_sizes
                         im_key = im2single(rgb2gray(im_color));
                     end
                     [~, descriptors] = vl_sift(im_key);
-                    descriptors = {descriptors};
+                    %descriptors = {descriptors};
                     
                 case('RGB')
                     % RGBSift (sift per color channel)
@@ -105,7 +73,7 @@ function descriptors = extract_features3(im, type_sift, color_space, dsift_sizes
                     [~, R_descriptors] = vl_sift(im2single(R));
                     [~, G_descriptors] = vl_sift(im2single(G));
                     [~, B_descriptors] = vl_sift(im2single(B));
-                    descriptors = {R_descriptors, G_descriptors, B_descriptors};
+                    descriptors = [R_descriptors G_descriptors B_descriptors];
                
                 case('normalizedRGB')
                     % rgbSift (sift per normalized color channel)
@@ -119,7 +87,7 @@ function descriptors = extract_features3(im, type_sift, color_space, dsift_sizes
                     [~, r_descriptors] = vl_sift(im2single(r));
                     [~, g_descriptors] = vl_sift(im2single(g));
                     [~, b_descriptors] = vl_sift(im2single(b));
-                    descriptors = {r_descriptors, g_descriptors, b_descriptors};
+                    descriptors = [r_descriptors g_descriptors b_descriptors];
                 
                 case('opponent')
                     % opponentSift (sift in opponent color space)
@@ -132,8 +100,8 @@ function descriptors = extract_features3(im, type_sift, color_space, dsift_sizes
                     [~, first_descriptors] = vl_sift(im2single(first));
                     [~, second_descriptors] = vl_sift(im2single(second));
                     [~, third_descriptors] = vl_sift(im2single(third));
-                    descriptors = {first_descriptors, second_descriptors, third_descriptors};
-                
+                    descriptors = [first_descriptors second_descriptors third_descriptors];
+            
                 otherwise
                    disp('ERROR: INVALID COLOR SPACE')
             end

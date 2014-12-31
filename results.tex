@@ -110,7 +110,10 @@ Step size (only for dense SIFT) & 20\\
 
 
 \subsection{Effect of different window sizes for dense SIFT}
-
+\begin{figure}[H]
+\includegraphics[scale=0.4]{plots/window_sizes_dense}
+\caption{Effect of different window sizes on dense SIFT}
+\end{figure}
 \begin{table}[H]
 \begin{tabular}{|c|ccccc|}
 \hline
@@ -132,6 +135,15 @@ Step size (only for dense SIFT) & 20\\
 \end{tabular}
 \caption{Effect of different window sizes for dense SIFT,  Color space: opponent}
 \end{table}
+
+BEST: 16,20,24
+multiple window sizes capture a range of features, from details to larger features
+Less gooder: 20,24,28,32 and 16,20,24,28: too many features, overfitting
+less less gooder: 4,8 and 4,12 and 8,12 and 12,16 : small window sizes, can capture some details but not big enough to capture larger features (i.e. can capture eyes, wheels, but not wings and entire cars)
+
+NEED TO TEST: 4,32 for example
+also 4, 16, 32
+also 4, 12, 24, 32
 
 
 

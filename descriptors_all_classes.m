@@ -12,13 +12,6 @@
 %                                   data_matrix_per_class
 
 function [total_data_matrix, selected_images, datamatrix_per_class, selected_images_per_class] =  descriptors_all_classes(amount_per_class, class_dictionary, type_sift, color_space, dsift_sizes, dsift_step)
-
-    if (1 == 2)
-        channels = 3;
-    else
-    	channels = 1;
-    end
-    
     % Initialize everything
     number_of_classes = class_dictionary.Count;
     datamatrix_per_class = cell(1,number_of_classes);
@@ -43,7 +36,5 @@ function [total_data_matrix, selected_images, datamatrix_per_class, selected_ima
         % append image file names to cell array
         selected_images= cat(2 , selected_images , selected_images_per_class{c});
         % Append to total data matrix for training
-        %for i=1:channels
-            total_data_matrix = [total_data_matrix, single(matrix)];
-        %end        
+        total_data_matrix = [total_data_matrix, single(matrix)];      
     end
