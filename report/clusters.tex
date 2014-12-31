@@ -1,13 +1,13 @@
-\subsection{Effect of different cluster sizes}
+\subsection{Effect of different codebook sizes}
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{../plots/cluster_size_feature_histograms}
-\caption{Effect of cluster size on AP}
+\caption{Effect of codebook size on AP}
 \end{figure}
 \begin{table}[H]
 \begin{tabular}{|c|ccccc|}
 \hline
-\textbf{Cluster size} & \textbf{AP Airplanes} & \textbf{AP Cars} & \textbf{AP Faces} & \textbf{AP Motorbikes} & \textbf{MAP}\\
+\textbf{Codebook size} & \textbf{AP Airplanes} & \textbf{AP Cars} & \textbf{AP Faces} & \textbf{AP Motorbikes} & \textbf{MAP}\\
 \hline
 100& 0.6868 & 0.9152 & 0.9843 & 0.8395 & 0.8564\\
 200 & 0.6663 & 0.9408 & 0.9824 & 0.8454 & 0.8587\\
@@ -18,8 +18,8 @@
 4000 & 0.6430 & 0.5311 & 0.1837 & 0.4956 & 0.4634\\
 \hline
 \end{tabular}
-\caption{Effect of different cluster sizes, Sift type: dense, Color space: opponent}
+\caption{Effect of different codebook sizes, Sift type: dense, Color space: opponent}
 \label{tab:clusters}
 \end{table}
 
-The effect of changing the amount of clusters is shown in table \ref{tab:clusters}. In general, a smaller amount of clusters performs better than a large amount of clusters due to the data tending to overfit when a large amount of clusters is used. However, when a too small amount of clusters is used (e.g. 100), the amount of clusters is not capable of differentiating between different classes. The tipping point for the best performance regarding the amount of clusters is 200.
+The effect of changing the size of the codebook is shown in table \ref{tab:clusters}. In general, a smaller codebook performs better than a large codebook due to the data tending to overfit when a large codebook is used. However, when a too small codebook size is used (e.g. 100), the codebook is not capable of differentiating between different classes. The tipping point for the best performance regarding the codebook size is 200.
