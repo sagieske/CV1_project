@@ -193,3 +193,7 @@ av_mean_p = 0.3441
 frame(75, 75, 50, 400, 'dense', 'opponent', [12,80], 20)
 av_mean = 0.7583    0.9229    0.9849    0.9545
 av_mean_p = 0.9052
+
+frame(75, 75, 50, 400, 'dense', 'opponent', [8 64], 20)
+av_mean = 0.8000    0.9300    0.9943    0.8210
+av_mean_p = 0.8863

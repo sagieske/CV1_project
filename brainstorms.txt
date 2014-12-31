@@ -1,0 +1,4 @@
+first wrong image in dataset is image of face with blue skyish background facestestimg003.jpg    
+CONTEXT, highest ranked images for classes that should not be there often have certain type of background
+motorbikes: face with green facestestimg031.jpg
+best gerankte airplanes alleen blauwe acchtergrond (vliegende planes)
