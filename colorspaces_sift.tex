@@ -16,7 +16,7 @@ opponent & 0.8918 & 0.7946 & 0.8918 & 0.8457 & 0.8560\\
 \label{tab:key}
 \end{table}
 
-In contrast to the key-point SIFT method, the Opponent color space gives the highest Mean Average Precision score for the dense SIFT method. Table \ref{tab:color_sift} displays the results of different color spaces in use for dense SIFT. Surprisingly, normalized RGB color space obtains the lowest Mean Average Precision score for dense SIFT and is in contrast with the results of normalized RGB color for key-point SIFT. Because the default parameters for the window sizes are set small (4 and 8 pixels), features are extracted from small areas and more local features are extracted. The normalization of RGB possibly discards more distinctive local features than the other color space SIFT methods and therefore performs worse.\\
+Table \ref{tab:color_sift} displays the results of different color spaces in use for dense SIFT. In contrast to the key-point SIFT method, the Opponent color space gives the highest Mean Average Precision score for the dense SIFT method.  Surprisingly, normalized RGB color space obtains the lowest Mean Average Precision score for dense SIFT and is in contrast with the results of normalized RGB color for key-point SIFT. Because the default parameters for the window sizes are set small (4 and 8 pixels), features are extracted from small areas and more local features are extracted. The normalization of RGB possibly discards more distinctive local features than the other color space SIFT methods and therefore performs worse.\\
 
 \begin{table}[H]
 \begin{tabular}{|c|ccccc|}
