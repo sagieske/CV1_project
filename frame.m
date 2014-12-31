@@ -67,10 +67,10 @@ function frame(amount_per_class, svm_train_number, nr_test_images, amount_cluste
     
     % Create models for different classes and add them to models cellarray
     disp('-Training SVM models..')
-    model_airplanes = svmtrain(airplanes_label, N_all, '-t 3 -b 1 -q');
-    model_cars = svmtrain(cars_label, N_all, '-t 3 -b 1 -q');
-    model_faces = svmtrain(faces_label, N_all, '-t 3 -b 1 -q');
-    model_motorbikes = svmtrain(motorbikes_label, N_all, '-t 3 -b 1 -q');
+    model_airplanes = svmtrain(airplanes_label, N_all, '-t 0 -b 1 -q');
+    model_cars = svmtrain(cars_label, N_all, '-t 0 -b 1 -q');
+    model_faces = svmtrain(faces_label, N_all, '-t 0 -b 1 -q');
+    model_motorbikes = svmtrain(motorbikes_label, N_all, '-t 0 -b 1 -q');
     models = {model_airplanes, model_cars, model_faces, model_motorbikes};
 
     channel_nr = 1;

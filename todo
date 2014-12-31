@@ -98,12 +98,21 @@ frame(75, 75, 50, 400, 'dense', 'gray', [4 8], 20)
 av_mean =  0.6476    0.7741    0.4292    0.8165
 av_mean_p =   0.6668
 
-[DAVID]
+[DAVID - DONE]
 #Effect key-point SIFT
+# NOTE: sizes and distance worden hier meegegeven, maar zijn niet van invloed (keypoint sift ipv dense sift)
 frame(75, 75, 50, 400, 'key', 'opponent', [4 8], 20)
+av_mean = 0.8918    0.7946    0.8918    0.8457
+av_mean_p = 0.8560
 frame(75, 75, 50, 400, 'key', 'normalizedRGB', [4 8], 20)
+av_mean = 0.9245    0.8081    0.8906    0.8308
+av_mean_p = 0.8635
 frame(75, 75, 50, 400, 'key', 'RGB', [4 8], 20)
+av_mean = 0.8870    0.8407    0.6821    0.8815
+av_mean_p = 0.8228
 frame(75, 75, 50, 400, 'key', 'gray', [4 8], 20)
+av_mean = 0.8564    0.7468    0.6014    0.8485
+av_mean_p = 0.7633
 
 [SHARON]
 #Effect different kernels
