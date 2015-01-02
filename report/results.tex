@@ -1,5 +1,4 @@
-The default settings for the experiments in this research are shown in table \ref{tab:default}. Preliminary results revealed the opponent color space in combination with dense SIFT outperforms the other methods and this combination is therefore chosen as default setting.
-
+The default settings for the experiments in this research are shown in table \ref{tab:default}. Preliminary results revealed the opponent color space outperforms other color spaces, and dense sampling outperforms key-point sampling. Therefore, these settings have been chosen as the default.
 \begin{table}[H]
 \begin{tabular}{|l|l|}
 \hline
@@ -19,12 +18,7 @@ Window sizes (only for dense SIFT) & 4,8\\
 \caption{Default values for experiments}
 \label{tab:default}
 \end{table}
-Linear kernel: $K(x,y) = (x+y)$\\
-Polynomial kernel: $K(x,y) = (x^Ty + c)^d$\\
-Sigmoid kernel: $K(x,y) = \text{tanh}(ax^Ty + r)$\\
-Radial kernel: $K(x,y) = \text{exp}(-\frac{||x-y||^2}{2\sigma^2})$\\
 
-Linear kernel is less complex, so less overfitting on noise. 
 
 \subsection{Color spaces and SIFT methods}
 \input{colorspaces_sift}
@@ -58,10 +52,21 @@ radial & 0.6491 & 0.9171 & 0.9438 & 0.7541 & 0.8160\\
 \hline
 \end{tabular}
 \caption{Effect different kernels for SVM, Sift type: dense, Color space: opponent}
+\label{tab:kernels}
 \end{table}
 
+Four different kernels have been tested:
+\begin{itemize}
+\item Linear kernel: $K(x,y) = (x+y)$\\
+\item Polynomial kernel: $K(x,y) = (x^Ty + c)^d$\\
+\item Sigmoid kernel: $K(x,y) = \text{tanh}(ax^Ty + r)$\\
+\item Radial kernel: $K(x,y) = \text{exp}(-\frac{||x-y||^2}{2\sigma^2})$\\
+\end{itemize}
+The results are displayed in table \ref{tab:kernels}. The linear kernel outperforms the other kernels. This is possibly because it is the least complex kernel, and is thus less prone to overfitting. Since the kernel compares feature histograms instead of entire images, more complex kernels might model noise in data instead of the image classes.
+
+
 \subsection{Final Model}
-The settings which gained the highest performance in the experiments of this research are combined into a final model and are displayed in table \ref{tab:final}. This model achieves a Mean Average Precision of 97 \% and is indeed the highest score encountered in all experiments. The results for Average Precision for each class are shown in \ref{tab:results_final}.
+For every parameter that was tested, the best settings (see table \ref{tab:final}) were used in a final model. The results of this model are displayed in table \ref{tab:results_final} and figure \ref{plot:final}. This model achieves a Mean Average Precision of over 97 \% and is indeed the highest score encountered in all experiments. Four ranked lists produced by this model can be found in the file \verb|image_list.html|.
  
 \begin{table}[H]
 \begin{tabular}{|l|l|}
@@ -95,5 +100,8 @@ Window sizes & 16, 20, 24\\
 \label{tab:results_final}
 \end{table}
 
-TODO FINAL MODEL BRAINSTORMS NEED TO BE ADDED
-
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{../plots/final_model}
+\caption{AP for each class for the final model}
+\label{plot:final}
+\end{figure}

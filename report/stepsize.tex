@@ -3,6 +3,7 @@
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{../plots/step_sizes_dense_sampling}
 \caption{Effect of step size on AP}
+\label{plot:stepsize}
 \end{figure}
 \begin{table}[H]
 \begin{tabular}{|c|ccccc|}
@@ -20,4 +21,4 @@
 \label{tab:stepsize}
 \end{table}
 
-The effect of changing the step sizes for dense SIFT sampling can be see in table \ref{tab:stepsize}. A small stepsize, e.g. 10, underperforms a slightly larger stepsize. However, when the step size is increased even more, the mean average precision of the algortihm rapidly decreases. The tipping point for the step size occurs at 20. This is due to a small step size resulting in a too detail oriented feature extraction, resulting in much noise and a tendency to overfit the data, while a large step size skips many details and tends to underfit the data. 
+The effect of changing the step sizes for dense SIFT sampling can be see in table \ref{tab:stepsize} and figure \ref{plot:step size}. A small step size, e.g. 10, underperforms compared to a slightly larger step size. However, when the step size is increased even more, the mean average precision of the algorithm rapidly decreases. The tipping point for the step size occurs at 20. This is due to a small step size resulting in a too detail oriented feature extraction, resulting in much noise and a tendency to overfit the data, while a large step size skips many details and tends to underfit the data. 
