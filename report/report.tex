@@ -105,9 +105,13 @@ This section contains an overview and short analysis of the different results ob
 \input{results}
 
 \section{Conclusion}
+From the results shown in this report, it is notable that image classification using SIFT shown promising results. Even though not every permutation of the possible parameters have been tested, an average mean precision of over 97\% has already been achieved. \\
+From the results it can be noted that dense SIFT outperforms keypoint SIFT. This implies that features in an image are often relevant, even if they do not show up as a key point. The opponent color space was the most suitable color space to extract features from the images, slightly outperforming other color spaces like RGB and really outperforming color spaces like normalized RGB, which implies that normalization of colors also removes some of the features of importance to classify images on their context. \\ 
+The amount of trainig images is also of great importance for the performance of the algorithm. When using a grayscale color space, 50 training images are sufficient to retrieve a mean average precision of about 80\%. However, then using a colored color space, the minimum number of training images to retrieve a mean average precision of about 80\% lies around 75. The effect of chaning the window size, step size and amount of clusters can also be seen in this report, for all of these parameters the optimum lies somewhere in the middle of the tested values. \\
+Generally, it can be concluded that feature extracting using SIFT combined with binary SVM classifiers yields good performance for classifing images into four categories. The algorithm can be easily extended to include more classes by adding more binary classifiers. However, when more classes are included, the parameters have to be tweaked again to achieve optimal performance, and it can be questioned if an algorithm with more than four classes will achieve a performance as high as 97\%.
 
 \section{Future work}
-It is hypothesized that for dense SIFT, different step sizes will work better with different window sizes. For example, in small window sizes, the step sizes need to be smaller to allow for the capturing of all local features, whereas for larger window sizes, these steps can be smaller while still capturing all required features.
+It is hypothesized that for dense SIFT, different step sizes will work better with different window sizes. For example, in small window sizes, the step sizes need to be smaller to allow for the capturing of all local features, whereas for larger window sizes, these steps can be smaller while still capturing all required features. \textbf{TODO: MOET EEN VAN DEZE TWEE SMALLERS NIET LARGER ZIJN?????}
 
 \bibliographystyle{plain}
 \bibliography{bibliography}
