@@ -57,7 +57,7 @@ Elise Koster \\
 \maketitle
 
 \begin{abstract}
-A bag-of-words approach to image classification was used  to classify four different image categories. After exploring the parameter space, the best model reports a mean average precision of over 97\%. Dense sampling with an opponent color space was found to perform best.
+A bag-of-words approach to image classification was used  to classify four different image categories. After exploring the parameter space, the best model reports a mean average precision of over 97\%.
 \end{abstract}
 
 
@@ -72,13 +72,13 @@ The training data consists of 2000 .jpg-images in four classes (500 per class): 
 \section{Implementation}
 Instead of training classifiers on a large set of pixels, the bag-of-words approach is used. This approach first extracts features from images and subsequently uses them to build a vocabulary of visual `words'. Each image can then be described as a set of these words, which makes training a classifier easier and faster than a pixel-by-pixel approach. \\
 \subsection{SIFT}
-To be able to build a bag-of-words, features need to be extracted from each training image. This is done using Scale Invariant Feature Transform (SIFT), an algorithm that detects points of interest in an image and produces descriptors of these features. Two types of SIFT are used: key-point (produces descriptors of points of interest) and dense-sampling (for every $n$ pixels a descriptor is produced). A multitude of color spaces is used: gray-scale, RGB (regular .jpg-image with three channels), normalized RGB (normalizedRGB) and opponent, where $R,G,B$ respectively are the pixel values per color channel, and normalizedRGB and Opponent color spaces are computed as follows:
+To be able to build a bag-of-words, features need to be extracted from each training image. This is done using Scale Invariant Feature Transform (SIFT), an algorithm that detects points of interest in an image and produces descriptors of these features. Two types of SIFT are used: key-point (produces descriptors of points of interest) and dense-sampling (for every $n$ pixels a descriptor is produced). A multitude of color spaces is used: gray-scale, RGB (regular .jpg-image with three channels), normalized RGB (normalizedRGB) and opponent, where $R,G,B$ respectively are the pixel values per color channel, and
 \begin{align*}
-\text{normalized RGB:}\\
+\text{For normalizedRGB:}\\
 r&= \frac{R}{R+G+B}\\
 g&=\frac{G}{R+G+B} \\
 b&= \frac{B}{R+G+B}\\
-\text{Opponent:}\\
+\text{For opponent:}\\
 O_1&= \frac{R-G}{\sqrt{2}}\\
 O_2&= \frac{R+G-2B}{\sqrt{6}}\\
 O_3&= \frac{R+G+B}{\sqrt{3}}
@@ -96,7 +96,7 @@ The classification systems are evaluated using the Average Precision (AP) for ea
 \frac{1}{m_c} \sum\limits_{i=1}^N\frac{f_c(x_i)}{i}
 \end{align}
 where $N$ is the total number of images, $m_c$ is the number of images of class $c$, $x_i$ is the ith image in the ranked list and $f_c$ is a function which returns the number of images of class $c$ in the first $i$ images if $x_i$ is of class $c$, and 0 otherwise.
-
+\newpage
 \section{Supplied files}
 \input{Supplied_files}
 
@@ -106,7 +106,7 @@ This section contains an overview and short analysis of the different results ob
 
 \section{Conclusion}
 The bag-of-words approach to image classification as explored in this report shows promising results, reporting a mean average precision over four classes of over 97\%. Manual inspection of the highest ranked data for different classifiers showed a dependence on context cues (e.g. background color), though these context cues did not overrule the actual object photographed. However, the images used for training and testing were singular, showing objects from specific angles. Therefore, it cannot be conclusively stated that these results will be replicable in studies with a more varied dataset. Still, it is believed that this approach will work quite well for more varied data, especially if features are extracted using SIFT with a shift-invariant colorspace (opponent), since SIFT is invariant to translation, scaling and rotation. \\
-Dense sampling outperforms key-point sampling, implying that even non-key point features (possibly background/context features) are relevant to the type of images. For dense sampling, the best step size was small, allowing the program to pick up local changes, but not too small, preventing the program from fussing over unnecessary details. Moreover, a range ($>2$ types) of window sizes that were neither overly small ($<$8 pixels) nor very large ($>32$ pixels) shows increase in performance. \\
+Dense sampling outperforms key-point sampling, implying that even non-key point features (possibly background/context features) are relevant to the type of images. For dense sampling, the best step size was small, allowing the program to pick up local changes, but not too small, preventing the program from fussing over unnecessary details. Moreover, the use of a range ($>2$ types) of window sizes that were neither overly small ($<$8 pixels) nor very large ($>32$ pixels) has shown increase in performance. \\
 The best color space for feature extraction was found to be opponent, as it is shift invariant, whereas normalizedRGB greatly underperforms, possibly because the normalization removes important context-based feature information. \\
 Different codebook sizes for building feature histograms have been tested, and in conclusion, large codebook sizes result in overfitting, as the model starts fitting to noise. Overly small codebook sizes underfit, however. The best codebook size lies between these points, and is dependent on the dataset. Therefore, this threshold should probably be experimentally determined. \\
 For the dataset at hand, the best performance was found for an SVM with a linear kernel, which is less complex than other tested kernels and therefore less prone to overfitting. \\
