@@ -1,4 +1,5 @@
 \subsection{Effect of different codebook sizes}
+The effect of changing the size of the codebook is shown in table \ref{tab:clusters} and figure \ref{plot:codebook}. In general, a smaller codebook performs better than a large codebook due to the data tending to overfit when a large codebook is used. However, the codebook is too small (e.g. 100 codewords), it is unable to capture enough detail to properly disambiguate classes. The tipping point for the best performance regarding the codebook size is 200.
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{../plots/cluster_size_feature_histograms}
@@ -22,5 +23,3 @@
 \caption{Effect of different codebook sizes, Sift type: dense, Color space: opponent}
 \label{tab:clusters}
 \end{table}
-
-The effect of changing the size of the codebook is shown in table \ref{tab:clusters} and figure \ref{plot:codebook}. In general, a smaller codebook performs better than a large codebook due to the data tending to overfit when a large codebook is used. However, the codebook is too small (e.g. 100 codewords), it is unable to capture enough detail to properly disambiguate classes. The tipping point for the best performance regarding the codebook size is 200.

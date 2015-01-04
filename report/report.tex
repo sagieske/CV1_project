@@ -57,7 +57,7 @@ Elise Koster \\
 \maketitle
 
 \begin{abstract}
-A bag-of-words approach to image classification was used in four different image categories. After exploring the parameter space, the best model reports a mean average precision of over 97\%.
+A bag-of-words approach to image classification was used  to classify four different image categories. After exploring the parameter space, the best model reports a mean average precision of over 97\%.
 \end{abstract}
 
 
@@ -105,14 +105,16 @@ This section contains an overview and short analysis of the different results ob
 \input{results}
 
 \section{Conclusion}
-From the results shown in this report, it is notable that image classification using SIFT shown promising results. Even though not every permutation of the possible parameters have been tested, an average mean precision of over 97\% has already been achieved. \\
-From the results it can be noted that dense SIFT outperforms keypoint SIFT. This implies that features in an image are often relevant, even if they do not show up as a key point. The opponent color space was the most suitable color space to extract features from the images, slightly outperforming other color spaces like RGB and really outperforming color spaces like normalized RGB, which implies that normalization of colors also removes some of the features of importance to classify images on their context. \\ 
-The amount of trainig images is also of great importance for the performance of the algorithm. When using a grayscale color space, 50 training images are sufficient to retrieve a mean average precision of about 80\%. However, then using a colored color space, the minimum number of training images to retrieve a mean average precision of about 80\% lies around 75. The effect of chaning the window size, step size and amount of clusters can also be seen in this report, for all of these parameters the optimum lies somewhere in the middle of the tested values. \\
-Generally, it can be concluded that feature extracting using SIFT combined with binary SVM classifiers yields good performance for classifing images into four categories. The algorithm can be easily extended to include more classes by adding more binary classifiers. However, when more classes are included, the parameters have to be tweaked again to achieve optimal performance, and it can be questioned if an algorithm with more than four classes will achieve a performance as high as 97\%.
+The bag-of-words approach to image classification as explored in this report shows promising results, reporting a mean average precision over four classes of over 97\%. Manual inspection of the highest ranked data for different classifiers showed a dependence on context cues (e.g. background color), though these context cues did not overrule the actual object photographed. However, the images used for training and testing were singular, showing objects from specific angles. Therefore, it cannot be conclusively stated that these results will be replicable in studies with a more varied dataset. Still, it is believed that this approach will work quite well for more varied data, especially if features are extracted using SIFT with a shift-invariant colorspace (opponent), since SIFT is invariant to translation, scaling and rotation. \\
+Dense sampling outperforms key-point sampling, implying that even non-key point features (possibly background/context features) are relevant to the type of images. For dense sampling, the best step size was small, allowing the program to pick up local changes, but not too small, preventing the program from fussing over unnecessary details. Moreover, a range ($>2$ types) of window sizes that were neither overly small ($<$8 pixels) nor very large ($>32$ pixels). \\
+The best color space for feature extraction was found to be opponent, as it is shift invariant, whereas normalizedRGB greatly underperforms, possibly because the normalization removes important context-based feature information. \\
+Different codebook sizes for building feature histograms have been tested, and in conclusion, large codebook sizes result in overfitting, as the model starts fitting to noise. Overly small codebook sizes underfit, however. The best codebook size lies between these points, and is dependent on the dataset. Therefore, this threshold should probably be experimentally determined. \\
+For the dataset at hand, the best performance was found for an SVM with a linear kernel, which is less complex than other tested kernels and therefore less prone to overffiting. \\
+In conclusion, the bag-of-words approach performs quite well, but should be explored with different datasets before any final conclusion can be drawn.
 
 \section{Future work}
-It is hypothesized that for dense SIFT, different step sizes will work better with different window sizes. For example, in small window sizes, the step sizes need to be smaller to allow for the capturing of all local features, whereas for larger window sizes, these steps can be smaller while still capturing all required features. \textbf{TODO: MOET EEN VAN DEZE TWEE SMALLERS NIET LARGER ZIJN?????}
-
+It is hypothesized that for dense SIFT, different step sizes will work better with different window sizes. For example, in small window sizes, the step sizes need to be smaller to allow for the capturing of all local features, whereas for larger window sizes, these steps can be larger while still capturing all required features. \\
+Another suggestion for future research is applying the bag-of-words model to more complex datasets, where objects are photographed from different angles, partly occluded, etcetera. Using the model on a more real-life dataset will allow for conclusions to be drawn about its usefulness.
 \bibliographystyle{plain}
 \bibliography{bibliography}
 

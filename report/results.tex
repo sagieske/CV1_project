@@ -39,6 +39,15 @@ Window sizes (only for dense SIFT) & 4,8\\
 
 
 \subsection{Effect different kernels for SVM}
+Because classification is done using binary SVMs, the effect of different kernels has been researched.\\
+Four different kernels have been tested:
+\begin{itemize}
+\item Linear kernel: $K(x,y) = (x+y)$\\
+\item Polynomial kernel: $K(x,y) = (x^Ty + c)^d$\\
+\item Sigmoid kernel: $K(x,y) = \text{tanh}(ax^Ty + r)$\\
+\item Radial kernel: $K(x,y) = \text{exp}(-\frac{||x-y||^2}{2\sigma^2})$\\
+\end{itemize}
+The results are displayed in table \ref{tab:kernels} and figure \ref{plot:kernels}. The linear kernel outperforms the other kernels. This is possibly because it is the least complex kernel, and is thus less prone to overfitting. Since the kernel compares feature histograms instead of entire images, more complex kernels might model noise in data instead of the image classes.
 
 \begin{table}[H]
 \begin{tabular}{|c|ccccc|}
@@ -55,14 +64,11 @@ radial & 0.6491 & 0.9171 & 0.9438 & 0.7541 & 0.8160\\
 \label{tab:kernels}
 \end{table}
 
-Four different kernels have been tested:
-\begin{itemize}
-\item Linear kernel: $K(x,y) = (x+y)$\\
-\item Polynomial kernel: $K(x,y) = (x^Ty + c)^d$\\
-\item Sigmoid kernel: $K(x,y) = \text{tanh}(ax^Ty + r)$\\
-\item Radial kernel: $K(x,y) = \text{exp}(-\frac{||x-y||^2}{2\sigma^2})$\\
-\end{itemize}
-The results are displayed in table \ref{tab:kernels}. The linear kernel outperforms the other kernels. This is possibly because it is the least complex kernel, and is thus less prone to overfitting. Since the kernel compares feature histograms instead of entire images, more complex kernels might model noise in data instead of the image classes.
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{../plots/kernels}
+\caption{Effect of kernel type on average precision}
+\label{plot:kernels}
+\end{figure}
 
 
 \subsection{Final Model}

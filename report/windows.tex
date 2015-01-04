@@ -1,4 +1,6 @@
 \subsection{Effect of different window sizes for dense SIFT}
+The effect of changing the window size for dense SIFT sampling is shown in table \ref{tab:winsize} and figure \ref{plot:windows}. Using multiple windows, in a range of sizes performs well, since these windows capture both details and global features. However, a wider range of window sizes does not result in a better performance, possibly since too many features are found and the model starts overfitting. Smaller window sizes, also underperform since these small windows are not capable of capturing larger features, like the wings of airplanes and entire cars. 
+
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{../plots/window_sizes_dense}
 \caption{Effect of different window sizes on dense SIFT}
@@ -26,5 +28,3 @@
 \caption{Effect of different window sizes for dense SIFT,  Color space: opponent}
 \label{tab:winsize}
 \end{table}
-
-The effect of changing the window size for dense SIFT sampling is shown in table \ref{tab:winsize} and figure \ref{plot:windows}. Using multiple windows, in a range of sizes performs well, since these windows capture both details and global features. However, a wider range of window sizes does not result in a better performance, possibly since too many features are found and the model starts overfitting. Smaller window sizes, also underperform since these small windows are not capable of capturing larger features, like the wings of airplanes and entire cars. 
