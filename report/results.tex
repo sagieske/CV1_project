@@ -42,14 +42,15 @@ Window sizes (only for dense SIFT) & 4,8\\
 Because classification is done using binary SVMs, the effect of different kernels has been researched.\\
 Four different kernels have been tested:
 \begin{itemize}
-\item Linear kernel: $K(x,y) = (x+y)$\\
-\item Polynomial kernel: $K(x,y) = (x^Ty + c)^d$\\
-\item Sigmoid kernel: $K(x,y) = \text{tanh}(ax^Ty + r)$\\
-\item Radial kernel: $K(x,y) = \text{exp}(-\frac{||x-y||^2}{2\sigma^2})$\\
+\item Linear kernel: $K(x,y) = (x+y)$
+\item Polynomial kernel: $K(x,y) = (x^Ty + c)^d$
+\item Sigmoid kernel: $K(x,y) = \text{tanh}(ax^Ty + r)$
+\item Radial kernel: $K(x,y) = \text{exp}(-\frac{||x-y||^2}{2\sigma^2})$
 \end{itemize}
 The results are displayed in table \ref{tab:kernels} and figure \ref{plot:kernels}. The linear kernel outperforms the other kernels. This is possibly because it is the least complex kernel, and is thus less prone to overfitting. Since the kernel compares feature histograms instead of entire images, more complex kernels might model noise in data instead of the image classes.
 
 \begin{table}[H]
+\begin{center}
 \begin{tabular}{|c|ccccc|}
 \hline
 \textbf{Kernel} & \textbf{AP Airplanes} & \textbf{AP Cars} & \textbf{AP Faces} & \textbf{AP Motorbikes} & \textbf{MAP}\\
@@ -62,6 +63,7 @@ radial & 0.6491 & 0.9171 & 0.9438 & 0.7541 & 0.8160\\
 \end{tabular}
 \caption{Effect different kernels for SVM, Sift type: dense, Color space: opponent}
 \label{tab:kernels}
+\end{center}
 \end{table}
 
 \begin{figure}[H]
@@ -75,6 +77,7 @@ radial & 0.6491 & 0.9171 & 0.9438 & 0.7541 & 0.8160\\
 For every parameter that was tested, the best settings (see table \ref{tab:final}) were used in a final model. The results of this model are displayed in table \ref{tab:results_final} and figure \ref{plot:final}. This model achieves a Mean Average Precision of over 97 \% and is indeed the highest score encountered in all experiments. Four ranked lists produced by this model can be found in the file \verb|image_list.html|.
  
 \begin{table}[H]
+\begin{center}
 \begin{tabular}{|l|l|}
 \hline
 \textbf{Parameter} & \textbf{Value}\\
@@ -92,9 +95,11 @@ Window sizes & 16, 20, 24\\
 \end{tabular}
 \caption{Final model settings}
 \label{tab:final}
+\end{center}
 \end{table}
 
 \begin{table}[H]
+\begin{center}
 \begin{tabular}{|ccccc|}
 \hline
 \textbf{AP Airplanes} & \textbf{AP Cars} & \textbf{AP Faces} & \textbf{AP Motorbikes} & \textbf{MAP}\\
@@ -104,6 +109,7 @@ Window sizes & 16, 20, 24\\
 \end{tabular}
 \caption{Average Precision of final model}
 \label{tab:results_final}
+\end{center}
 \end{table}
 
 \begin{figure}[H]
