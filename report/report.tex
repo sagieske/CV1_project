@@ -57,7 +57,7 @@ Elise Koster \\
 \maketitle
 
 \begin{abstract}
-A bag-of-words approach to image classification was used  to classify four different image categories. After exploring the parameter space, the best model reports a mean average precision of over 97\%.
+A bag-of-words approach to image classification was used  to classify four different image categories. After exploring the parameter space, the best model reports a mean average precision of over 97\%. In this instance, the best model used dense sampling in an opponent color space for feature extraction, and classified using a linear kernel.
 \end{abstract}
 
 
@@ -110,7 +110,7 @@ Dense sampling outperforms key-point sampling, implying that even non-key point 
 The best color space for feature extraction was found to be opponent, as it is shift invariant, whereas normalizedRGB greatly underperforms, possibly because the normalization removes important context-based feature information. \\
 Different codebook sizes for building feature histograms have been tested, and in conclusion, large codebook sizes result in overfitting, as the model starts fitting to noise. Overly small codebook sizes underfit, however. The best codebook size lies between these points, and is dependent on the dataset. Therefore, this threshold should probably be experimentally determined. \\
 For the dataset at hand, the best performance was found for an SVM with a linear kernel, which is less complex than other tested kernels and therefore less prone to overfitting. \\
-In conclusion, the bag-of-words approach performs quite well, but should be explored with different datasets before any final conclusion can be drawn.
+In conclusion, the bag-of-words approach performs quite well, but should be explored with different datasets before any final conclusions can be drawn.
 
 \section{Future work}
 It is hypothesized that for dense SIFT, different step sizes will work better with different window sizes. For example, in small window sizes, the step sizes need to be smaller to allow for the capturing of all local features, whereas for larger window sizes, these steps can be larger while still capturing all required features. \\
